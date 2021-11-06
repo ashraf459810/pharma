@@ -1,4 +1,4 @@
-import 'package:smartcart/Core/Consts.dart';
+import 'package:pharma/Core/Consts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Prefs_Helper.dart';

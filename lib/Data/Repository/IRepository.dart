@@ -1,5 +1,5 @@
-import 'package:smartcart/Data/HTTP_Helper/IHttp_Helper.dart';
-import 'package:smartcart/Data/Prefs_Helper/IPrefs_Helper.dart';
+import 'package:pharma/Data/HTTP_Helper/IHttp_Helper.dart';
+import 'package:pharma/Data/Prefs_Helper/IPrefs_Helper.dart';
 
 import 'Repository.dart';
 

@@ -1,8 +1,8 @@
-import 'package:smartcart/Data/HTTP_Helper/IHttp_Helper.dart';
-import 'package:smartcart/Data/Prefs_Helper/IPrefs_Helper.dart';
-import 'package:smartcart/Data/Repository/IRepository.dart';
-
 import 'package:get_it/get_it.dart';
+
+import 'Data/HTTP_Helper/IHttp_Helper.dart';
+import 'Data/Prefs_Helper/IPrefs_Helper.dart';
+import 'Data/Repository/IRepository.dart';
 
 final sl = GetIt.instance;
 
