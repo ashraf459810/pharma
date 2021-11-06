@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:pharma/Core/Consts.dart';
 
 Widget textform(
     {TextEditingController controller,
@@ -7,10 +8,11 @@ Widget textform(
     String hint,
     Color hintColor,
     double hintsize,
-    String validation}) {
+    String validation,
+    bool issecure}) {
   return TextFormField(
-    style: TextStyle(color: Colors.white),
-    obscureText: validation == "password" ? true : false,
+    style: TextStyle(color: AppColor.grey),
+    obscureText: issecure ?? false,
     keyboardType: validation == "number"
         ? TextInputType.phone
         : validation == "name"

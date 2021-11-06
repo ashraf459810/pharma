@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 const String BaseUrl = "";
 
-class AppColor {}
+class AppColor {
+  static const Color grey = Color(0xFFC3C7D5);
+  static const Color blue = Color(0xFF0062FF);
+}
 
 class Con {
   static const String savedcontactsforsupport = "false";

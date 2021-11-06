@@ -121,7 +121,7 @@ flutter:
   fonts:
     - family: sans
       fonts:
-         - asset: fonts/sans.ttf
+         - asset: assets/fonts/sans.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

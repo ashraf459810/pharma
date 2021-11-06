@@ -10,7 +10,7 @@ Widget text(
     text,
     style: TextStyle(
         decoration: TextDecoration.none,
-        fontFamily: "font",
+        fontFamily: fontfamily ?? "font",
         color: color,
         fontSize: fontsize,
         fontWeight: fontWeight ?? FontWeight.normal),
