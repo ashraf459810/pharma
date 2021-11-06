@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
@@ -5,7 +7,7 @@ import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Dropdown.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/AppAppBar.dart';
-import 'package:pharma/appWidget/inputContainer.dart';
+import 'package:pharma/appWidget/ProgressBar.dart';
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -26,14 +28,20 @@ class _RegisterState extends State<Register> {
     return Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: PreferredSize(
-            preferredSize: Size.fromHeight(100),
-            child: CustomAppBar(
-              iscolored: "1",
-              title: "تسجيل الصيدلية",
+            preferredSize: Size.fromHeight(80),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: CustomAppBar(
+                title: "تسجيل الصيدلية",
+              ),
             )),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            progressbar("1"),
+            SizedBox(
+              height: h(45),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -119,7 +127,7 @@ class _RegisterState extends State<Register> {
             inputDrop(
                 chosenvalue: jobdesc,
                 list: list,
-                hint: "مالك الصيدلية",
+                hint: "مالك صيدلية",
                 value: (val) {
                   jobdesc = val;
                 },
@@ -169,7 +177,7 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: h(14),
           ),
-          inputContainer()
+          // inputContainer()
         ],
       ),
     );
