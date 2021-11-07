@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pharma/Core/Consts.dart';
 
 class ButtomNavBar extends StatefulWidget {
   final List<NavBarItem> navitems;
@@ -22,7 +23,7 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
         items: navbarlist(widget.navitems),
         currentIndex: selectedIndex,
         selectedIconTheme: IconThemeData(color: Colors.grey, opacity: 0.2),
-        selectedItemColor: Colors.green,
+        selectedItemColor: AppColor.blue,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
       ),
@@ -41,7 +42,7 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
       navlist.add(BottomNavigationBarItem(
           icon: SvgPicture.asset(
             items[i].image,
-            color: selectedIndex == i ? Colors.grey : Colors.orange,
+            color: selectedIndex == i ? AppColor.blue : Colors.grey,
           ),
           label: items[i].name));
     }
