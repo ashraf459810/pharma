@@ -32,7 +32,7 @@ Widget inputContainer(
             borderRadius: 40,
             bordercolor: AppColor.grey,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
                   width: w(250),

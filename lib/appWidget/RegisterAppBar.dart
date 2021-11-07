@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pharma/App/app.dart';
-import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/Widgets/Container.dart';
+
 import 'package:pharma/Widgets/Text.dart';
+
+import 'ProgressBar.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String title;
@@ -66,9 +67,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: h(20),
-                    ),
+                    progressbar(widget.iscolored),
                   ],
                 ),
               ),
