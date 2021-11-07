@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharma/UI/Discount/Discount.dart';
 import 'package:pharma/UI/Transfer/Transfer.dart';
 import 'package:pharma/Widgets/BottomNavBar.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
@@ -18,18 +19,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: HomePageAppBar(
-              title: "",
-            ),
-          )),
-      body: ButtomNavBar(
-        navitems: list,
-        routes: [HomePage(), Transfer()],
-      ),
-    );
+        bottomNavigationBar: ButtomNavBar(
+          navitems: list,
+          routes: [Discount(), Transfer()],
+        ),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(80),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: HomePageAppBar(
+                title: "dsf",
+              ),
+            )),
+        body: Container());
   }
 }

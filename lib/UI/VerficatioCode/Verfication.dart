@@ -46,6 +46,7 @@ class _VerficationState extends State<Verfication> {
               SizedBox(
                 height: h(7),
               ),
+              // ignore: unnecessary_brace_in_string_interps
               text(text: "${number}تم إرسال رمز التحقق الى الرقم "),
               SizedBox(
                 height: h(60),

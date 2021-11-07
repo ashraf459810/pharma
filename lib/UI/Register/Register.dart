@@ -288,6 +288,7 @@ class _RegisterState extends State<Register> {
             children: [
               Container(
                   width: w(110),
+                  // ignore: unnecessary_brace_in_string_interps
                   child: text(text: "   ${desc}", color: Colors.black)),
             ],
           ),

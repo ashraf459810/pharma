@@ -4,7 +4,6 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Dropdown.dart';
 import 'package:pharma/Widgets/Text.dart';
-import 'package:pharma/Widgets/TextForm.dart';
 
 Widget inputDrop({
   String desc,
