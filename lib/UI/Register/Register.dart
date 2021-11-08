@@ -6,11 +6,13 @@ import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Dropdown.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
+import 'package:pharma/appWidget/EmptyInputContainer.dart';
 import 'package:pharma/appWidget/RegisterAppBar.dart';
 
 import 'package:pharma/appWidget/appButton.dart';
 
 import 'package:pharma/appWidget/inputContainer.dart';
+
 import 'package:pharma/appWidget/pharmacyMainBranchmobile.dart';
 
 class Register extends StatefulWidget {
@@ -139,14 +141,17 @@ class _RegisterState extends State<Register> {
               SizedBox(
                 height: h(24),
               ),
-              inputDrop(
-                  chosenvalue: jobdesc,
-                  list: list,
-                  hint: "مالك صيدلية",
-                  value: (val) {
-                    jobdesc = val;
-                  },
-                  desc: "الوصف الوظيفي"),
+              emptyContainer(
+                  desc: "مالك صيدلية",
+                  widget: DropDown(
+                    chosenvalue: jobdesc,
+                    list: list,
+                    hint: "مالك صيدلية",
+                    onchanged: (val) {
+                      jobdesc = val;
+                    },
+                    getindex: (val) {},
+                  )),
               SizedBox(
                 height: h(17),
               ),
@@ -269,53 +274,6 @@ class _RegisterState extends State<Register> {
             ],
           ),
         ));
-  }
-
-  Widget inputDrop({
-    String desc,
-    String hint,
-    String chosenvalue,
-    Function value,
-    String theValue,
-    Widget widget,
-    dynamic list,
-  }) {
-    return Center(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                  width: w(110),
-                  // ignore: unnecessary_brace_in_string_interps
-                  child: text(text: "   ${desc}", color: Colors.black)),
-            ],
-          ),
-          SizedBox(
-            height: h(6),
-          ),
-          container(
-              hight: h(70),
-              width: w(343),
-              borderRadius: 40,
-              bordercolor: AppColor.grey,
-              child: Container(
-                  width: w(250),
-                  child: Center(
-                    child: DropDown(
-                      chosenvalue: chosenvalue,
-                      list: list,
-                      getindex: (val) {},
-                      hint: hint,
-                      onchanged: (val) {
-                        desc = val;
-                      },
-                    ),
-                  ))),
-        ],
-      ),
-    );
   }
 
   Widget pharmacycount(int count, String desc) {

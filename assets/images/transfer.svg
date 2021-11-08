@@ -1,19 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30.132" height="20.629" viewBox="0 0 30.132 20.629">
-  <g id="Group_10858" data-name="Group 10858" transform="translate(-141.199 -363.015)" opacity="0">
-    <g id="Group_10854" data-name="Group 10854">
-      <g id="Group_10853" data-name="Group 10853">
-        <g id="Group_10852" data-name="Group 10852">
-          <path id="Path_24" data-name="Path 24" d="M154.153,368.069l-2.139,1.638a2.794,2.794,0,0,0-1.054,1.734l-1.474,8.362c-.21,1.189,2.088,2.588,5.131,3.125s5.682.008,5.891-1.182L162,373.311a2.8,2.8,0,0,0-.329-1.878l-1.3-2.269" fill="#0062ff" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          <path id="Path_25" data-name="Path 25" d="M153.705,365.129l-.295,1.676c-.15.848,1.488,1.846,3.657,2.228s4.05.006,4.2-.842l.295-1.676" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-          <path id="Path_26" data-name="Path 26" d="M161.555,375.813a6.468,6.468,0,0,1-3.751.4q-.355-.062-.693-.143a.721.721,0,0,0-.875.578l-.268,1.521a.72.72,0,0,0,.534.826c.252.063.514.118.782.166a6.474,6.474,0,0,0,3.751-.4Z" fill="#fff"/>
-          <path id="Path_27" data-name="Path 27" d="M153.549,371.788a8.374,8.374,0,0,0,2.847,1c.226.04.449.072.667.1" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
-          <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="1.559" cy="3.989" rx="1.559" ry="3.989" transform="matrix(0.174, -0.985, 0.985, 0.174, 153.435, 366.664)" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-        </g>
+  <g id="Group_10854" data-name="Group 10854" transform="translate(-141.199 -363.015)">
+    <g id="Group_10853" data-name="Group 10853">
+      <g id="Group_10852" data-name="Group 10852">
+        <path id="Path_24" data-name="Path 24" d="M154.153,368.069l-2.139,1.638a2.794,2.794,0,0,0-1.054,1.734l-1.474,8.362c-.21,1.189,2.088,2.588,5.131,3.125s5.682.008,5.891-1.182L162,373.311a2.8,2.8,0,0,0-.329-1.878l-1.3-2.269" fill="#0062ff" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_25" data-name="Path 25" d="M153.705,365.129l-.295,1.676c-.15.848,1.488,1.846,3.657,2.228s4.05.006,4.2-.842l.295-1.676" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_26" data-name="Path 26" d="M161.555,375.813a6.468,6.468,0,0,1-3.751.4q-.355-.062-.693-.143a.721.721,0,0,0-.875.578l-.268,1.521a.72.72,0,0,0,.534.826c.252.063.514.118.782.166a6.474,6.474,0,0,0,3.751-.4Z" fill="#fff"/>
+        <path id="Path_27" data-name="Path 27" d="M153.549,371.788a8.374,8.374,0,0,0,2.847,1c.226.04.449.072.667.1" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+        <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="1.559" cy="3.989" rx="1.559" ry="3.989" transform="matrix(0.174, -0.985, 0.985, 0.174, 153.435, 366.664)" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_28" data-name="Path 28" d="M167.164,381.049l-2.566-1.643,1.643-2.566" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <path id="Path_30" data-name="Path 30" d="M164.366,369.39c4.194,1.787,6.8,4.218,6.417,6.409-.324,1.837-2.683,3.112-6.117,3.621" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       </g>
+      <path id="Path_29" data-name="Path 29" d="M147.414,364.942l2.346,1.944-1.944,2.346" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     </g>
-    <path id="Path_28" data-name="Path 28" d="M167.164,381.049l-2.566-1.643,1.643-2.566" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-    <path id="Path_29" data-name="Path 29" d="M147.414,364.942l2.346,1.944-1.944,2.346" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-    <path id="Path_30" data-name="Path 30" d="M164.366,369.39c4.194,1.787,6.8,4.218,6.417,6.409-.324,1.837-2.683,3.112-6.117,3.621" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
     <path id="Path_31" data-name="Path 31" d="M147.332,376.716c-3.7-1.743-5.946-3.994-5.586-6.037.379-2.15,3.549-3.531,7.968-3.813" fill="none" stroke="#0062ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
   </g>
 </svg>

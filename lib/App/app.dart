@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/UI/SignIn/SignIn.dart';
+import 'package:pharma/UI/homePage/HomePage.dart';
 
 import 'AppLocalizations.dart';
 
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                 );
               },
 
-              home: SignIn(),
+              home: HomePage(),
             ));
   }
 }
