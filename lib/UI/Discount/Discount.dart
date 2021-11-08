@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:full_screen_image/full_screen_image.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/Map/Map.dart';
 import 'package:pharma/UI/StoreProfile/StoreProfile.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
@@ -216,7 +216,12 @@ class _DiscountState extends State<Discount> {
                                           value: 2,
                                         )
                                       ]),
-                              SvgPicture.asset("assets/images/location.svg"),
+                              InkWell(
+                                  onTap: () {
+                                    nav(context, LocationMap());
+                                  },
+                                  child: SvgPicture.asset(
+                                      "assets/images/location.svg")),
                             ],
                           ),
                         ),
