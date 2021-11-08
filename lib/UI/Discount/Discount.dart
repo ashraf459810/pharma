@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/StoreProfile/StoreProfile.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
+import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
 
@@ -56,18 +58,23 @@ class _DiscountState extends State<Discount> {
                 padding: 10,
                 width: MediaQuery.of(context).size.width,
                 function: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                        height: h(70),
-                        width: w(70),
-                        decoration: BoxDecoration(
-                            color: Colors.white, shape: BoxShape.circle),
-                        child: Center(
-                            child: Image.asset(
-                          "assets/images/roundexample.png",
-                          fit: BoxFit.contain,
-                        ))),
+                  return InkWell(
+                    onTap: () {
+                      nav(context, StoreProfile());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                          height: h(70),
+                          width: w(70),
+                          decoration: BoxDecoration(
+                              color: Colors.white, shape: BoxShape.circle),
+                          child: Center(
+                              child: Image.asset(
+                            "assets/images/roundexample.png",
+                            fit: BoxFit.contain,
+                          ))),
+                    ),
                   );
                 }),
             SizedBox(
@@ -164,52 +171,56 @@ class _DiscountState extends State<Discount> {
                     SizedBox(
                       height: h(80),
                     ),
-                    Container(
-                      height: h(150),
-                      width: w(150),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.asset(
-                          "assets/images/company.png", fit: BoxFit.contain,
-                          // height: h(300),
+                    Column(
+                      children: [
+                        Container(
+                          height: h(150),
+                          width: w(150),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.asset(
+                              "assets/images/company.png", fit: BoxFit.contain,
+                              // height: h(300),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    container(
-                      hight: h(50),
-                      width: w(100),
-                      child: text(
-                          text: "شركة سختيان",
-                          color: Colors.black,
-                          fontsize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    container(
-                      width: w(200),
-                      hight: h(60),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SvgPicture.asset("assets/images/call.svg"),
-                          PopupMenuButton(
-                              iconSize: 30,
-                              icon: SvgPicture.asset(
-                                "assets/images/message.svg",
-                                fit: BoxFit.cover,
-                              ),
-                              itemBuilder: (context) => [
-                                    PopupMenuItem(
-                                      child: Text("خدمة الزبائن"),
-                                      value: 1,
-                                    ),
-                                    PopupMenuItem(
-                                      child: Text("مندوب المبيعات"),
-                                      value: 2,
-                                    )
-                                  ]),
-                          SvgPicture.asset("assets/images/location.svg"),
-                        ],
-                      ),
+                        container(
+                          hight: h(50),
+                          width: w(100),
+                          child: text(
+                              text: "شركة سختيان",
+                              color: Colors.black,
+                              fontsize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        container(
+                          width: w(200),
+                          hight: h(60),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SvgPicture.asset("assets/images/call.svg"),
+                              PopupMenuButton(
+                                  iconSize: 30,
+                                  icon: SvgPicture.asset(
+                                    "assets/images/message.svg",
+                                    fit: BoxFit.cover,
+                                  ),
+                                  itemBuilder: (context) => [
+                                        PopupMenuItem(
+                                          child: Text("خدمة الزبائن"),
+                                          value: 1,
+                                        ),
+                                        PopupMenuItem(
+                                          child: Text("مندوب المبيعات"),
+                                          value: 2,
+                                        )
+                                      ]),
+                              SvgPicture.asset("assets/images/location.svg"),
+                            ],
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),
