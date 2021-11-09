@@ -40,7 +40,7 @@ dependencies:
   connectivity:
   # dash_chat:
   firebase_storage: ^8.1.2
-  flutter_bloc: ^7.3.0
+  flutter_bloc: ^7.3.3
   contacts_service: ^0.4.6
   permission_handler: ^8.1.0
   built_value: ^7.1.0

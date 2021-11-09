@@ -28,6 +28,7 @@ class _DiscountState extends State<Discount> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration.zero, () => showAlertDialog(context));
+
     return Scaffold(
       appBar: PreferredSize(
         child: Padding(
@@ -36,7 +37,7 @@ class _DiscountState extends State<Discount> {
             title: "",
           ),
         ),
-        preferredSize: Size.fromHeight(80),
+        preferredSize: Size.fromHeight(90),
       ),
       body: Center(
         child: Column(
@@ -53,6 +54,7 @@ class _DiscountState extends State<Discount> {
             customlistview(
                 controller: ScrollController(),
                 direction: "horizon",
+                scroll: true,
                 hight: h(120),
                 itemcount: 10,
                 padding: 10,
@@ -81,7 +83,8 @@ class _DiscountState extends State<Discount> {
               height: h(10),
             ),
             customlistview(
-                hight: h(480),
+                scroll: true,
+                hight: h(474),
                 width: MediaQuery.of(context).size.width,
                 controller: ScrollController(),
                 direction: "vertical",
@@ -118,7 +121,7 @@ class _DiscountState extends State<Discount> {
 
   showAlertDialog(BuildContext context) {
     Timer(Duration(seconds: 1), () {
-      Navigator.pop(context);
+      // Navigator.pop(context);
     });
     // set up the button
 
@@ -236,4 +239,5 @@ class _DiscountState extends State<Discount> {
       );
 
   //
+
 }

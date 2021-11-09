@@ -10,22 +10,12 @@ class IprefsHelper implements PrefsHelper {
   }
 
   @override
-  Future<bool> getsupportcontactsaved() async {
-    return (await getPrefs()).getBool(Con.savedcontactsforsupport);
+  Future<bool> getfirstvisit() async {
+    return (await getPrefs()).getBool(Con.isfirstvisit);
   }
 
-  Future<void> setsupportcontactsaved() async {
-    return (await getPrefs()).setBool(Con.savedcontactsforsupport, true);
-  }
-
-  @override
-  Future<bool> getemergencycontactsaved() async {
-    return (await getPrefs()).getBool(Con.savedcontactsforemergency);
-  }
-
-  @override
-  Future<void> setemergencycontactsaved() async {
-    return (await getPrefs()).setBool(Con.savedcontactsforemergency, true);
+  Future<void> setfirstvisit() async {
+    return (await getPrefs()).setBool(Con.isfirstvisit, true);
   }
 
   @override

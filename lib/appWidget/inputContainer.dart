@@ -11,6 +11,7 @@ Widget inputContainer(
     TextEditingController controller,
     Function value,
     String theValue,
+    String validation,
     Widget widget,
     Function ontap}) {
   return Center(
@@ -20,7 +21,8 @@ Widget inputContainer(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-                width: w(110), child: text(text: desc, color: Colors.black)),
+                width: w(140),
+                child: Center(child: text(text: desc, color: Colors.black))),
           ],
         ),
         SizedBox(
@@ -37,6 +39,7 @@ Widget inputContainer(
                 Container(
                   width: w(250),
                   child: textform(
+                      validation: validation ?? "name",
                       controller: controller,
                       function: value,
                       hint: hint,

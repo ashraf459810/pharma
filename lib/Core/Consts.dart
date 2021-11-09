@@ -8,7 +8,7 @@ class AppColor {
 }
 
 class Con {
-  static const String savedcontactsforsupport = "false";
+  static const String isfirstvisit = "false";
   static const String savedcontactsforemergency = "false";
   static const String token = 'token';
 }

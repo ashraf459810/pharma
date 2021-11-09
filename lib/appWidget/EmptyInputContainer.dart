@@ -13,7 +13,7 @@ Widget emptyContainer({
     Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Container(width: w(110), child: text(text: desc, color: Colors.black)),
+        Container(width: w(150), child: text(text: desc, color: Colors.black)),
       ],
     ),
     SizedBox(

@@ -19,7 +19,7 @@ Widget pharmacymainbranchphone(String desc,
         height: h(6),
       ),
       container(
-          hight: h(50),
+          hight: h(70),
           // width: w(130),
           borderRadius: 40,
           bordercolor: AppColor.grey,

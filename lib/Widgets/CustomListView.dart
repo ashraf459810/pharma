@@ -7,12 +7,16 @@ Widget customlistview(
     final direction,
     final double padding,
     final controller,
+    final bool scroll,
     Function function}) {
   return Container(
     height: hight,
     width: width,
     child: ListView.builder(
-        physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: ScrollPhysics(
+            parent: scroll
+                ? AlwaysScrollableScrollPhysics()
+                : NeverScrollableScrollPhysics()),
         shrinkWrap: true,
         controller: controller ?? ScrollController(),
         padding: EdgeInsets.symmetric(vertical: padding) ?? EdgeInsets.all(10),

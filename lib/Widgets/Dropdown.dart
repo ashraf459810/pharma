@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharma/Core/Consts.dart';
 
 class DropDown extends StatefulWidget {
   final String chosenvalue;
@@ -21,7 +22,11 @@ class _DropDownState extends State<DropDown> {
       isExpanded: true,
       underline: SizedBox(),
       hint: chosenvalue == null
-          ? Center(child: Text(widget.hint))
+          ? Center(
+              child: Text(
+              widget.hint,
+              style: TextStyle(color: AppColor.grey),
+            ))
           : Center(child: Text(chosenvalue)),
       items: widget.list.map((dynamic value) {
         return DropdownMenuItem<dynamic>(

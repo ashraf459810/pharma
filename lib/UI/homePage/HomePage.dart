@@ -25,15 +25,6 @@ class _HomePageState extends State<HomePage> {
         navitems: list,
         routes: [Discount(), Transfer(), Operations()],
       ),
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: HomePageAppBar(
-              title: "dsf",
-            ),
-          )),
-      body: Container(),
     );
   }
 }

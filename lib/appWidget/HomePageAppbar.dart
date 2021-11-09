@@ -46,13 +46,15 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                             ),
                           ),
                           Container(
-                            height: h(40),
+                            height: h(60),
                             width: w(240),
-                            child: text(
-                                text: widget.title,
-                                color: Colors.black,
-                                fontsize: 20,
-                                fontWeight: FontWeight.bold),
+                            child: Center(
+                              child: text(
+                                  text: widget.title,
+                                  color: Colors.black,
+                                  fontsize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                           GestureDetector(
                             onTap: () {},

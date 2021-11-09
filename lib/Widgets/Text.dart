@@ -8,6 +8,7 @@ Widget text(
     String fontfamily}) {
   return Text(
     text,
+    textAlign: TextAlign.center,
     style: TextStyle(
         decoration: TextDecoration.none,
         fontFamily: fontfamily ?? "font",
