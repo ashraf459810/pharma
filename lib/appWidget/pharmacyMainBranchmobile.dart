@@ -15,11 +15,12 @@ Widget pharmacymainbranchphone(String desc,
           Container(child: text(text: desc, color: Colors.black)),
         ],
       ),
-      SizedBox(
-        height: h(6),
-      ),
+      // SizedBox(
+      //   height: h(6),
+      // ),
       container(
-          hight: h(70),
+          hight: h(50),
+          width: w(150),
           // width: w(130),
           borderRadius: 40,
           bordercolor: AppColor.grey,
@@ -27,7 +28,7 @@ Widget pharmacymainbranchphone(String desc,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                width: w(150),
+                width: w(130),
                 child: textform(
                     controller: textEditingController,
                     function: value,

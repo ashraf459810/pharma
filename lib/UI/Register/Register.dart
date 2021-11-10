@@ -55,94 +55,103 @@ class _RegisterState extends State<Register> {
               SizedBox(
                 height: h(45),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selected2 = true;
-                        // iscolored = "2";
-                        selected1 = false;
-                      });
-                    },
-                    child: RotatedBox(
-                      quarterTurns: 3,
-                      child: Container(
-                        height: h(240),
-                        width: w(48),
-                        decoration: BoxDecoration(
-                          color: !selected2 ? Colors.grey[50] : Colors.blue[50],
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40),
+              Container(
+                width: MediaQuery.of(context).size.width - w(60),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selected2 = true;
+                          // iscolored = "2";
+                          selected1 = false;
+                        });
+                      },
+                      child: RotatedBox(
+                        quarterTurns: 3,
+                        child: Container(
+                          height:
+                              (MediaQuery.of(context).size.width - w(60)) / 2,
+                          width: w(48),
+                          decoration: BoxDecoration(
+                            color:
+                                !selected2 ? Colors.grey[50] : Colors.blue[50],
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40),
+                            ),
+                            border: Border.all(
+                              width: 3,
+                              color: !selected2 ? AppColor.grey : AppColor.blue,
+                              style: BorderStyle.solid,
+                            ),
                           ),
-                          border: Border.all(
-                            width: 3,
-                            color: !selected2 ? AppColor.grey : AppColor.blue,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                          child: RotatedBox(
-                            quarterTurns: 1,
-                            child: text(
-                                text: "سلسلة صيدليات",
-                                color:
-                                    !selected2 ? AppColor.grey : AppColor.blue,
-                                fontWeight: FontWeight.bold,
-                                fontsize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selected1 = true;
-                        // iscolored = "1";
-                        selected2 = false;
-                      });
-                    },
-                    child: RotatedBox(
-                      quarterTurns: 1,
-                      child: Container(
-                        height: h(240),
-                        width: w(48),
-                        decoration: BoxDecoration(
-                          color: !selected1 ? Colors.grey[50] : Colors.blue[50],
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            topRight: Radius.circular(40),
-                          ),
-                          border: Border.all(
-                            width: 3,
-                            color: !selected1 ? AppColor.grey : AppColor.blue,
-                            style: BorderStyle.solid,
-                          ),
-                        ),
-                        child: Center(
-                          child: RotatedBox(
-                            quarterTurns: 3,
-                            child: text(
-                                text: "صيدلية",
-                                color:
-                                    !selected1 ? AppColor.grey : AppColor.blue,
-                                fontWeight: FontWeight.bold,
-                                fontsize: 18),
+                          child: Center(
+                            child: RotatedBox(
+                              quarterTurns: 1,
+                              child: text(
+                                  text: "سلسلة صيدليات",
+                                  color: !selected2
+                                      ? AppColor.grey
+                                      : AppColor.blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontsize: 18),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selected1 = true;
+                          // iscolored = "1";
+                          selected2 = false;
+                        });
+                      },
+                      child: RotatedBox(
+                        quarterTurns: 1,
+                        child: Container(
+                          height:
+                              (MediaQuery.of(context).size.width - w(60)) / 2,
+                          width: w(48),
+                          decoration: BoxDecoration(
+                            color:
+                                !selected1 ? Colors.grey[50] : Colors.blue[50],
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40),
+                              topRight: Radius.circular(40),
+                            ),
+                            border: Border.all(
+                              width: 3,
+                              color: !selected1 ? AppColor.grey : AppColor.blue,
+                              style: BorderStyle.solid,
+                            ),
+                          ),
+                          child: Center(
+                            child: RotatedBox(
+                              quarterTurns: 3,
+                              child: text(
+                                  text: "صيدلية",
+                                  color: !selected1
+                                      ? AppColor.grey
+                                      : AppColor.blue,
+                                  fontWeight: FontWeight.bold,
+                                  fontsize: 18),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: h(24),
               ),
               emptyContainer(
-                  desc: "مالك صيدلية",
+                  desc: "           مالك صيدلية",
                   widget: DropDown(
                     chosenvalue: jobdesc,
                     list: list,
@@ -178,7 +187,7 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Container(
-                            height: h(90),
+                            // height: h(90),
                             child: pharmacymainbranchphone(
                                 "رقم هاتف الفرع الرئيسي",
                                 TextEditingController(),
@@ -213,9 +222,9 @@ class _RegisterState extends State<Register> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                          width: w(110),
-                          child: text(
-                              text: "    السجل التجاري", color: Colors.black)),
+                          width: w(120),
+                          child:
+                              text(text: "السجل التجاري", color: Colors.black)),
                     ],
                   ),
                   SizedBox(

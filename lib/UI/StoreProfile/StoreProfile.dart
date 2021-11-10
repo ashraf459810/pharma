@@ -95,6 +95,7 @@ class _StoreProfileState extends State<StoreProfile> {
             ),
           ),
           customlistview(
+              scroll: true,
               hight: h(440),
               width: MediaQuery.of(context).size.width,
               controller: ScrollController(),

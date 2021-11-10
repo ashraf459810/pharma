@@ -79,7 +79,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             ),
             passwordinput(
                 controller: passwordc,
-                desc: "           كلمة المرور",
+                desc: "      كلمة المرور",
                 hint: "m1o2h3a4h4",
                 value: (val) {
                   password = val;
@@ -90,7 +90,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             ),
             passwordinput(
                 controller: passwordc,
-                desc: "   تأكيد كلمة المرور",
+                desc: "تأكيد كلمة المرور     ",
                 hint: "m1o2h3a4h4",
                 value: (val) {
                   password = val;
@@ -127,7 +127,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                  width: w(110), child: text(text: desc, color: Colors.black)),
+                  width: w(120), child: text(text: desc, color: Colors.black)),
             ],
           ),
           SizedBox(
