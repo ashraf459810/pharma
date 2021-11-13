@@ -308,6 +308,7 @@ class _OperationTypeState extends State<OperationType> {
     ]);
   }
 
+  // ignore: missing_return
   Widget restoreconfirmbottomsheet(String storename, String classification,
       String quantity, String restorereason, String restorebillnumber) {
     List<String> infotitle = [
@@ -380,7 +381,11 @@ class _OperationTypeState extends State<OperationType> {
                 ),
                 InkWell(
                     onTap: () {
-                      navWithReplacement(context, Operations());
+                      navWithReplacement(
+                          context,
+                          Operations(
+                            isrestore: true,
+                          ));
                     },
                     child: appbutton(
                         AppColor.blue, "تاكيد الطلب", FontWeight.bold))

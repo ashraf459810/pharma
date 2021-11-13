@@ -3,7 +3,6 @@ import 'package:pharma/UI/Discount/Discount.dart';
 import 'package:pharma/UI/Operations/Operations.dart';
 import 'package:pharma/UI/Transfer/Transfer.dart';
 import 'package:pharma/Widgets/BottomNavBar.dart';
-import 'package:pharma/appWidget/HomePageAppbar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -23,7 +22,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       bottomNavigationBar: ButtomNavBar(
         navitems: list,
-        routes: [Discount(), Transfer(), Operations()],
+        routes: [
+          Discount(),
+          Transfer(),
+          Operations(
+            isrestore: false,
+          )
+        ],
       ),
     );
   }

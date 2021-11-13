@@ -4,7 +4,6 @@ import 'package:pharma/App/app.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Text.dart';
-import 'package:pharma/appWidget/HomePageAppbar.dart';
 
 class StoreProfile extends StatefulWidget {
   StoreProfile({Key key}) : super(key: key);
@@ -102,7 +101,6 @@ class _StoreProfileState extends State<StoreProfile> {
               direction: "vertical",
               itemcount: 10,
               padding: 1,
-              
               function: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: 17),

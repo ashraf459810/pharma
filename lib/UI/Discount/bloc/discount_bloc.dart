@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:http/http.dart';
+
 import 'package:meta/meta.dart';
 import 'package:pharma/Data/Repository/IRepository.dart';
 import 'package:pharma/injection.dart';
