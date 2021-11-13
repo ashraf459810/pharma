@@ -102,6 +102,7 @@ class _StoreProfileState extends State<StoreProfile> {
               direction: "vertical",
               itemcount: 10,
               padding: 1,
+              
               function: (context, index) {
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: 17),

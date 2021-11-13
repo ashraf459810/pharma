@@ -21,7 +21,7 @@ class _OperationsState extends State<Operations> {
     return Scaffold(
       appBar: PreferredSize(
         child: Padding(
-          padding: EdgeInsets.only(top: 40.0),
+          padding: EdgeInsets.only(top: 10.0),
           child: HomePageAppBar(
             title: "العمليات",
           ),
@@ -45,7 +45,6 @@ class _OperationsState extends State<Operations> {
                         nav(
                             context,
                             OperationType(
-                              operationname: list[index],
                               operationnumber: index,
                             ));
                       },

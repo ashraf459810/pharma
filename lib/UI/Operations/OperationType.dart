@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/Operations/Operations.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Dropdown.dart';
+import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/EmptyInputContainer.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
 import 'package:pharma/appWidget/pharmacyMainBranchmobile.dart';
+import 'package:toast/toast.dart';
 
 // ignore: must_be_immutable
 class OperationType extends StatefulWidget {
-  final String operationname;
   int operationnumber;
-  OperationType({Key key, this.operationname, this.operationnumber})
-      : super(key: key);
+  OperationType({Key key, this.operationnumber}) : super(key: key);
 
   @override
   _OperationTypeState createState() => _OperationTypeState();
@@ -28,6 +29,15 @@ class _OperationTypeState extends State<OperationType> {
   String todate;
   String companyname;
   String storeOrCompanyname;
+  String classification;
+  String quantuty;
+  String reasonforrestore;
+  String restorebillnumber;
+  List<String> info = ["1", "1", "1", "1", "1"];
+  TextEditingController classificationc = TextEditingController();
+  TextEditingController quantutyc = TextEditingController();
+  TextEditingController restorebillnumberc = TextEditingController();
+
   String restoreReason;
   List<String> list = ["نسخة عن فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
   List<String> storeorcompanylist = ["company1", "company2"];
@@ -37,7 +47,15 @@ class _OperationTypeState extends State<OperationType> {
     List<Widget> widgets = [
       copyForBill(),
       createAccount(),
-      restore(),
+      GestureDetector(
+          onTap: () {
+            if (info.contains("1")) {
+              Toast.show("please fill all the fields", context);
+            } else
+              restoreconfirmbottomsheet(storeOrCompanyname, classification,
+                  quantuty, reasonforrestore, restorebillnumber);
+          },
+          child: restore()),
       accountStatment(),
     ];
     return Scaffold(
@@ -45,7 +63,7 @@ class _OperationTypeState extends State<OperationType> {
         child: Padding(
           padding: EdgeInsets.only(top: 13.0),
           child: HomePageAppBar(
-            title: widget.operationname,
+            title: "العمليات",
           ),
         ),
         preferredSize: Size.fromHeight(80),
@@ -223,6 +241,7 @@ class _OperationTypeState extends State<OperationType> {
             hint: "اختر اسم المستودع او الشركة",
             onchanged: (val) {
               storeOrCompanyname = val;
+              info[0] = storeOrCompanyname;
             },
             getindex: (val) {},
           )),
@@ -230,19 +249,28 @@ class _OperationTypeState extends State<OperationType> {
         height: h(17),
       ),
       inputContainer(
-          controller: TextEditingController(),
+          controller: classificationc,
           desc: "                         الصنف",
           hint: "panadol advance",
-          widget: SvgPicture.asset("assets/images/PharmaServ(1).svg")),
+          value: (val) {
+            classification = val;
+            info[1] = classification;
+          },
+          widget: SvgPicture.asset(
+            "assets/images/PharmaServ(1).svg",
+          )),
       SizedBox(
         height: h(17),
       ),
       inputContainer(
-        validation: "number",
-        controller: TextEditingController(),
-        desc: "                       الكمية",
-        hint: "0000",
-      ),
+          validation: "number",
+          controller: quantutyc,
+          desc: "                       الكمية",
+          hint: "0000",
+          value: (val) {
+            quantuty = val;
+            info[2] = val;
+          }),
       SizedBox(
         height: h(17),
       ),
@@ -254,6 +282,7 @@ class _OperationTypeState extends State<OperationType> {
             hint: "إختر سبب الإرجاع",
             onchanged: (val) {
               restoreReason = val;
+              info[3] = val;
             },
             getindex: (val) {},
           )),
@@ -261,11 +290,14 @@ class _OperationTypeState extends State<OperationType> {
         height: h(17),
       ),
       inputContainer(
-        validation: "number",
-        controller: TextEditingController(),
-        desc: "رقم الفاتورة/رقم الباتش",
-        hint: "435243",
-      ),
+          validation: "number",
+          controller: restorebillnumberc,
+          desc: "رقم الفاتورة/رقم الباتش",
+          hint: "435243",
+          value: (val) {
+            restorebillnumber = val;
+            info[4] = val;
+          }),
       SizedBox(
         height: h(30),
       ),
@@ -274,5 +306,87 @@ class _OperationTypeState extends State<OperationType> {
         height: h(30),
       ),
     ]);
+  }
+
+  Widget restoreconfirmbottomsheet(String storename, String classification,
+      String quantity, String restorereason, String restorebillnumber) {
+    List<String> infotitle = [
+      "رقم الفاتورة",
+      "سبب الإرجاع",
+      "       الكمية",
+      "       الصنف",
+      "إسم المستودع",
+    ];
+    showModalBottomSheet<void>(
+        isScrollControlled: true,
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: h(30),
+                ),
+                text(
+                    text: "الرجاء التاكد من المعلومات",
+                    color: AppColor.blue,
+                    fontWeight: FontWeight.bold,
+                    fontsize: 24),
+                SizedBox(
+                  height: h(30),
+                ),
+                customlistview(
+                    controller: ScrollController(),
+                    direction: "vertical",
+                    // hight: h(700),
+                    itemcount: info.length,
+                    scroll: false,
+                    padding: 1,
+                    function: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                    width: w(110),
+                                    child: Center(
+                                        child: text(
+                                            text: infotitle[index],
+                                            color: Colors.black))),
+                              ],
+                            ),
+                            SizedBox(
+                              height: h(6),
+                            ),
+                            container(
+                                hight: h(70),
+                                width: w(343),
+                                borderRadius: 40,
+                                color: AppColor.grey,
+                                child: text(
+                                    text: info[index],
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontsize: 16))
+                          ],
+                        ),
+                      );
+                    }),
+                SizedBox(
+                  height: h(20),
+                ),
+                InkWell(
+                    onTap: () {
+                      navWithReplacement(context, Operations());
+                    },
+                    child: appbutton(
+                        AppColor.blue, "تاكيد الطلب", FontWeight.bold))
+              ],
+            ),
+          );
+        });
   }
 }
