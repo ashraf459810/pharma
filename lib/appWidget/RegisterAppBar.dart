@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 
 import 'package:pharma/Widgets/Text.dart';
@@ -22,7 +23,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       appBar: PreferredSize(
           child: AppBar(
             leading: Padding(
-              padding: const EdgeInsets.only(bottom: 22.0),
+              padding: EdgeInsets.only(bottom: 22.0),
             ),
             foregroundColor: Colors.grey[50],
             backgroundColor: Colors.grey[50],
@@ -48,7 +49,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                             child: text(
                                 text: widget.title,
                                 color: Colors.black,
-                                fontsize: 20,
+                                fontsize: 20.sp,
                                 fontWeight: FontWeight.bold),
                           ),
                           GestureDetector(

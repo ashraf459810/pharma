@@ -26,53 +26,45 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
             elevation: 0,
             actions: [
               Container(
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // SizedBox(
-                    //   height: h(10),
-                    // ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.notifications,
-                              color: AppColor.grey,
-                              size: 30,
-                            ),
-                          ),
-                          Container(
-                            height: h(60),
-                            width: w(240),
-                            child: Center(
-                              child: text(
-                                  text: widget.title,
-                                  color: Colors.black,
-                                  fontsize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Icon(
-                              Icons.person,
-                              color: AppColor.grey,
-                              size: 30,
-                            ),
-                          ),
-                        ],
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.notifications,
+                          color: AppColor.grey,
+                          size: 30,
+                        ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        height: h(60),
+                        width: w(240),
+                        child: Center(
+                          child: text(
+                              text: widget.title,
+                              color: Colors.black,
+                              fontsize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.person,
+                          color: AppColor.grey,
+                          size: 30,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
           ),
-          preferredSize: Size.fromHeight(100)),
+          preferredSize: Size.fromHeight(120)),
     );
   }
 }

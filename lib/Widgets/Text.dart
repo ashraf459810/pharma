@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget text(
     {String text,
@@ -13,7 +14,7 @@ Widget text(
         decoration: TextDecoration.none,
         fontFamily: fontfamily ?? "font",
         color: color,
-        fontSize: fontsize,
+        fontSize: fontsize ?? 14.sp,
         fontWeight: fontWeight ?? FontWeight.normal),
   );
 }

@@ -1,5 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/Core/Consts.dart';
 
 Widget textform(
@@ -27,7 +28,7 @@ Widget textform(
         isDense: true,
         hintStyle: TextStyle(
           color: hintColor ?? Colors.black,
-          fontSize: hintsize ?? 12,
+          fontSize: hintsize ?? 12.sp,
         )),
     controller: controller,
     validator: validation == "password"

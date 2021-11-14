@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Container.dart';
@@ -44,7 +45,7 @@ Widget inputContainer(
                       function: value,
                       hint: hint,
                       hintColor: AppColor.grey,
-                      hintsize: 14),
+                      hintsize: 14.sp),
                 ),
                 Container(width: w(50), child: widget ?? Container())
               ],

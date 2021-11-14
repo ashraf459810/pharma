@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/homePage/HomePage.dart';
@@ -40,7 +41,7 @@ class _VerficationState extends State<Verfication> {
               ),
               text(
                   text: "الرجاء إدخال رمز التحقق",
-                  fontsize: 25,
+                  fontsize: 25.sp,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
               SizedBox(
@@ -58,11 +59,12 @@ class _VerficationState extends State<Verfication> {
                 maxLength: 4,
                 pinBoxRadius: 10,
                 pinBoxHeight: h(100),
+                pinBoxWidth: w(70),
                 pinBoxOuterPadding: EdgeInsets.symmetric(horizontal: 10),
                 hasTextBorderColor: Colors.green,
                 pinTextStyle: TextStyle(
                     color: Colors.green,
-                    fontSize: 30,
+                    fontSize: 30.sp,
                     fontWeight: FontWeight.bold),
               ),
               SizedBox(

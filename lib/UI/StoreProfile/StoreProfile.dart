@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Widgets/Container.dart';
@@ -58,7 +59,7 @@ class _StoreProfileState extends State<StoreProfile> {
             child: text(
                 text: "شركة سختيان",
                 color: Colors.black,
-                fontsize: 16,
+                fontsize: 16.sp,
                 fontWeight: FontWeight.bold),
           ),
           container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Personal_Info/PersonalInfo.dart';
@@ -82,7 +83,7 @@ class _RegisterState extends State<Register> {
                               topRight: Radius.circular(40),
                             ),
                             border: Border.all(
-                              width: 3,
+                              width: w(3),
                               color: !selected2 ? AppColor.grey : AppColor.blue,
                               style: BorderStyle.solid,
                             ),
@@ -96,7 +97,7 @@ class _RegisterState extends State<Register> {
                                       ? AppColor.grey
                                       : AppColor.blue,
                                   fontWeight: FontWeight.bold,
-                                  fontsize: 18),
+                                  fontsize: 18.sp),
                             ),
                           ),
                         ),
@@ -124,7 +125,7 @@ class _RegisterState extends State<Register> {
                               topRight: Radius.circular(40),
                             ),
                             border: Border.all(
-                              width: 3,
+                              width: w(3),
                               color: !selected1 ? AppColor.grey : AppColor.blue,
                               style: BorderStyle.solid,
                             ),
@@ -138,7 +139,7 @@ class _RegisterState extends State<Register> {
                                       ? AppColor.grey
                                       : AppColor.blue,
                                   fontWeight: FontWeight.bold,
-                                  fontsize: 18),
+                                  fontsize: 18.sp),
                             ),
                           ),
                         ),
@@ -210,7 +211,7 @@ class _RegisterState extends State<Register> {
                   widget: Icon(
                     Icons.pin_drop,
                     color: AppColor.grey,
-                    size: 30,
+                    size: w(25),
                   ),
                   value: (val) {}),
               SizedBox(
@@ -239,16 +240,16 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: w(250),
+                              width: w(180),
                               child: text(
                                   text: "الرجاء ارفاق السجل التجاري",
                                   color: AppColor.grey,
-                                  fontsize: 14)),
+                                  fontsize: 14.sp)),
                           Container(
-                              width: w(50),
+                              width: w(75),
                               child: Icon(
                                 Icons.camera_alt_outlined,
-                                size: 25,
+                                size: w(25),
                                 color: AppColor.grey,
                               ))
                         ],
@@ -263,7 +264,7 @@ class _RegisterState extends State<Register> {
                       child: text(
                           text: "يمكن تحميل السجل التجاري لاحقا",
                           color: Colors.yellow[800],
-                          fontsize: 14),
+                          fontsize: 14.sp),
                     ),
                   ),
                   SizedBox(
@@ -309,11 +310,11 @@ class _RegisterState extends State<Register> {
                   });
                 },
                 child: container(
-                    hight: h(25),
+                    hight: h(26),
                     width: w(20),
                     bordercolor: AppColor.grey,
                     borderRadius: 70,
-                    child: Center(child: text(text: "+", fontsize: 16))),
+                    child: Icon(Icons.add, size: w(15), color: Colors.black)),
               ),
               text(text: count.toString()),
               GestureDetector(
@@ -327,13 +328,8 @@ class _RegisterState extends State<Register> {
                       width: w(20),
                       bordercolor: AppColor.grey,
                       borderRadius: 70,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 15.0),
-                          child: Icon(Icons.minimize,
-                              size: 15, color: Colors.black),
-                        ),
-                      ))),
+                      child: Icon(Icons.remove,
+                          size: w(15), color: Colors.black))),
             ],
           ),
         ),

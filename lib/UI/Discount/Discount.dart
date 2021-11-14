@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
@@ -39,8 +40,12 @@ class _DiscountState extends State<Discount> {
         ),
         preferredSize: Size.fromHeight(90),
       ),
-      body: Center(
-        child: Column(
+      body: Container(
+        // height: h(700),
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          controller: ScrollController(),
+          physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -65,7 +70,7 @@ class _DiscountState extends State<Discount> {
                       nav(context, StoreProfile());
                     },
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Container(
                           height: h(70),
                           width: w(70),
@@ -84,7 +89,7 @@ class _DiscountState extends State<Discount> {
             ),
             customlistview(
                 scroll: true,
-                hight: h(474),
+                hight: h(490),
                 width: MediaQuery.of(context).size.width,
                 controller: ScrollController(),
                 direction: "vertical",
@@ -142,7 +147,9 @@ class _DiscountState extends State<Discount> {
                     width: width,
                     child: Center(
                       child: text(
-                          text: "اهلا بك", color: AppColor.blue, fontsize: 20),
+                          text: "اهلا بك",
+                          color: AppColor.blue,
+                          fontsize: 20.sp),
                     ),
                   );
                 },
@@ -168,11 +175,12 @@ class _DiscountState extends State<Discount> {
                         child: Image.asset(
                           image,
                           fit: BoxFit.cover,
+                          height: h(400),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: h(80),
+                      height: h(50),
                     ),
                     Column(
                       children: [
@@ -193,39 +201,56 @@ class _DiscountState extends State<Discount> {
                           child: text(
                               text: "شركة سختيان",
                               color: Colors.black,
-                              fontsize: 16,
+                              fontsize: 16.sp,
                               fontWeight: FontWeight.bold),
                         ),
                         container(
                           width: w(200),
                           hight: h(60),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SvgPicture.asset("assets/images/call.svg"),
-                              PopupMenuButton(
-                                  iconSize: 30,
-                                  icon: SvgPicture.asset(
-                                    "assets/images/message.svg",
-                                    fit: BoxFit.cover,
-                                  ),
-                                  itemBuilder: (context) => [
-                                        PopupMenuItem(
-                                          child: Text("خدمة الزبائن"),
-                                          value: 1,
-                                        ),
-                                        PopupMenuItem(
-                                          child: Text("مندوب المبيعات"),
-                                          value: 2,
-                                        )
-                                      ]),
-                              InkWell(
-                                  onTap: () {
-                                    nav(context, LocationMap());
-                                  },
-                                  child: SvgPicture.asset(
-                                      "assets/images/location.svg")),
-                            ],
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/images/call.svg",
+                                  height: h(30),
+                                  width: w(30),
+                                ),
+                                PopupMenuButton(
+                                    iconSize: h(30),
+                                    icon: SvgPicture.asset(
+                                      "assets/images/message.svg",
+                                      fit: BoxFit.cover,
+                                      height: h(30),
+                                      width: w(30),
+                                    ),
+                                    itemBuilder: (context) => [
+                                          PopupMenuItem(
+                                            child: Text(
+                                              "خدمة الزبائن",
+                                              style: TextStyle(fontSize: 14.sp),
+                                            ),
+                                            value: 1,
+                                          ),
+                                          PopupMenuItem(
+                                            child: Text(
+                                              "مندوب المبيعات",
+                                              style: TextStyle(fontSize: 14.sp),
+                                            ),
+                                            value: 2,
+                                          )
+                                        ]),
+                                InkWell(
+                                    onTap: () {
+                                      nav(context, LocationMap());
+                                    },
+                                    child: SvgPicture.asset(
+                                      "assets/images/location.svg",
+                                      height: h(30),
+                                      width: w(30),
+                                    )),
+                              ],
+                            ),
                           ),
                         ),
                       ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtomNavBar extends StatefulWidget {
   final List<NavBarItem> navitems;
@@ -20,6 +22,8 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
         child: widget.routes.elementAt(selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedFontSize: 14.sp,
+        unselectedFontSize: 14.sp,
         items: navbarlist(widget.navitems),
         currentIndex: selectedIndex,
         selectedIconTheme: IconThemeData(color: Colors.grey, opacity: 0.2),
@@ -40,11 +44,14 @@ class _ButtomNavBarState extends State<ButtomNavBar> {
     List<BottomNavigationBarItem> navlist = [];
     for (var i = 0; i < items.length; i++) {
       navlist.add(BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            items[i].image,
-            color: selectedIndex == i ? AppColor.blue : Colors.grey,
-          ),
-          label: items[i].name));
+        icon: SvgPicture.asset(
+          items[i].image,
+          color: selectedIndex == i ? AppColor.blue : Colors.grey,
+          height: h(30),
+          width: w(30),
+        ),
+        label: items[i].name,
+      ));
     }
     return navlist;
   }

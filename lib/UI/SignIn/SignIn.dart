@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
@@ -38,7 +39,7 @@ class _SignInState extends State<SignIn> {
             ),
             text(
                 text: "تسجيل الدخول",
-                fontsize: 24,
+                fontsize: 24.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.black
                 // fontfamily: 'sans'
@@ -110,7 +111,7 @@ class _SignInState extends State<SignIn> {
                       text: "متابعة كضيف",
                       fontWeight: FontWeight.bold,
                       color: AppColor.grey,
-                      fontsize: 16),
+                      fontsize: 16.sp),
                 ))
           ],
         )),
@@ -153,7 +154,7 @@ class _SignInState extends State<SignIn> {
                         function: value,
                         hint: hint,
                         hintColor: AppColor.grey,
-                        hintsize: 14,
+                        hintsize: 14.sp,
                         issecure: issecure),
                   ),
                   GestureDetector(
