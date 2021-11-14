@@ -240,7 +240,7 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: w(180),
+                              width: w(150),
                               child: text(
                                   text: "الرجاء ارفاق السجل التجاري",
                                   color: AppColor.grey,
@@ -258,7 +258,7 @@ class _RegisterState extends State<Register> {
                     height: h(10),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 180.0),
+                    padding: EdgeInsets.only(left: w(180)),
                     child: Container(
                       width: w(160),
                       child: text(
@@ -274,8 +274,8 @@ class _RegisterState extends State<Register> {
                       onTap: () {
                         nav(context, PersonalInfo());
                       },
-                      child:
-                          appbutton(AppColor.blue, "التالي", FontWeight.bold)),
+                      child: appbutton(
+                          AppColor.blue, "  التالي", FontWeight.bold)),
                   SizedBox(
                     height: h(15),
                   )

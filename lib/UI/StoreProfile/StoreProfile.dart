@@ -42,51 +42,71 @@ class _StoreProfileState extends State<StoreProfile> {
           // SizedBox(
           //   height: h(50),
           // ),
-          Container(
-            height: h(150),
-            width: w(150),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
-                "assets/images/company.png", fit: BoxFit.contain,
-                // height: h(300),
+          Center(
+            child: Container(
+              height: h(150),
+              width: w(150),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(
+                  "assets/images/company.png", fit: BoxFit.contain,
+                  // height: h(300),
+                ),
               ),
             ),
           ),
           container(
             hight: h(50),
             width: w(100),
-            child: text(
-                text: "شركة سختيان",
-                color: Colors.black,
-                fontsize: 16.sp,
-                fontWeight: FontWeight.bold),
+            child: Center(
+              child: text(
+                  text: "شركة سختيان",
+                  color: Colors.black,
+                  fontsize: 16.sp,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           container(
-            width: w(140),
+            width: w(100),
             hight: h(60),
             child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SvgPicture.asset("assets/images/call.svg"),
+                  SvgPicture.asset(
+                    "assets/images/call.svg",
+                    height: h(25),
+                    width: w(25),
+                  ),
                   PopupMenuButton(
-                      iconSize: 30,
+                      iconSize: w(25),
                       icon: SvgPicture.asset(
                         "assets/images/message.svg",
+                        height: h(25),
+                        width: w(25),
                         fit: BoxFit.cover,
                       ),
                       itemBuilder: (context) => [
                             PopupMenuItem(
-                              child: Text("خدمة الزبائن"),
+                              child: Text(
+                                "خدمة الزبائن",
+                                style: TextStyle(fontSize: 14.sp),
+                              ),
                               value: 1,
                             ),
                             PopupMenuItem(
-                              child: Text("مندوب المبيعات"),
+                              child: Text(
+                                "مندوب المبيعات",
+                                style: TextStyle(fontSize: 14.sp),
+                              ),
                               value: 2,
                             )
                           ]),
-                  SvgPicture.asset("assets/images/location.svg"),
+                  SvgPicture.asset(
+                    "assets/images/location.svg",
+                    height: h(25),
+                    width: w(25),
+                  ),
                   SizedBox(
                     height: h(40),
                   ),

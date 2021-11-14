@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
@@ -84,7 +85,11 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 value: (val) {
                   password = val;
                 },
-                widget: SvgPicture.asset("assets/images/passwordeye.svg")),
+                widget: SvgPicture.asset(
+                  "assets/images/passwordeye.svg",
+                  height: h(30),
+                  width: w(30),
+                )),
             SizedBox(
               height: h(17),
             ),
@@ -95,7 +100,11 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 value: (val) {
                   password = val;
                 },
-                widget: SvgPicture.asset("assets/images/passwordeye.svg")),
+                widget: SvgPicture.asset(
+                  "assets/images/passwordeye.svg",
+                  height: h(30),
+                  width: w(30),
+                )),
             SizedBox(
               height: h(17),
             ),
@@ -148,7 +157,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                         function: value,
                         hint: hint,
                         hintColor: AppColor.grey,
-                        hintsize: 14,
+                        hintsize: 14.sp,
                         issecure: issecure),
                   ),
                   GestureDetector(

@@ -47,10 +47,13 @@ class _DiscountState extends State<Discount> {
           controller: ScrollController(),
           physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
           children: [
+            SizedBox(
+              height: h(20),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(width: w(60), child: text(text: "مستودعات")),
+                Container(width: w(70), child: text(text: "مستودعات")),
                 SizedBox(
                   height: h(20),
                 ),
@@ -70,7 +73,7 @@ class _DiscountState extends State<Discount> {
                       nav(context, StoreProfile());
                     },
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: w(20)),
                       child: Container(
                           height: h(70),
                           width: w(70),
@@ -89,7 +92,7 @@ class _DiscountState extends State<Discount> {
             ),
             customlistview(
                 scroll: true,
-                hight: h(490),
+                hight: h(520),
                 width: MediaQuery.of(context).size.width,
                 controller: ScrollController(),
                 direction: "vertical",
@@ -174,7 +177,7 @@ class _DiscountState extends State<Discount> {
                         borderRadius: BorderRadius.circular(16),
                         child: Image.asset(
                           image,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           height: h(400),
                         ),
                       ),

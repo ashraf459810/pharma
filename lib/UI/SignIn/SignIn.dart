@@ -48,7 +48,7 @@ class _SignInState extends State<SignIn> {
               height: h(70),
             ),
             inputContainer(
-                desc: "البريد الالكتروني",
+                desc: "            البريد الالكتروني",
                 controller: emailc,
                 hint: "mohammad@hotmail.com",
                 value: (val) {
@@ -64,7 +64,11 @@ class _SignInState extends State<SignIn> {
                 value: (val) {
                   passwrod = val;
                 },
-                widget: SvgPicture.asset("assets/images/passwordeye.svg")),
+                widget: SvgPicture.asset(
+                  "assets/images/passwordeye.svg",
+                  height: h(30),
+                  width: w(30),
+                )),
             SizedBox(
               height: h(30),
             ),

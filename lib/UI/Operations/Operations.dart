@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Operations/OperationType.dart';
@@ -93,7 +94,7 @@ class _OperationsState extends State<Operations> {
                       child: text(
                           text: "تم ارسال طلب الاسترجاع بنجاح",
                           color: AppColor.blue,
-                          fontsize: 20),
+                          fontsize: 20.sp),
                     ),
                   );
                 },
@@ -112,7 +113,7 @@ Widget operationitem(String desc) {
         child: text(
             text: desc,
             color: AppColor.blue,
-            fontsize: 20,
+            fontsize: 20.sp,
             fontWeight: FontWeight.bold),
       ));
 }

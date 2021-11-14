@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 
 import 'package:pharma/Widgets/Container.dart';
@@ -14,6 +15,6 @@ Widget appbutton([Color color, String value, FontWeight fontWeight]) {
           child: text(
               text: value,
               color: Colors.white,
-              fontsize: 18,
+              fontsize: 18.sp,
               fontWeight: fontWeight ?? FontWeight.normal)));
 }

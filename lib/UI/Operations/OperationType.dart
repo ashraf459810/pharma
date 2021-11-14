@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
@@ -110,7 +111,7 @@ class _OperationTypeState extends State<OperationType> {
                     child: text(
                         text: list[index],
                         color: id == index ? Colors.white : AppColor.grey,
-                        fontsize: 13,
+                        fontsize: 13.sp,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -332,7 +333,7 @@ class _OperationTypeState extends State<OperationType> {
                     text: "الرجاء التاكد من المعلومات",
                     color: AppColor.blue,
                     fontWeight: FontWeight.bold,
-                    fontsize: 24),
+                    fontsize: 24.sp),
                 SizedBox(
                   height: h(30),
                 ),
@@ -371,7 +372,7 @@ class _OperationTypeState extends State<OperationType> {
                                     text: info[index],
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontsize: 16))
+                                    fontsize: 16.sp))
                           ],
                         ),
                       );

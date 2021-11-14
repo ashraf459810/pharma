@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Text.dart';
@@ -36,7 +37,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                         child: Icon(
                           Icons.notifications,
                           color: AppColor.grey,
-                          size: 30,
+                          size: w(25),
                         ),
                       ),
                       Container(
@@ -46,7 +47,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                           child: text(
                               text: widget.title,
                               color: Colors.black,
-                              fontsize: 20,
+                              fontsize: 20.sp,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -55,7 +56,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                         child: Icon(
                           Icons.person,
                           color: AppColor.grey,
-                          size: 30,
+                          size: w(25),
                         ),
                       ),
                     ],
