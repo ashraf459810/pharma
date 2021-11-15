@@ -111,7 +111,7 @@ class _OperationTypeState extends State<OperationType> {
                     child: text(
                         text: list[index],
                         color: id == index ? Colors.white : AppColor.grey,
-                        fontsize: 13.sp,
+                        fontsize: 14.sp,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -223,7 +223,7 @@ class _OperationTypeState extends State<OperationType> {
                 width: w(50),
                 child: Icon(
                   Icons.camera_alt_outlined,
-                  size: 25,
+                  size: w(25),
                   color: AppColor.grey,
                 )),
           ])),
@@ -235,7 +235,7 @@ class _OperationTypeState extends State<OperationType> {
   Widget restore() {
     return Column(children: [
       emptyContainer(
-          desc: "إسم المستودع أو الشركة",
+          desc: "     إسم المستودع أو الشركة",
           widget: DropDown(
             chosenvalue: storeOrCompanyname,
             list: storeorcompanylist,
@@ -259,6 +259,8 @@ class _OperationTypeState extends State<OperationType> {
           },
           widget: SvgPicture.asset(
             "assets/images/PharmaServ(1).svg",
+            height: h(25),
+            width: w(25),
           )),
       SizedBox(
         height: h(17),
@@ -266,7 +268,7 @@ class _OperationTypeState extends State<OperationType> {
       inputContainer(
           validation: "number",
           controller: quantutyc,
-          desc: "                       الكمية",
+          desc: "                         الكمية",
           hint: "0000",
           value: (val) {
             quantuty = val;
@@ -276,7 +278,7 @@ class _OperationTypeState extends State<OperationType> {
         height: h(17),
       ),
       emptyContainer(
-          desc: "                سبب الإرجاع",
+          desc: "                   سبب الإرجاع",
           widget: DropDown(
             chosenvalue: restoreReason,
             list: restoreReasons,
@@ -367,7 +369,7 @@ class _OperationTypeState extends State<OperationType> {
                                 hight: h(70),
                                 width: w(343),
                                 borderRadius: 40,
-                                color: AppColor.grey,
+                                color: Colors.grey[200],
                                 child: text(
                                     text: info[index],
                                     color: Colors.black,

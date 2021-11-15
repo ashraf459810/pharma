@@ -53,7 +53,9 @@ class _DiscountState extends State<Discount> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(width: w(70), child: text(text: "مستودعات")),
+                Container(
+                    width: w(70),
+                    child: text(text: "مستودعات", fontsize: 20.sp)),
                 SizedBox(
                   height: h(20),
                 ),
@@ -73,15 +75,14 @@ class _DiscountState extends State<Discount> {
                       nav(context, StoreProfile());
                     },
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: w(20)),
-                      child: Container(
-                          height: h(70),
-                          width: w(70),
-                          decoration: BoxDecoration(
-                              color: Colors.white, shape: BoxShape.circle),
+                      padding: EdgeInsets.symmetric(horizontal: w(1)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
                           child: Center(
                               child: Image.asset(
                             "assets/images/roundexample.png",
+                            height: h(100),
+                            width: w(100),
                             fit: BoxFit.contain,
                           ))),
                     ),

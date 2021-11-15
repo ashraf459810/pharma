@@ -7,6 +7,8 @@ import 'package:pharma/Widgets/Text.dart';
 Widget emptyContainer({
   String desc,
   Widget widget,
+  double width,
+  double hight,
 }) {
   return Center(
       child: Column(children: [
@@ -20,8 +22,8 @@ Widget emptyContainer({
       height: h(6),
     ),
     container(
-        hight: h(70),
-        width: w(343),
+        hight: hight ?? h(70),
+        width: width ?? w(343),
         borderRadius: 40,
         bordercolor: AppColor.grey,
         child: widget)

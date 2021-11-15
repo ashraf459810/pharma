@@ -6,10 +6,11 @@ Widget text(
     Color color,
     double fontsize,
     FontWeight fontWeight,
-    String fontfamily}) {
+    String fontfamily,
+    TextAlign textAlign}) {
   return Text(
     text,
-    textAlign: TextAlign.center,
+    textAlign: textAlign ?? TextAlign.start,
     style: TextStyle(
         decoration: TextDecoration.none,
         fontFamily: fontfamily ?? "font",

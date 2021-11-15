@@ -12,7 +12,7 @@ Widget textform(
     String validation,
     bool issecure}) {
   return TextFormField(
-    style: TextStyle(color: AppColor.grey),
+    style: TextStyle(color: AppColor.grey, fontSize: 14.sp),
     obscureText: issecure ?? false,
     keyboardType: validation == "number"
         ? TextInputType.phone

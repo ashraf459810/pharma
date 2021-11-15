@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/Profile/Profile.dart';
+import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 
 class HomePageAppBar extends StatefulWidget {
@@ -52,7 +54,9 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          nav(context, Profile());
+                        },
                         child: Icon(
                           Icons.person,
                           color: AppColor.grey,
