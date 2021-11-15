@@ -106,7 +106,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   width: w(30),
                 )),
             SizedBox(
-              height: h(17),
+              height: h(40),
             ),
             InkWell(
                 onTap: () {
