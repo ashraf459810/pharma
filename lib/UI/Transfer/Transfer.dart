@@ -180,7 +180,7 @@ class _TransferState extends State<Transfer> {
   Widget typeWidget() {
     return container(
         hight: h(130),
-        width: w(343),
+        width: w(375),
         color: Colors.white,
         borderRadius: 10,
         child: Column(
@@ -195,7 +195,7 @@ class _TransferState extends State<Transfer> {
                     // mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
-                        width: w(50),
+                        width: w(70),
                         child: text(
                             textAlign: TextAlign.end,
                             text: "صيدلية الشفاء",
@@ -204,8 +204,8 @@ class _TransferState extends State<Transfer> {
                       Container(
                         child: ConstrainedBox(
                           constraints: BoxConstraints(
-                            maxHeight: 100,
-                            maxWidth: 350,
+                            maxHeight: h(100),
+                            maxWidth: w(250),
                           ),
                           child: text(
                               textAlign: TextAlign.end,
@@ -259,7 +259,8 @@ class _TransferState extends State<Transfer> {
         borderRadius: 20,
         hight: hight,
         width: width,
-        child: text(text: textvalue),
+        child:
+            Center(child: text(text: textvalue, textAlign: TextAlign.center)),
         color: Colors.grey[100]));
   }
 
@@ -278,12 +279,13 @@ class _TransferState extends State<Transfer> {
                     text: "عرض صنف التحويل",
                     color: AppColor.blue,
                     fontWeight: FontWeight.bold,
-                    fontsize: 24.sp),
+                    fontsize: 24.sp,
+                    textAlign: TextAlign.center),
                 SizedBox(
                   height: h(30),
                 ),
                 inputContainer(
-                  desc: "                 الصنف",
+                  desc: "الصنف",
                   controller: typec,
                   hint: "panadol extra",
                   value: (val) {
@@ -299,7 +301,7 @@ class _TransferState extends State<Transfer> {
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
-                        desc: "                                      الكمية",
+                        desc: "الكمية",
                         widget: textform(
                             controller: quantityc,
                             hint: "٢٠٠",
@@ -311,7 +313,7 @@ class _TransferState extends State<Transfer> {
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
-                        desc: "                                      اضافي",
+                        desc: "اضافي",
                         widget: textform(
                             controller: extrac,
                             hint: "٢٠ +٢",
@@ -331,7 +333,7 @@ class _TransferState extends State<Transfer> {
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
-                        desc: "                               تاريخ الانتهاء",
+                        desc: "تاريخ الانتهاء",
                         widget: textform(
                             controller: quantityc,
                             hint: "dd/mm/yyyy",
@@ -343,7 +345,7 @@ class _TransferState extends State<Transfer> {
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
-                        desc: "                                      تركيز",
+                        desc: "تركيز",
                         widget: textform(
                             controller: extrac,
                             hint: "500 ml",
@@ -358,7 +360,7 @@ class _TransferState extends State<Transfer> {
                   height: h(20),
                 ),
                 inputContainer(
-                    desc: "      موقع الصيدلية",
+                    desc: "موقع الصيدلية",
                     hint: "شارع الفيحاء",
                     controller: TextEditingController(text: ""),
                     widget: Icon(
@@ -375,11 +377,15 @@ class _TransferState extends State<Transfer> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                            width: w(120),
-                            child: text(
-                                text: "            السجل التجاري",
-                                color: Colors.black)),
+                        Padding(
+                          padding: EdgeInsets.only(right: w(20)),
+                          child: Container(
+                              width: w(150),
+                              child: text(
+                                  text: "السجل التجاري",
+                                  color: Colors.black,
+                                  textAlign: TextAlign.end)),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -396,9 +402,10 @@ class _TransferState extends State<Transfer> {
                             Container(
                                 width: w(150),
                                 child: text(
-                                    text: "   الرجاء ارفاق السجل التجاري",
+                                    text: " الرجاء ارفاق السجل التجاري",
                                     color: AppColor.grey,
-                                    fontsize: 14.sp)),
+                                    fontsize: 14.sp,
+                                    textAlign: TextAlign.start)),
                             Container(
                                 width: w(75),
                                 child: Icon(

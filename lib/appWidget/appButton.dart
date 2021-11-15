@@ -16,5 +16,6 @@ Widget appbutton([Color color, String value, FontWeight fontWeight]) {
               text: value,
               color: Colors.white,
               fontsize: 18.sp,
-              fontWeight: fontWeight ?? FontWeight.normal)));
+              fontWeight: fontWeight ?? FontWeight.normal,
+              textAlign: TextAlign.center)));
 }

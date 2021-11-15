@@ -23,12 +23,12 @@ class _SearchState extends State<Search> {
     return Scaffold(
       appBar: PreferredSize(
         child: Padding(
-          padding: EdgeInsets.only(top: 30.0),
+          padding: EdgeInsets.only(top: h(10.0)),
           child: HomePageAppBar(
             title: "بحث",
           ),
         ),
-        preferredSize: Size.fromHeight(100),
+        preferredSize: Size.fromHeight(70),
       ),
       body: Center(
         child: Column(

@@ -35,7 +35,7 @@ class _DiscountState extends State<Discount> {
         child: Padding(
           padding: const EdgeInsets.only(top: 30.0),
           child: HomePageAppBar(
-            title: "",
+            title: "الصفحة الرئيسية",
           ),
         ),
         preferredSize: Size.fromHeight(90),
@@ -93,7 +93,7 @@ class _DiscountState extends State<Discount> {
             ),
             customlistview(
                 scroll: true,
-                hight: h(520),
+                hight: h(450),
                 width: MediaQuery.of(context).size.width,
                 controller: ScrollController(),
                 direction: "vertical",

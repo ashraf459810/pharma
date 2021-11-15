@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 
 Widget textform(
@@ -22,7 +23,7 @@ Widget textform(
                 ? TextInputType.emailAddress
                 : TextInputType.text,
     decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(15),
+        contentPadding: EdgeInsets.all(w(5)),
         border: InputBorder.none,
         hintText: hint,
         isDense: true,

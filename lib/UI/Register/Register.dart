@@ -152,7 +152,7 @@ class _RegisterState extends State<Register> {
                 height: h(24),
               ),
               emptyContainer(
-                  desc: "           مالك صيدلية",
+                  desc: "مالك صيدلية",
                   widget: DropDown(
                     chosenvalue: jobdesc,
                     list: list,
@@ -166,7 +166,7 @@ class _RegisterState extends State<Register> {
                 height: h(17),
               ),
               inputContainer(
-                  desc: "       اسم الصيدلية",
+                  desc: "اسم الصيدلية",
                   controller: pharmacynamec,
                   hint: "صيدلية الشفاء",
                   value: (val) {
@@ -205,7 +205,7 @@ class _RegisterState extends State<Register> {
                 height: h(14),
               ),
               inputContainer(
-                  desc: "      موقع الصيدلية",
+                  desc: "موقع الصيدلية",
                   hint: "شارع الفيحاء",
                   controller: TextEditingController(text: ""),
                   widget: Icon(
@@ -222,10 +222,15 @@ class _RegisterState extends State<Register> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                          width: w(120),
-                          child:
-                              text(text: "السجل التجاري", color: Colors.black)),
+                      Padding(
+                        padding: EdgeInsets.only(right: w(20)),
+                        child: Container(
+                            width: w(150),
+                            child: text(
+                                text: "السجل التجاري",
+                                color: Colors.black,
+                                textAlign: TextAlign.end)),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -274,8 +279,8 @@ class _RegisterState extends State<Register> {
                       onTap: () {
                         nav(context, PersonalInfo());
                       },
-                      child: appbutton(
-                          AppColor.blue, "  التالي", FontWeight.bold)),
+                      child:
+                          appbutton(AppColor.blue, "التالي", FontWeight.bold)),
                   SizedBox(
                     height: h(15),
                   )

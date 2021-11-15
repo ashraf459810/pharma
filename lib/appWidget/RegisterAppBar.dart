@@ -24,7 +24,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           child: AppBar(
             automaticallyImplyLeading: false, // h
             leading: Padding(
-              padding: EdgeInsets.only(bottom: 22.0),
+              padding: EdgeInsets.only(bottom: h(22.0)),
             ),
             foregroundColor: Colors.grey[50],
             backgroundColor: Colors.grey[50],

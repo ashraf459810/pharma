@@ -87,7 +87,7 @@ class _VerficationState extends State<Verfication> {
                   onTap: () {
                     nav(context, HomePage());
                   },
-                  child: appbutton(AppColor.blue, "  تأكيد", FontWeight.bold))
+                  child: appbutton(AppColor.blue, "تأكيد", FontWeight.bold))
             ],
           ),
         ),

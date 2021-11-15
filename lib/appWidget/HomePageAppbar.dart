@@ -23,7 +23,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
       appBar: PreferredSize(
           child: AppBar(
             leading: Padding(
-              padding: const EdgeInsets.only(bottom: 22.0),
+              padding: EdgeInsets.only(bottom: h(22.0)),
             ),
             foregroundColor: Colors.grey[50],
             backgroundColor: Colors.grey[50],

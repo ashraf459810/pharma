@@ -29,9 +29,15 @@ class _ProfileState extends State<Profile> {
           padding: EdgeInsets.only(top: h(8)),
           child: AppBar(
             iconTheme: IconThemeData(color: Colors.black),
-            title: Center(
-                child:
-                    text(text: "الحساب", color: Colors.black, fontsize: 20.sp)),
+            title: Padding(
+              padding: EdgeInsets.only(left: w(100.0)),
+              child: text(
+                  text: "الحساب",
+                  color: Colors.black,
+                  fontsize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  textAlign: TextAlign.center),
+            ),
             foregroundColor: Colors.grey[50],
             backgroundColor: Colors.grey[50],
             elevation: 0,

@@ -48,7 +48,7 @@ class _SignInState extends State<SignIn> {
               height: h(70),
             ),
             inputContainer(
-                desc: "            البريد الالكتروني",
+                desc: "البريد الالكتروني",
                 controller: emailc,
                 hint: "mohammad@hotmail.com",
                 value: (val) {
@@ -58,7 +58,7 @@ class _SignInState extends State<SignIn> {
               height: h(12),
             ),
             passwordinput(
-                desc: "       كلمة المرور",
+                desc: "كلمة المرور",
                 controller: passwordc,
                 hint: "ادخل كلمة المرور",
                 value: (val) {
@@ -100,8 +100,11 @@ class _SignInState extends State<SignIn> {
                 onTap: () {
                   nav(context, Register());
                 },
-                child:
-                    appbutton(Colors.black, "انشاء حساب  ", FontWeight.bold)),
+                child: appbutton(
+                  Colors.black,
+                  "انشاء حساب",
+                  FontWeight.bold,
+                )),
             SizedBox(
               height: h(44),
             ),
@@ -136,8 +139,15 @@ class _SignInState extends State<SignIn> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                  width: w(110), child: text(text: desc, color: Colors.black)),
+              Padding(
+                padding: EdgeInsets.only(right: w(20)),
+                child: Container(
+                    width: w(110),
+                    child: text(
+                        text: desc,
+                        color: Colors.black,
+                        textAlign: TextAlign.end)),
+              ),
             ],
           ),
           SizedBox(

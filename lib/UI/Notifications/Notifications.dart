@@ -25,12 +25,15 @@ class _NotificationsState extends State<Notifications> {
           padding: EdgeInsets.only(top: h(8)),
           child: AppBar(
             iconTheme: IconThemeData(color: Colors.black),
-            title: Center(
-                child: text(
-                    text: "الاشعارات",
-                    color: Colors.black,
-                    fontsize: 20.sp,
-                    textAlign: TextAlign.center)),
+            title: Padding(
+              padding: EdgeInsets.only(left: w(100)),
+              child: text(
+                  text: "الاشعارات",
+                  color: Colors.black,
+                  fontsize: 20.sp,
+                  textAlign: TextAlign.center,
+                  fontWeight: FontWeight.bold),
+            ),
             foregroundColor: Colors.grey[50],
             backgroundColor: Colors.grey[50],
             elevation: 0,
