@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
+import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
+import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 
 class StoreProfile extends StatefulWidget {
@@ -22,7 +24,11 @@ class _StoreProfileState extends State<StoreProfile> {
               title: Container(
                   width: w(240),
                   child: Center(
-                      child: text(text: "ملف المستودع", color: Colors.black))),
+                      child: text(
+                          text: "ملف المستودع",
+                          color: Colors.black,
+                          fontsize: 20.sp,
+                          fontWeight: FontWeight.bold))),
               leading: InkWell(
                 onTap: () {
                   Navigator.of(context).pop();
@@ -39,9 +45,6 @@ class _StoreProfileState extends State<StoreProfile> {
             preferredSize: Size.fromHeight(70)),
         backgroundColor: Colors.white,
         body: Column(children: [
-          // SizedBox(
-          //   height: h(50),
-          // ),
           Center(
             child: Container(
               height: h(150),
@@ -62,28 +65,44 @@ class _StoreProfileState extends State<StoreProfile> {
               child: text(
                   text: "شركة سختيان",
                   color: Colors.black,
-                  fontsize: 16.sp,
+                  fontsize: 18.sp,
                   fontWeight: FontWeight.bold),
             ),
           ),
           container(
-            width: w(100),
+            width: MediaQuery.of(context).size.width,
             hight: h(60),
             child: Center(
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SvgPicture.asset(
                     "assets/images/call.svg",
-                    height: h(25),
-                    width: w(25),
+                    height: h(35),
+                    width: w(35),
                   ),
                   PopupMenuButton(
-                      iconSize: w(25),
+                      onSelected: (val) {
+                        print(val);
+                        if (val == 1)
+                          nav(
+                              context,
+                              SupportOrSalesChat(
+                                supportOrSales: "شركة سختيان/support",
+                              ));
+                        else {
+                          nav(
+                              context,
+                              SupportOrSalesChat(
+                                supportOrSales: "شركة سختيان/sales",
+                              ));
+                        }
+                      },
+                      iconSize: w(35),
                       icon: SvgPicture.asset(
                         "assets/images/message.svg",
-                        height: h(25),
-                        width: w(25),
+                        height: h(35),
+                        width: w(35),
                         fit: BoxFit.cover,
                       ),
                       itemBuilder: (context) => [
@@ -104,8 +123,8 @@ class _StoreProfileState extends State<StoreProfile> {
                           ]),
                   SvgPicture.asset(
                     "assets/images/location.svg",
-                    height: h(25),
-                    width: w(25),
+                    height: h(35),
+                    width: w(35),
                   ),
                   SizedBox(
                     height: h(40),

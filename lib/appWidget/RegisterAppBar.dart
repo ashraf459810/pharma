@@ -32,9 +32,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
             flexibleSpace: Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // SizedBox(
-                //   height: h(10),
-                // ),
+                SizedBox(
+                  height: h(10),
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
@@ -72,7 +72,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               ],
             ),
           ),
-          preferredSize: Size.fromHeight(100)),
+          preferredSize: Size.fromHeight(120)),
     );
   }
 }

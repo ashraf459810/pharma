@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/PharmaDetails/PharmaDetails.dart';
 import 'package:pharma/UI/Search/Search.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
@@ -42,15 +43,15 @@ class _TransferState extends State<Transfer> {
               title: "تحويل",
             ),
           ),
-          preferredSize: Size.fromHeight(100),
+          preferredSize: Size.fromHeight(70),
         ),
         body: ListView(
           children: [
             Column(
               children: [
-                SizedBox(
-                  height: h(20),
-                ),
+                // SizedBox(
+                //   height: h(20),
+                // ),
                 GestureDetector(
                     onTap: () {
                       addtype();
@@ -132,7 +133,9 @@ class _TransferState extends State<Transfer> {
                     width: MediaQuery.of(context).size.width,
                     function: (context, index) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          nav(context, PharmaDetails());
+                        },
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: w(10)),
                             child: ClipRRect(

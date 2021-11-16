@@ -40,7 +40,7 @@ class _OperationTypeState extends State<OperationType> {
   TextEditingController restorebillnumberc = TextEditingController();
 
   String restoreReason;
-  List<String> list = ["نسخة عن فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
+  List<String> list = ["نسخة فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
   List<String> storeorcompanylist = ["company1", "company2"];
   List<String> restoreReasons = ["reason1", "reason2"];
   @override
