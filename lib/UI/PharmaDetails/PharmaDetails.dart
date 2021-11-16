@@ -56,7 +56,7 @@ class _PharmaDetailsState extends State<PharmaDetails> {
           container(
             color: Colors.grey[50],
             hight: h(50),
-            width: w(100),
+            width: w(200),
             child: Center(
               child: text(
                   text: "صيدلية الشفاء",
@@ -199,7 +199,7 @@ class _PharmaDetailsState extends State<PharmaDetails> {
               children: [
                 typeSpecifications(h(30), w(70), "500 ml"),
                 typeSpecifications(h(30), w(70), "الكمية ٤٠٠"),
-                typeSpecifications(h(30), w(70), "اضافي ٢٠+٢٠٠"),
+                typeSpecifications(h(30), w(90), "اضافي ٢٠+٢٠٠"),
                 typeSpecifications(h(30), w(100), "تاريخ الانتهاء ١٢/١٢/٢٠٢٢"),
               ],
             ),

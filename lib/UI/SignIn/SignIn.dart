@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Register/REgister.dart';
+import 'package:pharma/UI/homePage/HomePage.dart';
 
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Nav.dart';
@@ -72,7 +73,12 @@ class _SignInState extends State<SignIn> {
             SizedBox(
               height: h(30),
             ),
-            appbutton(AppColor.blue, "تسجيل الدخول", FontWeight.bold),
+            InkWell(
+                onTap: () {
+                  nav(context, HomePage());
+                },
+                child:
+                    appbutton(AppColor.blue, "تسجيل الدخول", FontWeight.bold)),
             SizedBox(
               height: h(43),
             ),
@@ -85,7 +91,10 @@ class _SignInState extends State<SignIn> {
                     hight: 1),
                 container(
                   width: MediaQuery.of(context).size.width / 3.3,
-                  child: text(text: "ليس لديك حساب ؟", color: AppColor.grey),
+                  child: text(
+                      text: "ليس لديك حساب ؟",
+                      color: AppColor.grey,
+                      textAlign: TextAlign.center),
                 ),
                 container(
                     width: MediaQuery.of(context).size.width / 3.3,
@@ -108,18 +117,23 @@ class _SignInState extends State<SignIn> {
             SizedBox(
               height: h(44),
             ),
-            container(
-                borderRadius: 30,
-                hight: h(65),
-                width: w(160),
-                bordercolor: AppColor.grey,
-                child: Center(
-                  child: text(
-                      text: "متابعة كضيف",
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.grey,
-                      fontsize: 16.sp),
-                ))
+            InkWell(
+              onTap: () {
+                nav(context, HomePage());
+              },
+              child: container(
+                  borderRadius: 30,
+                  hight: h(65),
+                  width: w(160),
+                  bordercolor: AppColor.grey,
+                  child: Center(
+                    child: text(
+                        text: "متابعة كضيف",
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.grey,
+                        fontsize: 16.sp),
+                  )),
+            )
           ],
         )),
       ),

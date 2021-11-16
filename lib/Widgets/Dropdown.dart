@@ -36,11 +36,12 @@ class _DropDownState extends State<DropDown> {
             )
           : Padding(
               padding: EdgeInsets.only(right: w(20)),
-              child: Text(
-                chosenvalue,
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 14.sp),
-              ),
+              child: Text(chosenvalue,
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: Colors.black,
+                  )),
             ),
       items: widget.list.map((dynamic value) {
         return DropdownMenuItem<dynamic>(

@@ -32,6 +32,8 @@ class _RegisterState extends State<Register> {
   String pharmacyname;
   TextEditingController pharmacynamec = TextEditingController();
   TextEditingController pharmacymobilec = TextEditingController();
+  TextEditingController mainbranchmobilec = TextEditingController();
+  TextEditingController pharmacylocationc = TextEditingController();
   String pharmacymobile;
   String mainbranchnumber;
   int pharmacyCount = 1;
@@ -74,7 +76,7 @@ class _RegisterState extends State<Register> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(60)) / 2,
-                          width: w(48),
+                          width: w(60),
                           decoration: BoxDecoration(
                             color:
                                 !selected2 ? Colors.grey[50] : Colors.blue[50],
@@ -116,7 +118,7 @@ class _RegisterState extends State<Register> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(60)) / 2,
-                          width: w(48),
+                          width: w(60),
                           decoration: BoxDecoration(
                             color:
                                 !selected1 ? Colors.grey[50] : Colors.blue[50],
@@ -193,15 +195,12 @@ class _RegisterState extends State<Register> {
                         children: [
                           Container(
                             // height: h(90),
-                            child: pharmacymainbranchphone(
-                                "رقم هاتف الفرع الرئيسي",
-                                TextEditingController(),
-                                "079123123", (val) {
+                            child: pharmacymainbranchphone("هاتف الفرع الرئيسي",
+                                mainbranchmobilec, "079123123", (val) {
                               mainbranchnumber = val;
                             }),
                           ),
-                          pharmacycount(
-                              pharmacyCount, "                عدد الصيدليات")
+                          pharmacycount(pharmacyCount, "عدد الصيدليات")
                         ],
                       ),
                     ),
@@ -211,7 +210,7 @@ class _RegisterState extends State<Register> {
               inputContainer(
                   desc: "موقع الصيدلية",
                   hint: "شارع الفيحاء",
-                  controller: TextEditingController(text: ""),
+                  controller: pharmacylocationc,
                   widget: Icon(
                     Icons.pin_drop,
                     color: AppColor.grey,
@@ -269,15 +268,13 @@ class _RegisterState extends State<Register> {
                   SizedBox(
                     height: h(10),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: w(180)),
-                    child: Container(
-                      width: w(160),
-                      child: text(
-                          text: "يمكن تحميل السجل التجاري لاحقا",
-                          color: Colors.yellow[800],
-                          fontsize: 14.sp),
-                    ),
+                  Container(
+                    width: w(300),
+                    child: text(
+                        text: "يمكن تحميل السجل التجاري لاحقا",
+                        color: Colors.yellow[800],
+                        fontsize: 14.sp,
+                        textAlign: TextAlign.end),
                   ),
                   SizedBox(
                     height: h(20),
@@ -301,11 +298,18 @@ class _RegisterState extends State<Register> {
   Widget pharmacycount(int count, String desc) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(child: text(text: desc, color: Colors.black)),
-          ],
+        Container(
+          width: w(130),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                  child: text(
+                      text: desc,
+                      color: Colors.black,
+                      textAlign: TextAlign.start)),
+            ],
+          ),
         ),
         container(
           hight: h(50),
@@ -322,10 +326,10 @@ class _RegisterState extends State<Register> {
                   });
                 },
                 child: container(
-                    hight: h(26),
-                    width: w(20),
+                    hight: h(25),
+                    width: w(22),
                     bordercolor: AppColor.grey,
-                    borderRadius: 70,
+                    borderRadius: 50,
                     child: Icon(Icons.add, size: w(15), color: Colors.black)),
               ),
               text(text: count.toString()),
@@ -336,10 +340,10 @@ class _RegisterState extends State<Register> {
                     });
                   },
                   child: container(
-                      hight: h(26),
-                      width: w(20),
+                      hight: h(25),
+                      width: w(22),
                       bordercolor: AppColor.grey,
-                      borderRadius: 70,
+                      borderRadius: 50,
                       child: Icon(Icons.remove,
                           size: w(15), color: Colors.black))),
             ],

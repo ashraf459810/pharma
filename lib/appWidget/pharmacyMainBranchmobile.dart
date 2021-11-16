@@ -9,16 +9,18 @@ Widget pharmacymainbranchphone(String desc,
     TextEditingController textEditingController, String hint, Function value) {
   return Column(
     children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-              child: Padding(
-            padding: EdgeInsets.only(left: w(100)),
-            child:
-                text(text: desc, color: Colors.black, textAlign: TextAlign.end),
-          )),
-        ],
+      Container(
+        width: w(130),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+                child: text(
+                    text: desc,
+                    color: Colors.black,
+                    textAlign: TextAlign.start)),
+          ],
+        ),
       ),
       // SizedBox(
       //   height: h(6),

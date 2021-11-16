@@ -38,6 +38,11 @@ class _OperationTypeState extends State<OperationType> {
   TextEditingController classificationc = TextEditingController();
   TextEditingController quantutyc = TextEditingController();
   TextEditingController restorebillnumberc = TextEditingController();
+  TextEditingController companyc = TextEditingController();
+  TextEditingController fromdatec = TextEditingController();
+  TextEditingController todatec = TextEditingController();
+  TextEditingController billnumc = TextEditingController();
+  TextEditingController billdatec = TextEditingController();
 
   String restoreReason;
   List<String> list = ["نسخة فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
@@ -124,7 +129,7 @@ class _OperationTypeState extends State<OperationType> {
     return Column(children: [
       inputContainer(
         desc: "اسم الشركة",
-        controller: TextEditingController(),
+        controller: companyc,
         hint: "مجموعة منير سختيان",
         ontap: (val) {
           companyname = val;
@@ -136,12 +141,10 @@ class _OperationTypeState extends State<OperationType> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          pharmacymainbranchphone(
-              "الى تاريخ", TextEditingController(), "MM/DD/YYYY", (val) {
+          pharmacymainbranchphone("الى تاريخ", todatec, "MM/DD/YYYY", (val) {
             fromdate = val;
           }),
-          pharmacymainbranchphone(
-              "من تاريخ", TextEditingController(), "MM/DD/YYYY", (val) {
+          pharmacymainbranchphone("من تاريخ", fromdatec, "MM/DD/YYYY", (val) {
             todate = val;
           }),
         ],
@@ -176,12 +179,11 @@ class _OperationTypeState extends State<OperationType> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            pharmacymainbranchphone(
-                "رقم الفاتورة", TextEditingController(), "00000", (val) {
+            pharmacymainbranchphone("رقم الفاتورة", billnumc, "00000", (val) {
               fromdate = val;
             }),
-            pharmacymainbranchphone(
-                "تاريخ الفاتورة", TextEditingController(), "MM/DD/YYYY", (val) {
+            pharmacymainbranchphone("تاريخ الفاتورة", billdatec, "MM/DD/YYYY",
+                (val) {
               todate = val;
             }),
           ],

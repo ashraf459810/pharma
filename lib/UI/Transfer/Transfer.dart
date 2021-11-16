@@ -257,7 +257,7 @@ class _TransferState extends State<Transfer> {
               children: [
                 typeSpecifications(h(30), w(70), "500 ml"),
                 typeSpecifications(h(30), w(70), "الكمية ٤٠٠"),
-                typeSpecifications(h(30), w(70), "اضافي ٢٠+٢٠٠"),
+                typeSpecifications(h(30), w(90), "اضافي ٢٠+٢٠٠"),
                 typeSpecifications(h(30), w(100), "تاريخ الانتهاء ١٢/١٢/٢٠٢٢"),
               ],
             )
@@ -310,6 +310,7 @@ class _TransferState extends State<Transfer> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     emptyContainer(
+                        textwidth: w(100),
                         hight: h(50),
                         width: w(120),
                         desc: "الكمية",
@@ -326,6 +327,7 @@ class _TransferState extends State<Transfer> {
                                   quantity = val;
                                 }))),
                     emptyContainer(
+                        textwidth: w(100),
                         hight: h(50),
                         width: w(120),
                         desc: "اضافي",
@@ -350,6 +352,7 @@ class _TransferState extends State<Transfer> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     emptyContainer(
+                        textwidth: w(100),
                         hight: h(50),
                         width: w(120),
                         desc: "تاريخ الانتهاء",
@@ -357,14 +360,15 @@ class _TransferState extends State<Transfer> {
                             textDirection: TextDirection.rtl,
                             child: textform(
                                 padding: EdgeInsets.only(right: w(20)),
-                                controller: quantityc,
+                                controller: expirec,
                                 hint: "dd/mm/yyyy",
                                 hintsize: 16.sp,
                                 hintColor: AppColor.grey,
                                 function: (val) {
-                                  quantity = val;
+                                  expire = val;
                                 }))),
                     emptyContainer(
+                        textwidth: w(100),
                         hight: h(50),
                         width: w(120),
                         desc: "تركيز",
@@ -372,12 +376,12 @@ class _TransferState extends State<Transfer> {
                             textDirection: TextDirection.rtl,
                             child: textform(
                                 padding: EdgeInsets.only(right: w(20)),
-                                controller: extrac,
+                                controller: focusc,
                                 hint: "500 ml",
                                 hintsize: 16.sp,
                                 hintColor: AppColor.grey,
                                 function: (val) {
-                                  extra = val;
+                                  focus = val;
                                 })))
                   ],
                 ),

@@ -111,7 +111,8 @@ class _NotificationsState extends State<Notifications> {
                         text: list[index],
                         color: id == index ? Colors.white : AppColor.grey,
                         fontsize: 14.sp,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.center),
                   ),
                 ),
               );

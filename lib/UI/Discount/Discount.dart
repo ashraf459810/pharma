@@ -219,7 +219,7 @@ class _DiscountState extends State<Discount> {
                           hight: h(60),
                           child: Center(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SvgPicture.asset(
                                   "assets/images/call.svg",
