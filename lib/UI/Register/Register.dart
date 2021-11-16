@@ -153,14 +153,17 @@ class _RegisterState extends State<Register> {
               ),
               emptyContainer(
                   desc: "مالك صيدلية",
-                  widget: DropDown(
-                    chosenvalue: jobdesc,
-                    list: list,
-                    hint: "مالك صيدلية",
-                    onchanged: (val) {
-                      jobdesc = val;
-                    },
-                    getindex: (val) {},
+                  widget: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: DropDown(
+                      chosenvalue: jobdesc,
+                      list: list,
+                      hint: "مالك صيدلية",
+                      onchanged: (val) {
+                        jobdesc = val;
+                      },
+                      getindex: (val) {},
+                    ),
                   )),
               SizedBox(
                 height: h(17),
@@ -179,6 +182,7 @@ class _RegisterState extends State<Register> {
                   ? inputContainer(
                       desc: "رقم هاتف الصيدلية",
                       controller: pharmacymobilec,
+                      validation: "number",
                       hint: "07901231231",
                       value: (val) {
                         pharmacymobile = val;
@@ -245,18 +249,21 @@ class _RegisterState extends State<Register> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: w(150),
-                              child: text(
-                                  text: "الرجاء ارفاق السجل التجاري",
-                                  color: AppColor.grey,
-                                  fontsize: 14.sp)),
-                          Container(
                               width: w(75),
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 size: w(25),
                                 color: AppColor.grey,
-                              ))
+                              )),
+                          Container(
+                              width: w(180),
+                              child: Padding(
+                                padding: EdgeInsets.only(left: w(40)),
+                                child: text(
+                                    text: "الرجاء ارفاق السجل التجاري",
+                                    color: AppColor.grey,
+                                    fontsize: 14.sp),
+                              )),
                         ],
                       )),
                   SizedBox(

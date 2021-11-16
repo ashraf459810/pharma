@@ -159,18 +159,8 @@ class _SignInState extends State<SignIn> {
               borderRadius: 40,
               bordercolor: AppColor.grey,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: w(250),
-                    child: textform(
-                        controller: controller,
-                        function: value,
-                        hint: hint,
-                        hintColor: AppColor.grey,
-                        hintsize: 14.sp,
-                        issecure: issecure),
-                  ),
                   GestureDetector(
                       onTap: () {
                         setState(() {
@@ -178,8 +168,21 @@ class _SignInState extends State<SignIn> {
                           issecure ? issecure = false : issecure = true;
                         });
                       },
-                      child:
-                          Container(width: w(70), child: widget ?? Container()))
+                      child: Container(
+                          width: w(70), child: widget ?? Container())),
+                  Container(
+                    width: w(250),
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: textform(
+                          controller: controller,
+                          function: value,
+                          hint: hint,
+                          hintColor: AppColor.grey,
+                          hintsize: 14.sp,
+                          issecure: issecure),
+                    ),
+                  ),
                 ],
               )),
         ],

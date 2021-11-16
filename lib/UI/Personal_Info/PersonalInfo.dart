@@ -80,7 +80,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             ),
             passwordinput(
                 controller: passwordc,
-                desc: "      كلمة المرور",
+                desc: "كلمة المرور",
                 hint: "m1o2h3a4h4",
                 value: (val) {
                   password = val;
@@ -155,18 +155,8 @@ class _PersonalInfoState extends State<PersonalInfo> {
               borderRadius: 40,
               bordercolor: AppColor.grey,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: w(250),
-                    child: textform(
-                        controller: controller,
-                        function: value,
-                        hint: hint,
-                        hintColor: AppColor.grey,
-                        hintsize: 14.sp,
-                        issecure: issecure),
-                  ),
                   GestureDetector(
                       onTap: () {
                         setState(() {
@@ -174,8 +164,21 @@ class _PersonalInfoState extends State<PersonalInfo> {
                           issecure ? issecure = false : issecure = true;
                         });
                       },
-                      child:
-                          Container(width: w(70), child: widget ?? Container()))
+                      child: Container(
+                          width: w(70), child: widget ?? Container())),
+                  Container(
+                    width: w(250),
+                    child: Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: textform(
+                          controller: controller,
+                          function: value,
+                          hint: hint,
+                          hintColor: AppColor.grey,
+                          hintsize: 14.sp,
+                          issecure: issecure),
+                    ),
+                  ),
                 ],
               )),
         ],

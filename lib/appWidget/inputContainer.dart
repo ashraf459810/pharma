@@ -43,17 +43,20 @@ Widget inputContainer(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Container(width: w(50), child: widget ?? Container()),
                 Container(
                   width: w(250),
-                  child: textform(
-                      validation: validation ?? "name",
-                      controller: controller,
-                      function: value,
-                      hint: hint,
-                      hintColor: AppColor.grey,
-                      hintsize: 14.sp),
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: textform(
+                        validation: validation ?? "name",
+                        controller: controller,
+                        function: value,
+                        hint: hint,
+                        hintColor: AppColor.grey,
+                        hintsize: 14.sp),
+                  ),
                 ),
-                Container(width: w(50), child: widget ?? Container())
               ],
             )),
       ],
