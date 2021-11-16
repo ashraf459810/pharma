@@ -112,7 +112,8 @@ class _OperationTypeState extends State<OperationType> {
                         text: list[index],
                         color: id == index ? Colors.white : AppColor.grey,
                         fontsize: 14.sp,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.bold,
+                        textAlign: TextAlign.center),
                   ),
                 ),
               );
@@ -122,7 +123,7 @@ class _OperationTypeState extends State<OperationType> {
   Widget accountStatment() {
     return Column(children: [
       inputContainer(
-        desc: "      اسم الشركة",
+        desc: "اسم الشركة",
         controller: TextEditingController(),
         hint: "مجموعة منير سختيان",
         ontap: (val) {
@@ -157,14 +158,17 @@ class _OperationTypeState extends State<OperationType> {
       children: [
         emptyContainer(
             desc: "إسم المستودع أو الشركة",
-            widget: DropDown(
-              chosenvalue: storeOrCompanyname,
-              list: storeorcompanylist,
-              hint: "اختر اسم المستودع او الشركة",
-              onchanged: (val) {
-                storeOrCompanyname = val;
-              },
-              getindex: (val) {},
+            widget: Directionality(
+              textDirection: TextDirection.rtl,
+              child: DropDown(
+                chosenvalue: storeOrCompanyname,
+                list: storeorcompanylist,
+                hint: "اختر اسم المستودع او الشركة",
+                onchanged: (val) {
+                  storeOrCompanyname = val;
+                },
+                getindex: (val) {},
+              ),
             )),
         SizedBox(
           height: h(50),
@@ -194,15 +198,17 @@ class _OperationTypeState extends State<OperationType> {
     return Column(children: [
       emptyContainer(
           desc: "إسم المستودع أو الشركة",
-          widget: DropDown(
-            chosenvalue: storeOrCompanyname,
-            list: storeorcompanylist,
-            hint: "اختر اسم المستودع او الشركة",
-            onchanged: (val) {
-              storeOrCompanyname = val;
-            },
-            getindex: (val) {},
-          )),
+          widget: Directionality(
+              textDirection: TextDirection.rtl,
+              child: DropDown(
+                chosenvalue: storeOrCompanyname,
+                list: storeorcompanylist,
+                hint: "اختر اسم المستودع او الشركة",
+                onchanged: (val) {
+                  storeOrCompanyname = val;
+                },
+                getindex: (val) {},
+              ))),
       SizedBox(
         height: h(50),
       ),
@@ -214,17 +220,21 @@ class _OperationTypeState extends State<OperationType> {
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Container(
-                width: w(250),
-                child: text(
-                    text: "الرجاء ارفاق السجل التجاري",
-                    color: AppColor.grey,
-                    fontsize: 14)),
-            Container(
                 width: w(50),
                 child: Icon(
                   Icons.camera_alt_outlined,
                   size: w(25),
                   color: AppColor.grey,
+                )),
+            Container(
+                width: w(250),
+                child: Padding(
+                  padding: EdgeInsets.only(right: w(20)),
+                  child: text(
+                      text: "الرجاء ارفاق السجل التجاري",
+                      color: AppColor.grey,
+                      fontsize: 14,
+                      textAlign: TextAlign.end),
                 )),
           ])),
       SizedBox(height: h(150)),
@@ -236,22 +246,25 @@ class _OperationTypeState extends State<OperationType> {
     return Column(children: [
       emptyContainer(
           desc: "     إسم المستودع أو الشركة",
-          widget: DropDown(
-            chosenvalue: storeOrCompanyname,
-            list: storeorcompanylist,
-            hint: "اختر اسم المستودع او الشركة",
-            onchanged: (val) {
-              storeOrCompanyname = val;
-              info[0] = storeOrCompanyname;
-            },
-            getindex: (val) {},
+          widget: Directionality(
+            textDirection: TextDirection.rtl,
+            child: DropDown(
+              chosenvalue: storeOrCompanyname,
+              list: storeorcompanylist,
+              hint: "اختر اسم المستودع او الشركة",
+              onchanged: (val) {
+                storeOrCompanyname = val;
+                info[0] = storeOrCompanyname;
+              },
+              getindex: (val) {},
+            ),
           )),
       SizedBox(
         height: h(17),
       ),
       inputContainer(
           controller: classificationc,
-          desc: "                         الصنف",
+          desc: "الصنف",
           hint: "panadol advance",
           value: (val) {
             classification = val;
@@ -268,7 +281,7 @@ class _OperationTypeState extends State<OperationType> {
       inputContainer(
           validation: "number",
           controller: quantutyc,
-          desc: "                         الكمية",
+          desc: "الكمية",
           hint: "0000",
           value: (val) {
             quantuty = val;
@@ -278,17 +291,19 @@ class _OperationTypeState extends State<OperationType> {
         height: h(17),
       ),
       emptyContainer(
-          desc: "                   سبب الإرجاع",
-          widget: DropDown(
-            chosenvalue: restoreReason,
-            list: restoreReasons,
-            hint: "إختر سبب الإرجاع",
-            onchanged: (val) {
-              restoreReason = val;
-              info[3] = val;
-            },
-            getindex: (val) {},
-          )),
+          desc: "سبب الإرجاع",
+          widget: Directionality(
+              textDirection: TextDirection.rtl,
+              child: DropDown(
+                chosenvalue: restoreReason,
+                list: restoreReasons,
+                hint: "إختر سبب الإرجاع",
+                onchanged: (val) {
+                  restoreReason = val;
+                  info[3] = val;
+                },
+                getindex: (val) {},
+              ))),
       SizedBox(
         height: h(17),
       ),

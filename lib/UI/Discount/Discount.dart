@@ -53,9 +53,15 @@ class _DiscountState extends State<Discount> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                    width: w(70),
-                    child: text(text: "مستودعات", fontsize: 20.sp)),
+                Padding(
+                  padding: EdgeInsets.only(right: w(10)),
+                  child: Container(
+                      width: w(100),
+                      child: text(
+                          text: "مستودعات",
+                          fontsize: 20.sp,
+                          textAlign: TextAlign.end)),
+                ),
                 SizedBox(
                   height: h(20),
                 ),

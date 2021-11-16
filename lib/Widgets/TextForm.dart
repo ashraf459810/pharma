@@ -11,6 +11,7 @@ Widget textform(
     Color hintColor,
     double hintsize,
     String validation,
+    EdgeInsetsGeometry padding,
     bool issecure}) {
   return TextFormField(
     style: TextStyle(color: AppColor.grey, fontSize: 14.sp),
@@ -23,7 +24,7 @@ Widget textform(
                 ? TextInputType.emailAddress
                 : TextInputType.text,
     decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(w(5)),
+        contentPadding: padding ?? EdgeInsets.all(w(5)),
         border: InputBorder.none,
         hintText: hint,
         isDense: true,

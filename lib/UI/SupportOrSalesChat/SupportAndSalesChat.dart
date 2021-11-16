@@ -35,16 +35,14 @@ class _SupportOrSalesChatState extends State<SupportOrSalesChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         iconTheme: IconThemeData(color: Colors.black),
-        title: Padding(
-          padding: EdgeInsets.only(left: w(60.0)),
-          child: text(
-              text: widget.supportOrSales,
-              color: Colors.black,
-              fontsize: 20.sp,
-              fontWeight: FontWeight.bold,
-              textAlign: TextAlign.center),
-        ),
+        title: text(
+            text: widget.supportOrSales,
+            color: Colors.black,
+            fontsize: 20.sp,
+            fontWeight: FontWeight.bold,
+            textAlign: TextAlign.center),
         foregroundColor: Colors.grey[50],
         backgroundColor: Colors.grey[50],
         elevation: 0,

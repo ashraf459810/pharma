@@ -72,6 +72,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                 desc: "رقم الهاتف الشخصي",
                 controller: TextEditingController(),
                 hint: "0798327894",
+                validation: "number",
                 value: (val) {
                   number = val;
                 }),
@@ -94,11 +95,11 @@ class _PersonalInfoState extends State<PersonalInfo> {
               height: h(17),
             ),
             passwordinput(
-                controller: passwordc,
+                controller: repasswordc,
                 desc: "تأكيد كلمة المرور     ",
                 hint: "m1o2h3a4h4",
                 value: (val) {
-                  password = val;
+                  repasswrod = val;
                 },
                 widget: SvgPicture.asset(
                   "assets/images/passwordeye.svg",

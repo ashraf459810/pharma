@@ -77,14 +77,14 @@ class _ProfileState extends State<Profile> {
               width: w(300),
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: profile1.length,
+                itemCount: profile2.length,
                 itemBuilder: (context, index) {
                   return Container(
                       width: w(100),
                       child: Padding(
                         padding: EdgeInsets.symmetric(vertical: h(20)),
                         child: text(
-                            text: profile1[index],
+                            text: profile2[index],
                             textAlign: TextAlign.end,
                             fontsize: 16.sp,
                             color: Colors.black,

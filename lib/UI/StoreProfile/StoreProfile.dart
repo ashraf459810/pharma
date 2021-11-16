@@ -60,7 +60,7 @@ class _StoreProfileState extends State<StoreProfile> {
           ),
           container(
             hight: h(50),
-            width: w(100),
+            width: w(200),
             child: Center(
               child: text(
                   text: "شركة سختيان",
@@ -107,16 +107,29 @@ class _StoreProfileState extends State<StoreProfile> {
                       ),
                       itemBuilder: (context) => [
                             PopupMenuItem(
-                              child: Text(
-                                "خدمة الزبائن",
-                                style: TextStyle(fontSize: 14.sp),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "خدمة الزبائن",
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                    ),
+                                  ),
+                                ],
                               ),
                               value: 1,
                             ),
                             PopupMenuItem(
-                              child: Text(
-                                "مندوب المبيعات",
-                                style: TextStyle(fontSize: 14.sp),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "مندوب المبيعات",
+                                    style: TextStyle(fontSize: 14.sp),
+                                  ),
+                                ],
                               ),
                               value: 2,
                             )

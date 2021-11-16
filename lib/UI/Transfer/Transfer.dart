@@ -116,8 +116,11 @@ class _TransferState extends State<Transfer> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                        width: w(60),
-                        child: text(text: "صيدليات", fontsize: 20.sp)),
+                        width: w(90),
+                        child: text(
+                            text: "صيدليات",
+                            fontsize: 20.sp,
+                            textAlign: TextAlign.center)),
                     SizedBox(
                       height: h(20),
                     ),
@@ -138,15 +141,20 @@ class _TransferState extends State<Transfer> {
                         },
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: w(10)),
-                            child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                child: Image.asset(
-                                  "assets/images/pharma.png",
-                                  fit: BoxFit.cover,
-                                  height: h(70),
-                                  width: w(75),
-                                ))),
+                            child: Container(
+                              decoration: BoxDecoration(shape: BoxShape.circle),
+                              child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  child: Center(
+                                    child: Image.asset(
+                                      "assets/images/pharma.png",
+                                      fit: BoxFit.contain,
+                                      height: h(100),
+                                      width: w(100),
+                                    ),
+                                  )),
+                            )),
                       );
                     }),
                 SizedBox(
@@ -305,26 +313,34 @@ class _TransferState extends State<Transfer> {
                         hight: h(50),
                         width: w(120),
                         desc: "الكمية",
-                        widget: textform(
-                            controller: quantityc,
-                            hint: "٢٠٠",
-                            hintsize: 16.sp,
-                            hintColor: AppColor.grey,
-                            function: (val) {
-                              quantity = val;
-                            })),
+                        widget: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: textform(
+                                padding: EdgeInsets.only(right: w(20)),
+                                controller: quantityc,
+                                validation: "number",
+                                hint: "٢٠٠",
+                                hintsize: 16.sp,
+                                hintColor: AppColor.grey,
+                                function: (val) {
+                                  quantity = val;
+                                }))),
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
                         desc: "اضافي",
-                        widget: textform(
-                            controller: extrac,
-                            hint: "٢٠ +٢",
-                            hintsize: 16.sp,
-                            hintColor: AppColor.grey,
-                            function: (val) {
-                              extra = val;
-                            }))
+                        widget: Directionality(
+                          textDirection: TextDirection.rtl,
+                          child: textform(
+                              padding: EdgeInsets.only(right: w(20)),
+                              controller: extrac,
+                              hint: "٢٠ +٢",
+                              hintsize: 16.sp,
+                              hintColor: AppColor.grey,
+                              function: (val) {
+                                extra = val;
+                              }),
+                        ))
                   ],
                 ),
                 SizedBox(
@@ -337,26 +353,32 @@ class _TransferState extends State<Transfer> {
                         hight: h(50),
                         width: w(120),
                         desc: "تاريخ الانتهاء",
-                        widget: textform(
-                            controller: quantityc,
-                            hint: "dd/mm/yyyy",
-                            hintsize: 16.sp,
-                            hintColor: AppColor.grey,
-                            function: (val) {
-                              quantity = val;
-                            })),
+                        widget: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: textform(
+                                padding: EdgeInsets.only(right: w(20)),
+                                controller: quantityc,
+                                hint: "dd/mm/yyyy",
+                                hintsize: 16.sp,
+                                hintColor: AppColor.grey,
+                                function: (val) {
+                                  quantity = val;
+                                }))),
                     emptyContainer(
                         hight: h(50),
                         width: w(120),
                         desc: "تركيز",
-                        widget: textform(
-                            controller: extrac,
-                            hint: "500 ml",
-                            hintsize: 16.sp,
-                            hintColor: AppColor.grey,
-                            function: (val) {
-                              extra = val;
-                            }))
+                        widget: Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: textform(
+                                padding: EdgeInsets.only(right: w(20)),
+                                controller: extrac,
+                                hint: "500 ml",
+                                hintsize: 16.sp,
+                                hintColor: AppColor.grey,
+                                function: (val) {
+                                  extra = val;
+                                })))
                   ],
                 ),
                 SizedBox(
@@ -403,19 +425,19 @@ class _TransferState extends State<Transfer> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
+                                width: w(75),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: w(25),
+                                  color: AppColor.grey,
+                                )),
+                            Container(
                                 width: w(150),
                                 child: text(
                                     text: " الرجاء ارفاق السجل التجاري",
                                     color: AppColor.grey,
                                     fontsize: 14.sp,
                                     textAlign: TextAlign.start)),
-                            Container(
-                                width: w(75),
-                                child: Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: w(25),
-                                  color: AppColor.grey,
-                                ))
                           ],
                         )),
                     SizedBox(

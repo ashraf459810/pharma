@@ -10,9 +10,14 @@ Widget pharmacymainbranchphone(String desc,
   return Column(
     children: [
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(child: text(text: desc, color: Colors.black)),
+          Container(
+              child: Padding(
+            padding: EdgeInsets.only(left: w(100)),
+            child:
+                text(text: desc, color: Colors.black, textAlign: TextAlign.end),
+          )),
         ],
       ),
       // SizedBox(
@@ -29,12 +34,16 @@ Widget pharmacymainbranchphone(String desc,
             children: [
               Container(
                 width: w(130),
-                child: textform(
-                    controller: textEditingController,
-                    function: value,
-                    hint: hint,
-                    hintColor: AppColor.grey,
-                    hintsize: 14),
+                child: Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: textform(
+                      validation: "number",
+                      controller: textEditingController,
+                      function: value,
+                      hint: hint,
+                      hintColor: AppColor.grey,
+                      hintsize: 14),
+                ),
               ),
             ],
           )),
