@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.964" height="27.663" viewBox="0 0 26.964 27.663">
+  <g id="Group_10952" data-name="Group 10952" transform="translate(0.285 0.311)">
+    <g id="Group_10949" data-name="Group 10949" transform="translate(0 6.372)">
+      <g id="Group_10948" data-name="Group 10948" transform="translate(3.138 3.412)">
+        <rect id="Rectangle_1773" data-name="Rectangle 1773" width="1.825" height="3.333" transform="matrix(0.964, -0.267, 0.267, 0.964, 0, 3.735)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+        <rect id="Rectangle_1774" data-name="Rectangle 1774" width="1.825" height="3.333" transform="matrix(0.964, -0.267, 0.267, 0.964, 11.75, 0.486)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      </g>
+      <path id="Path_125" data-name="Path 125" d="M1626.687,1374.8l2.97-.82,2.909,10.521a1.4,1.4,0,0,1-.975,1.719l-16.752,4.632a1.4,1.4,0,0,1-1.719-.975l-2.909-10.521,2.969-.821" transform="translate(-1609.706 -1370.181)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <line id="Line_78" data-name="Line 78" y1="2.763" x2="9.992" transform="translate(5.232 5.11)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <path id="Path_126" data-name="Path 126" d="M1610.249,1379.566l-.454-1.639a1.4,1.4,0,0,1,.975-1.72l16.752-4.631a1.4,1.4,0,0,1,1.719.975l.454,1.639" transform="translate(-1609.744 -1370.386)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <path id="Rectangle_1775" data-name="Rectangle 1775" d="M1.136,0H6.369A1.136,1.136,0,0,1,7.505,1.136V2.6a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V1.136A1.136,1.136,0,0,1,1.136,0Z" transform="matrix(0.964, -0.267, 0.267, 0.964, 5.103, 2)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <path id="Path_127" data-name="Path 127" d="M1623.546,1380.271l-1.792.5-.5-1.793-2.23.617.5,1.792-1.792.5.617,2.23,1.792-.5.5,1.793,2.23-.617-.5-1.792,1.792-.5Z" transform="translate(-1609.079 -1369.765)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+    </g>
+    <g id="Group_10951" data-name="Group 10951" transform="translate(10.585 0)" opacity="0.5">
+      <line id="Line_79" data-name="Line 79" x1="2.539" y2="8.557" transform="translate(12.861 7.173)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <line id="Line_80" data-name="Line 80" y1="2.191" x2="0.629" transform="translate(0 2.791)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <line id="Line_81" data-name="Line 81" x1="7.59" y1="2.252" transform="translate(4.22 3.856)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <path id="Path_128" data-name="Path 128" d="M1622.351,1367.991l-2.256-.67.37-1.245a1.067,1.067,0,0,1,1.327-.719l12.724,3.774a1.067,1.067,0,0,1,.719,1.327l-.369,1.245-2.255-.669" transform="translate(-1619.466 -1364.532)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <path id="Rectangle_1776" data-name="Rectangle 1776" d="M.868,0h4a.868.868,0,0,1,.868.868V1.982a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V.868A.868.868,0,0,1,.868,0Z" transform="translate(6.512 0) rotate(16.525)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      <g id="Group_10950" data-name="Group 10950" transform="translate(2.433 2.539)">
+        <rect id="Rectangle_1777" data-name="Rectangle 1777" width="1.393" height="2.545" transform="translate(0.724 0) rotate(16.525)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+        <rect id="Rectangle_1778" data-name="Rectangle 1778" width="1.393" height="2.545" transform="translate(9.649 2.648) rotate(16.525)" fill="none" stroke="#131523" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

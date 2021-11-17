@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Personal_Info/PersonalInfo.dart';
@@ -15,6 +16,9 @@ import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
 
 import 'package:pharma/appWidget/pharmacyMainBranchmobile.dart';
+
+typedef void OnPickImageCallback(
+    double maxWidth, double maxHeight, int quality);
 
 class Register extends StatefulWidget {
   Register({Key key}) : super(key: key);
@@ -38,6 +42,10 @@ class _RegisterState extends State<Register> {
   String mainbranchnumber;
   int pharmacyCount = 1;
   String iscolored = "1";
+  XFile _imageFile;
+  dynamic _pickImageError;
+  final ImagePicker _picker = ImagePicker();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -239,32 +247,50 @@ class _RegisterState extends State<Register> {
                   SizedBox(
                     height: h(6),
                   ),
-                  container(
-                      hight: h(70),
-                      width: w(343),
-                      borderRadius: 40,
-                      bordercolor: AppColor.grey,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                              width: w(75),
-                              child: Icon(
-                                Icons.camera_alt_outlined,
-                                size: w(25),
-                                color: AppColor.grey,
-                              )),
-                          Container(
+                  GestureDetector(
+                    onTap: () {
+                      _onImageButtonPressed(ImageSource.gallery,
+                          context: context);
+                    },
+                    child: container(
+                        hight: h(70),
+                        width: w(343),
+                        borderRadius: 40,
+                        bordercolor: AppColor.grey,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                width: w(75),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: w(25),
+                                  color: AppColor.grey,
+                                )),
+                            Container(
+                              // color: Colors.red,
                               width: w(180),
-                              child: Padding(
-                                padding: EdgeInsets.only(left: w(40)),
-                                child: text(
-                                    text: "الرجاء ارفاق السجل التجاري",
-                                    color: AppColor.grey,
-                                    fontsize: 14.sp),
-                              )),
-                        ],
-                      )),
+                              child: _imageFile == null
+                                  ? Padding(
+                                      padding: EdgeInsets.only(left: w(25)),
+                                      child: text(
+                                          text: "الرجاء ارفاق السجل التجاري",
+                                          color: AppColor.grey,
+                                          fontsize: 14.sp,
+                                          textAlign: TextAlign.center),
+                                    )
+                                  : Padding(
+                                      padding: EdgeInsets.only(left: w(60)),
+                                      child: text(
+                                          text: "تم رفع الصورة بنجاح",
+                                          color: Colors.black,
+                                          fontsize: 14.sp,
+                                          textAlign: TextAlign.center),
+                                    ),
+                            )
+                          ],
+                        )),
+                  ),
                   SizedBox(
                     height: h(10),
                   ),
@@ -351,5 +377,25 @@ class _RegisterState extends State<Register> {
         ),
       ],
     );
+  }
+
+  void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
+    // await _displayPickImageDialog(context,
+    //     (double maxWidth, double maxHeight, int quality) async {
+    try {
+      final pickedFile = await _picker.pickImage(
+        source: source,
+        // maxWidth: maxWidth,
+        // maxHeight: maxHeight,
+        // imageQuality: ,
+      );
+      setState(() {
+        _imageFile = pickedFile;
+      });
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+    }
   }
 }

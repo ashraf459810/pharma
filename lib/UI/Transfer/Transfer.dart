@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/PharmaDetails/PharmaDetails.dart';
+
 import 'package:pharma/UI/Search/Search.dart';
+import 'package:pharma/UI/TypeDetails/TypeDetails.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
@@ -33,6 +36,9 @@ class _TransferState extends State<Transfer> {
   TextEditingController focusc = TextEditingController();
   String expire;
   TextEditingController expirec = TextEditingController();
+  XFile _imageFile;
+  dynamic _pickImageError;
+  final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,7 +186,11 @@ class _TransferState extends State<Transfer> {
                     padding: 10,
                     width: MediaQuery.of(context).size.width,
                     function: (context, index) {
-                      return typeWidget();
+                      return InkWell(
+                          onTap: () {
+                            nav(context, TypeDetails());
+                          },
+                          child: typeWidget());
                     })
               ],
             )
@@ -420,30 +430,35 @@ class _TransferState extends State<Transfer> {
                     SizedBox(
                       height: h(6),
                     ),
-                    container(
-                        hight: h(70),
-                        width: w(343),
-                        borderRadius: 40,
-                        bordercolor: AppColor.grey,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                width: w(75),
-                                child: Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: w(25),
-                                  color: AppColor.grey,
-                                )),
-                            Container(
-                                width: w(150),
-                                child: text(
-                                    text: " الرجاء ارفاق السجل التجاري",
+                    GestureDetector(
+                      onTap: () {
+                        _onImageButtonPressed(ImageSource.gallery);
+                      },
+                      child: container(
+                          hight: h(70),
+                          width: w(343),
+                          borderRadius: 40,
+                          bordercolor: AppColor.grey,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                  width: w(75),
+                                  child: Icon(
+                                    Icons.camera_alt_outlined,
+                                    size: w(25),
                                     color: AppColor.grey,
-                                    fontsize: 14.sp,
-                                    textAlign: TextAlign.start)),
-                          ],
-                        )),
+                                  )),
+                              Container(
+                                  width: w(150),
+                                  child: text(
+                                      text: " الرجاء ارفاق السجل التجاري",
+                                      color: AppColor.grey,
+                                      fontsize: 14.sp,
+                                      textAlign: TextAlign.start)),
+                            ],
+                          )),
+                    ),
                     SizedBox(
                       height: h(10),
                     ),
@@ -464,5 +479,25 @@ class _TransferState extends State<Transfer> {
             ),
           );
         });
+  }
+
+  void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
+    // await _displayPickImageDialog(context,
+    //     (double maxWidth, double maxHeight, int quality) async {
+    try {
+      final pickedFile = await _picker.pickImage(
+        source: source,
+        // maxWidth: maxWidth,
+        // maxHeight: maxHeight,
+        // imageQuality: ,
+      );
+      setState(() {
+        _imageFile = pickedFile;
+      });
+    } catch (e) {
+      setState(() {
+        _pickImageError = e;
+      });
+    }
   }
 }

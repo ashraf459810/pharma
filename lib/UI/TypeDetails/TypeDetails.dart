@@ -3,33 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/TypeDetails/TypeDetails.dart';
+import 'package:pharma/UI/OrderMedChat/OrderMedChat.dart';
 import 'package:pharma/Widgets/Container.dart';
-import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
+import 'package:pharma/appWidget/appButton.dart';
 
-class PharmaDetails extends StatefulWidget {
-  PharmaDetails({Key key}) : super(key: key);
+class TypeDetails extends StatefulWidget {
+  TypeDetails({Key key}) : super(key: key);
 
   @override
-  _PharmaDetailsState createState() => _PharmaDetailsState();
+  _TypeDetailsState createState() => _TypeDetailsState();
 }
 
-class _PharmaDetailsState extends State<PharmaDetails> {
-  List<Type> images = [
-    Type("1", "none"),
-    Type("2", "none"),
-    Type("3", "none"),
-    Type("4", "none"),
-    Type("5", "none"),
-    Type("6", "none"),
-    Type("7", "none"),
-    Type("8", "none"),
-    Type("none", "اخرى"),
-    Type("none", "الكل")
-  ];
-  int clicked;
+class _TypeDetailsState extends State<TypeDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +33,7 @@ class _PharmaDetailsState extends State<PharmaDetails> {
         backgroundColor: Colors.grey[50],
         elevation: 0,
       ),
-      body: ListView(
+      body: Column(
         children: [
           SizedBox(
             height: h(20),
@@ -101,7 +88,22 @@ class _PharmaDetailsState extends State<PharmaDetails> {
                     width: w(35),
                     fit: BoxFit.cover,
                   ),
-
+                  // itemBuilder: (context) => [
+                  //       PopupMenuItem(
+                  //         child: Text(
+                  //           "خدمة الزبائن",
+                  //           style: TextStyle(fontSize: 14.sp),
+                  //         ),
+                  //         value: 1,
+                  //       ),
+                  //       PopupMenuItem(
+                  //         child: Text(
+                  //           "مندوب المبيعات",
+                  //           style: TextStyle(fontSize: 14.sp),
+                  //         ),
+                  //         value: 2,
+                  //       )
+                  //     ]
                   SizedBox(
                     width: w(20),
                   ),
@@ -118,59 +120,9 @@ class _PharmaDetailsState extends State<PharmaDetails> {
             ),
           ),
           SizedBox(
-            height: h(20),
+            height: h(40),
           ),
-          container(
-              color: Colors.white,
-              borderRadius: 30,
-              hight: h(70),
-              width: MediaQuery.of(context).size.width - w(20),
-              child: customlistview(
-                  controller: ScrollController(),
-                  direction: "horizon",
-                  hight: h(60),
-                  width: MediaQuery.of(context).size.width - w(20),
-                  itemcount: images.length,
-                  padding: 5,
-                  scroll: true,
-                  function: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: w(10)),
-                      child: GestureDetector(
-                          onTap: () {
-                            clicked = index;
-                            setState(() {});
-                          },
-                          child: clicked != index
-                              ? types(images, index)
-                              : Container(
-                                  height: h(60),
-                                  width: w(60),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColor.blue,
-                                  ),
-                                  child: types(images, index))),
-                    );
-                  })),
-          SizedBox(
-            height: h(20),
-          ),
-          customlistview(
-              controller: ScrollController(),
-              direction: "vertical",
-              hight: h(640),
-              itemcount: 10,
-              scroll: true,
-              padding: 10,
-              width: MediaQuery.of(context).size.width,
-              function: (context, index) {
-                return InkWell(
-                    onTap: () {
-                      nav(context, TypeDetails());
-                    },
-                    child: typeWidget());
-              })
+          typeWidget()
         ],
       ),
     );
@@ -178,7 +130,7 @@ class _PharmaDetailsState extends State<PharmaDetails> {
 
   Widget typeWidget() {
     return container(
-        hight: h(130),
+        hight: h(230),
         width: w(375),
         color: Colors.white,
         borderRadius: 10,
@@ -248,7 +200,15 @@ class _PharmaDetailsState extends State<PharmaDetails> {
                 typeSpecifications(h(30), w(90), "اضافي ٢٠+٢٠٠"),
                 typeSpecifications(h(30), w(100), "تاريخ الانتهاء ١٢/١٢/٢٠٢٢"),
               ],
-            )
+            ),
+            SizedBox(
+              height: h(30),
+            ),
+            InkWell(
+                onTap: () {
+                  nav(context, OrderMedChat());
+                },
+                child: appbutton(AppColor.blue, "طلب الصنف"))
           ],
         ));
   }
@@ -262,40 +222,4 @@ class _PharmaDetailsState extends State<PharmaDetails> {
             Center(child: text(text: textvalue, textAlign: TextAlign.center)),
         color: Colors.grey[100]));
   }
-}
-
-Widget types(List<Type> list, int index) {
-  return Container(
-      width: w(40),
-      height: h(40),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-      ),
-      child: ClipRRect(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          child: list[index].image != "none"
-              ? SvgPicture.asset(
-                  "assets/images/${list[index].image}.svg",
-                  fit: BoxFit.scaleDown,
-                )
-              // : text(text: title, color: Colors.black, fontsize: 12.sp)
-              : Container(
-                  width: w(40),
-                  height: h(40),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: text(
-                        text: list[index].title,
-                        color: Colors.black,
-                        textAlign: TextAlign.center),
-                  ))));
-}
-
-class Type {
-  String image;
-  String title;
-
-  Type(this.image, this.title);
 }
