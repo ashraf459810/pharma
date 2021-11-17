@@ -38,31 +38,36 @@ class _SearchState extends State<Search> {
                 hight: h(60),
                 width: w(350),
                 borderRadius: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SvgPicture.asset(
-                      "assets/images/PharmaServ(1).svg",
-                      width: w(25),
-                      height: h(25),
-                    ),
-                    Container(
-                      height: h(40),
-                      width: w(120),
-                      child: textform(
-                        controller: searchc,
-                        hint: "بحث عن صيدلية او صنف",
-                        function: (val) {
-                          search = val;
-                        },
-                        hintColor: AppColor.grey,
-                        hintsize: 14.sp,
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/PharmaServ(1).svg",
+                        width: w(25),
+                        height: h(25),
                       ),
-                    ),
-                    SizedBox(
-                      width: w(10),
-                    ),
-                  ],
+                      Row(
+                        children: [
+                          Container(
+                            height: h(40),
+                            width: w(175),
+                            child: Center(
+                              child: textform(
+                                controller: searchc,
+                                hint: "بحث عن صيدلية او صنف",
+                                function: (val) {
+                                  search = val;
+                                },
+                                hintColor: AppColor.grey,
+                                hintsize: 14.sp,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 )),
             SizedBox(
               height: h(200),

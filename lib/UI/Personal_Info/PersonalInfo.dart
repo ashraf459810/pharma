@@ -137,9 +137,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
-                padding: EdgeInsets.only(right: w(20)),
+                padding: EdgeInsets.only(right: w(25)),
                 child: Container(
-                    width: w(150),
+                    width: w(180),
                     child: text(
                         text: desc,
                         color: Colors.black,

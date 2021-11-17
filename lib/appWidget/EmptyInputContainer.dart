@@ -17,7 +17,7 @@ Widget emptyContainer(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Padding(
-            padding: EdgeInsets.only(right: w(20)),
+            padding: EdgeInsets.only(right: w(30)),
             child: Container(
                 width: textwidth ?? w(150),
                 child: text(

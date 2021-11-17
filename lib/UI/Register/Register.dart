@@ -234,7 +234,7 @@ class _RegisterState extends State<Register> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(right: w(20)),
+                        padding: EdgeInsets.only(right: w(30)),
                         child: Container(
                             width: w(150),
                             child: text(

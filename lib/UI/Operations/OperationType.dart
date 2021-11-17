@@ -229,9 +229,9 @@ class _OperationTypeState extends State<OperationType> {
                   color: AppColor.grey,
                 )),
             Container(
-                width: w(250),
+                width: w(180),
                 child: Padding(
-                  padding: EdgeInsets.only(right: w(20)),
+                  padding: EdgeInsets.only(right: w(25)),
                   child: text(
                       text: "الرجاء ارفاق السجل التجاري",
                       color: AppColor.grey,

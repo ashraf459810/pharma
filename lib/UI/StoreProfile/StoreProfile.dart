@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
+import 'package:pharma/UI/Map/Map.dart';
 import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StoreProfile extends StatefulWidget {
   StoreProfile({Key key}) : super(key: key);
@@ -76,10 +78,15 @@ class _StoreProfileState extends State<StoreProfile> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    "assets/images/call.svg",
-                    height: h(35),
-                    width: w(35),
+                  GestureDetector(
+                    onTap: () {
+                      launch("tel://214324234");
+                    },
+                    child: SvgPicture.asset(
+                      "assets/images/call.svg",
+                      height: h(35),
+                      width: w(35),
+                    ),
                   ),
                   PopupMenuButton(
                       onSelected: (val) {
@@ -134,10 +141,15 @@ class _StoreProfileState extends State<StoreProfile> {
                               value: 2,
                             )
                           ]),
-                  SvgPicture.asset(
-                    "assets/images/location.svg",
-                    height: h(35),
-                    width: w(35),
+                  GestureDetector(
+                    onTap: () {
+                      nav(context, LocationMap());
+                    },
+                    child: SvgPicture.asset(
+                      "assets/images/location.svg",
+                      height: h(35),
+                      width: w(35),
+                    ),
                   ),
                   SizedBox(
                     height: h(40),

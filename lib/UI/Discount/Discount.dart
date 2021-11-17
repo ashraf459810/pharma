@@ -7,11 +7,13 @@ import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Map/Map.dart';
 import 'package:pharma/UI/StoreProfile/StoreProfile.dart';
+import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Discount extends StatefulWidget {
   Discount({Key key}) : super(key: key);
@@ -221,12 +223,35 @@ class _DiscountState extends State<Discount> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(
-                                  "assets/images/call.svg",
-                                  height: h(30),
-                                  width: w(30),
+                                GestureDetector(
+                                  onTap: () {
+                                    launch("tel://214324234");
+                                  },
+                                  child: SvgPicture.asset(
+                                    "assets/images/call.svg",
+                                    height: h(30),
+                                    width: w(30),
+                                  ),
                                 ),
                                 PopupMenuButton(
+                                    onSelected: (val) {
+                                      print(val);
+                                      if (val == 1)
+                                        nav(
+                                            context,
+                                            SupportOrSalesChat(
+                                              supportOrSales:
+                                                  "شركة سختيان/support",
+                                            ));
+                                      else {
+                                        nav(
+                                            context,
+                                            SupportOrSalesChat(
+                                              supportOrSales:
+                                                  "شركة سختيان/sales",
+                                            ));
+                                      }
+                                    },
                                     iconSize: h(30),
                                     icon: SvgPicture.asset(
                                       "assets/images/message.svg",

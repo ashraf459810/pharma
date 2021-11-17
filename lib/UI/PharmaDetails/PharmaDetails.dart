@@ -3,11 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/UI/Map/Map.dart';
+import 'package:pharma/UI/OrderMedChat/OrderMedChat.dart';
+import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
 import 'package:pharma/UI/TypeDetails/TypeDetails.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PharmaDetails extends StatefulWidget {
   PharmaDetails({Key key}) : super(key: key);
@@ -84,10 +88,15 @@ class _PharmaDetailsState extends State<PharmaDetails> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    "assets/images/call.svg",
-                    height: h(35),
-                    width: w(35),
+                  GestureDetector(
+                    onTap: () {
+                      launch("tel://214324234");
+                    },
+                    child: SvgPicture.asset(
+                      "assets/images/call.svg",
+                      height: h(35),
+                      width: w(35),
+                    ),
                   ),
                   // PopupMenuButton(
                   //     iconSize: w(35),
@@ -95,20 +104,30 @@ class _PharmaDetailsState extends State<PharmaDetails> {
                   SizedBox(
                     width: w(20),
                   ),
-                  SvgPicture.asset(
-                    "assets/images/message.svg",
-                    height: h(35),
-                    width: w(35),
-                    fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      nav(context, OrderMedChat());
+                    },
+                    child: SvgPicture.asset(
+                      "assets/images/message.svg",
+                      height: h(35),
+                      width: w(35),
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
                   SizedBox(
                     width: w(20),
                   ),
-                  SvgPicture.asset(
-                    "assets/images/location.svg",
-                    height: h(35),
-                    width: w(35),
+                  GestureDetector(
+                    onTap: () {
+                      nav(context, LocationMap());
+                    },
+                    child: SvgPicture.asset(
+                      "assets/images/location.svg",
+                      height: h(35),
+                      width: w(35),
+                    ),
                   ),
                   SizedBox(
                     height: h(40),
