@@ -2,7 +2,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
-import 'package:pharma/Core/Consts.dart';
 
 Widget textform(
     {TextEditingController controller,

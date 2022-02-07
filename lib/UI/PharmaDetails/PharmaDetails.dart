@@ -5,7 +5,6 @@ import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/Map/Map.dart';
 import 'package:pharma/UI/OrderMedChat/OrderMedChat.dart';
-import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
 import 'package:pharma/UI/TypeDetails/TypeDetails.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,6 +18,9 @@ import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
 
 import 'package:pharma/appWidget/pharmacyMainBranchmobile.dart';
+import 'package:pharma/features/register/presentation/widgets/tow_option_filter.dart';
+import 'package:pharma/features/register/presentation/widgets/type_filter.dart';
+import 'package:pharma/features/register/presentation/widgets/upload_photo.dart';
 
 typedef void OnPickImageCallback(
     double maxWidth, double maxHeight, int quality);
@@ -28,8 +33,12 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  bool selected1 = true;
-  bool selected2 = false;
+  bool pharmacey ;
+  bool store ;
+  bool company;
+  bool newFarmacy ;
+  bool registeredFarmacy ;
+
   List<String> list = ["مالك الصيدلية", "مسؤول الصيدلية ", "صيدلاني"];
   String jobdesc;
   String pramacyname;
@@ -42,10 +51,27 @@ class _RegisterState extends State<Register> {
   String mainbranchnumber;
   int pharmacyCount = 1;
   String iscolored = "1";
-  XFile _imageFile;
-  dynamic _pickImageError;
+
+ String type;
+ String registerOrNew;
+ String oneBranchOrMany;
+ bool option3 = false; 
+ bool option4 = false;
+ XFile tradRecord;
+ XFile workLicense;
+ XFile id;
+ XFile ministryLicense;
   final ImagePicker _picker = ImagePicker();
 
+@override
+  void initState() {
+       pharmacey  =false;
+   store = false;
+   company= false;
+   newFarmacy = false;
+   registeredFarmacy = false;
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,105 +90,68 @@ class _RegisterState extends State<Register> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: h(45),
+                height: h(20),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width - w(60),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selected2 = true;
-                          // iscolored = "2";
-                          selected1 = false;
-                        });
-                      },
-                      child: RotatedBox(
-                        quarterTurns: 3,
-                        child: Container(
-                          height:
-                              (MediaQuery.of(context).size.width - w(60)) / 2,
-                          width: w(60),
-                          decoration: BoxDecoration(
-                            color:
-                                !selected2 ? Colors.grey[50] : Colors.blue[50],
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40),
-                            ),
-                            border: Border.all(
-                              width: w(3),
-                              color: !selected2 ? AppColor.grey : AppColor.blue,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Center(
-                            child: RotatedBox(
-                              quarterTurns: 1,
-                              child: text(
-                                  text: "سلسلة صيدليات",
-                                  color: !selected2
-                                      ? AppColor.grey
-                                      : AppColor.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontsize: 18.sp),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selected1 = true;
-                          // iscolored = "1";
-                          selected2 = false;
-                        });
-                      },
-                      child: RotatedBox(
-                        quarterTurns: 1,
-                        child: Container(
-                          height:
-                              (MediaQuery.of(context).size.width - w(60)) / 2,
-                          width: w(60),
-                          decoration: BoxDecoration(
-                            color:
-                                !selected1 ? Colors.grey[50] : Colors.blue[50],
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              topRight: Radius.circular(40),
-                            ),
-                            border: Border.all(
-                              width: w(3),
-                              color: !selected1 ? AppColor.grey : AppColor.blue,
-                              style: BorderStyle.solid,
-                            ),
-                          ),
-                          child: Center(
-                            child: RotatedBox(
-                              quarterTurns: 3,
-                              child: text(
-                                  text: "صيدلية",
-                                  color: !selected1
-                                      ? AppColor.grey
-                                      : AppColor.blue,
-                                  fontWeight: FontWeight.bold,
-                                  fontsize: 18.sp),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+             SizedBox(
+               height: h(75),
+               child:  TypeFilter(company: company,pharmacey: pharmacey,store: store,getType:  (val){
+
+            
+           
+  
+setState(() {
+       type = val;
+       if (type =='صيدلية'){
+         pharmacey = true;
+         company = false;
+         store = false;
+
+       }
+       else if (type== 'شركة'){
+         company = true;
+         store = false;
+         pharmacey = false;
+       }
+       else {store = true;
+       pharmacey = false;
+       company = false;
+       }
+  
+});
+               })),
+          SizedBox(height: h(20),),
+  type !=null?    SizedBox(
+          height: h(70),
+          child: TwoOptionFilter(registeredFarmacy: newFarmacy,newFarmacy: registeredFarmacy,option1: 'جديد',option2: 'مسجل',getOption: (val){
+           
+           log(val);
+             
+             setState(() {
+               registerOrNew = val;  
+               if (val == 'جديد'){
+                 newFarmacy = true;
+                 registeredFarmacy = false;
+               }
+               else {
+                  newFarmacy = false;
+                 registeredFarmacy = true;
+               }
+             });
+         
+          }, )):SizedBox(),
+
+                 SizedBox(height: h(20),),
+      registerOrNew !=null ?  SizedBox(
+          height: h(70),
+          child: TwoOptionFilter(registeredFarmacy: option3,newFarmacy: option4,option1: 'سلسلة',option2: 'فرع',getOption: (val){
+            oneBranchOrMany = val;
+            
+          }, )):SizedBox(),
               SizedBox(
                 height: h(24),
               ),
               emptyContainer(
-                  desc: "مالك صيدلية",
+                  desc: "الوصف الوظيفي",
                   widget: Directionality(
                     textDirection: TextDirection.rtl,
                     child: DropDown(
@@ -188,7 +177,7 @@ class _RegisterState extends State<Register> {
               SizedBox(
                 height: h(17),
               ),
-              selected1
+              pharmacey
                   ? inputContainer(
                       desc: "رقم هاتف الصيدلية",
                       controller: pharmacymobilec,
@@ -238,7 +227,7 @@ class _RegisterState extends State<Register> {
                         child: Container(
                             width: w(150),
                             child: text(
-                                text: "السجل التجاري",
+                                text: "الرجاءارفاق الوثائق التالية",
                                 color: Colors.black,
                                 textAlign: TextAlign.end)),
                       ),
@@ -247,49 +236,29 @@ class _RegisterState extends State<Register> {
                   SizedBox(
                     height: h(6),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _onImageButtonPressed(ImageSource.gallery,
-                          context: context);
-                    },
-                    child: container(
-                        hight: h(70),
-                        width: w(343),
-                        borderRadius: 40,
-                        bordercolor: AppColor.grey,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                width: w(75),
-                                child: Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: w(25),
-                                  color: AppColor.grey,
-                                )),
-                            Container(
-                              // color: Colors.red,
-                              width: w(180),
-                              child: _imageFile == null
-                                  ? Padding(
-                                      padding: EdgeInsets.only(left: w(25)),
-                                      child: text(
-                                          text: "الرجاء ارفاق السجل التجاري",
-                                          color: AppColor.grey,
-                                          fontsize: 14.sp,
-                                          textAlign: TextAlign.center),
-                                    )
-                                  : Padding(
-                                      padding: EdgeInsets.only(left: w(60)),
-                                      child: text(
-                                          text: "تم رفع الصورة بنجاح",
-                                          color: Colors.black,
-                                          fontsize: 14.sp,
-                                          textAlign: TextAlign.center),
-                                    ),
-                            )
-                          ],
-                        )),
+                SizedBox(
+                  height: h(60),
+                  child: UploadPhoto(file: tradRecord,text: 'السجل التجاري',)),
+                             SizedBox(
+                    height: h(15),
+                  ),
+                SizedBox(
+                  height: h(60),
+                  child: UploadPhoto(file: workLicense,text: 'رخصة المهنة',)),
+                                 SizedBox(
+                    height: h(15),
+                  ),
+                          SizedBox(
+                  height: h(60),
+                  child: UploadPhoto(file: id,text: 'صورة هوية',)),
+                                 SizedBox(
+                    height: h(15),
+                  ),
+                           SizedBox(
+                  height: h(60),
+                  child: UploadPhoto(file: ministryLicense,text: 'موافقة وزارة الصحة',)),
+                                 SizedBox(
+                    height: h(15),
                   ),
                   SizedBox(
                     height: h(10),
@@ -379,23 +348,5 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
-    // await _displayPickImageDialog(context,
-    //     (double maxWidth, double maxHeight, int quality) async {
-    try {
-      final pickedFile = await _picker.pickImage(
-        source: source,
-        // maxWidth: maxWidth,
-        // maxHeight: maxHeight,
-        // imageQuality: ,
-      );
-      setState(() {
-        _imageFile = pickedFile;
-      });
-    } catch (e) {
-      setState(() {
-        _pickImageError = e;
-      });
-    }
-  }
+
 }
