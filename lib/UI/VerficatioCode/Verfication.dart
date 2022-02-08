@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/homePage/HomePage.dart';
+
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/RegisterAppBar.dart';
 import 'package:pharma/appWidget/appButton.dart';
+import 'package:pharma/features/homePage/HomePage.dart';
 import 'package:pin_code_text_field/pin_code_text_field.dart';
 
 class Verfication extends StatefulWidget {

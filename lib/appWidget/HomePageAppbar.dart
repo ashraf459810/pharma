@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
-import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/Notifications/Notifications.dart';
-import 'package:pharma/UI/Profile/Profile.dart';
-import 'package:pharma/Widgets/Nav.dart';
-import 'package:pharma/Widgets/Text.dart';
+
+import 'package:pharma/Widgets/Container.dart';
+
+
+import 'drawer.dart';
 
 class HomePageAppBar extends StatefulWidget {
-  final String title;
-  HomePageAppBar({Key key, this.title}) : super(key: key);
+
+  HomePageAppBar({Key key, }) : super(key: key);
 
   @override
   _HomePageAppBarState createState() => _HomePageAppBarState();
@@ -19,6 +20,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     
       backgroundColor: Colors.grey[50],
       appBar: PreferredSize(
           child: AppBar(
@@ -33,37 +35,17 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      GestureDetector(
+                    container(color: Colors.grey[50],
+                      width: w(150),hight: h(60),child: Image.asset('assets/images/logo.png')),
+                    SizedBox(width: w(150),),
+                      InkWell(
                         onTap: () {
-                          nav(context, Notifications());
+                                  Scaffold.of(context).openEndDrawer();
                         },
-                        child: Icon(
-                          Icons.notifications,
-                          color: AppColor.grey,
-                          size: w(25),
-                        ),
-                      ),
-                      Container(
-                        height: h(60),
-                        width: w(240),
-                        child: Center(
-                          child: text(
-                              text: widget.title,
-                              color: Colors.black,
-                              fontsize: 20.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          nav(context, Profile());
-                        },
-                        child: Icon(
-                          Icons.person,
-                          color: AppColor.grey,
-                          size: w(25),
+                        child: SvgPicture.asset(
+                    'assets/images/menu.svg'
                         ),
                       ),
                     ],

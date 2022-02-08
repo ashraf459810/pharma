@@ -4,7 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 
-import 'package:pharma/UI/homePage/HomePage.dart';
+
+
 
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Nav.dart';
@@ -12,6 +13,7 @@ import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/Widgets/TextForm.dart';
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
+import 'package:pharma/features/homePage/HomePage.dart';
 import 'package:pharma/features/register/presentation/pages/Register.dart';
 
 class SignIn extends StatefulWidget {

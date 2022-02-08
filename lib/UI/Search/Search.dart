@@ -25,7 +25,7 @@ class _SearchState extends State<Search> {
         child: Padding(
           padding: EdgeInsets.only(top: h(10.0)),
           child: HomePageAppBar(
-            title: "بحث",
+         
           ),
         ),
         preferredSize: Size.fromHeight(70),

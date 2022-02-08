@@ -13,16 +13,17 @@ import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
+import 'package:pharma/appWidget/drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Discount extends StatefulWidget {
-  Discount({Key key}) : super(key: key);
+class Offers extends StatefulWidget {
+  Offers({Key key}) : super(key: key);
 
   @override
-  _DiscountState createState() => _DiscountState();
+  _OffersState createState() => _OffersState();
 }
 
-class _DiscountState extends State<Discount> {
+class _OffersState extends State<Offers> {
   @override
   void initState() {
     super.initState();
@@ -30,14 +31,15 @@ class _DiscountState extends State<Discount> {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration.zero, () => showAlertDialog(context));
+    // Future.delayed(Duration.zero, () => showAlertDialog(context));
 
     return Scaffold(
+        endDrawer:    HomeDrawer(),
       appBar: PreferredSize(
         child: Padding(
           padding: const EdgeInsets.only(top: 30.0),
           child: HomePageAppBar(
-            title: "الصفحة الرئيسية",
+          
           ),
         ),
         preferredSize: Size.fromHeight(90),

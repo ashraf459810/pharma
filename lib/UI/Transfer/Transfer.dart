@@ -46,7 +46,7 @@ class _TransferState extends State<Transfer> {
           child: Padding(
             padding: EdgeInsets.only(top: 30.0),
             child: HomePageAppBar(
-              title: "تحويل",
+              
             ),
           ),
           preferredSize: Size.fromHeight(70),

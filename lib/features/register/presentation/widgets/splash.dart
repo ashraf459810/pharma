@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pharma/UI/SignIn/SignIn.dart';
+
 import 'package:pharma/Widgets/Nav.dart';
+import 'package:pharma/features/login/presentation/pages/login.dart';
+
 
 
 class Splash extends StatefulWidget {

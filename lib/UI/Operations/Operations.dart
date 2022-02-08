@@ -31,7 +31,7 @@ class _OperationsState extends State<Operations> {
         child: Padding(
           padding: EdgeInsets.only(top: 30.0),
           child: HomePageAppBar(
-            title: "العمليات",
+            
           ),
         ),
         preferredSize: Size.fromHeight(100),

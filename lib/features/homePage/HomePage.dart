@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pharma/UI/Discount/Discount.dart';
+
 import 'package:pharma/UI/Operations/Operations.dart';
 import 'package:pharma/UI/Transfer/Transfer.dart';
 import 'package:pharma/Widgets/BottomNavBar.dart';
+import 'package:pharma/features/offers/presentation/pages/offers.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -14,8 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<NavBarItem> list = [
     NavBarItem("assets/images/Discount.svg", "عروض"),
-    NavBarItem("assets/images/transfer.svg", "تحويل"),
-    NavBarItem("assets/images/operations.svg", "عمليات")
+    NavBarItem("assets/images/type.svg", "تحويل"),
+    NavBarItem("assets/images/operation.svg", "عمليات")
   ];
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: ButtomNavBar(
         navitems: list,
         routes: [
-          Discount(),
+          Offers(),
           Transfer(),
           Operations(
             isrestore: false,
