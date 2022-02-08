@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -160,4 +160,12 @@ class _TypeFilterState extends State<TypeFilter> {
           
     );
   }
+}
+
+
+  enum Type { 
+   pharmacy, 
+   store, 
+   company, 
+    
 }
