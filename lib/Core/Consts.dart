@@ -5,6 +5,8 @@ const String BaseUrl = "";
 class AppColor {
   static const Color grey = Color(0xFFC3C7D5);
   static const Color blue = Color(0xFF0062FF);
+   static const Color blueTrans = Color(0xFFDDE7FB);
+  
 }
 
 class Con {

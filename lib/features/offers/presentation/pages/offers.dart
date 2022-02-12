@@ -14,6 +14,8 @@ import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/HomePageAppbar.dart';
 import 'package:pharma/appWidget/drawer.dart';
+import 'package:pharma/features/offers/presentation/widgets/all_offers.dart';
+import 'package:pharma/features/offers/presentation/widgets/company_profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Offers extends StatefulWidget {
@@ -84,54 +86,108 @@ class _OffersState extends State<Offers> {
                     onTap: () {
                       nav(context, StoreProfile());
                     },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: w(1)),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          child: Center(
-                              child: Image.asset(
-                            "assets/images/roundexample.png",
-                            height: h(100),
-                            width: w(100),
-                            fit: BoxFit.contain,
-                          ))),
+                    child: Column(
+                      children: [
+                        Container(
+                              height: h(70),
+                              width: w(70),
+                          decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,),
+                         child: Center(
+                             child: SvgPicture.asset(
+                           "assets/images/store.svg",
+                        height: h(35),
+                        width: w(30),
+                           fit: BoxFit.contain,
+                         )),
+                              ),
+                              text(text: 'سختيان')
+                      ],
                     ),
+                    
                   );
                 }),
             SizedBox(
               height: h(10),
             ),
-            customlistview(
-                scroll: true,
-                hight: h(450),
-                width: MediaQuery.of(context).size.width,
-                controller: ScrollController(),
-                direction: "vertical",
-                itemcount: 10,
-                padding: 7,
-                function: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 17),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return customWidget("assets/images/item.png");
-                        }));
-                      },
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            "assets/images/item.png", fit: BoxFit.cover,
-                            // height: h(300),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: (){nav(context, AllOffers());},
+                  child: container(width: w(80,),color: Colors.grey[50],
+                              child: text(text: 'عرض الكل',color: AppColor.blue)),
+                ),
+                    container(
+                  width: w(90),
+                  color: Colors.grey[50],
+               child: text(text: "العروض",fontsize: 18.sp,fontWeight: FontWeight.bold,)),
+
+
+            ],),
+            Container(
+                   color: AppColor.blueTrans,
+              child: customlistview(
+                  scroll: true,
+                  hight: h(420),
+                  width: MediaQuery.of(context).size.width,
+                  controller: ScrollController(),
+                  direction: "vertical",
+                  itemcount: 10,
+                  padding: 7,
+                  function: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: h(17),horizontal: w(20)),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return CompanyProfile(image:"assets/images/item.png");
+                          }));
+                        },
+                        child: Container(
+                     height: h(320),
+                          // width: MediaQuery.of(context).size.width,
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.asset(
+                                  "assets/images/item.png", fit: BoxFit.cover,
+                                  // height: h(300),
+                                ),
+                              ),
+
+                                Positioned(
+                                  top: h(220),
+                                  left: w(130),
+
+                                  
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                                                    height: h(70),
+                                                                    width: w(70),
+                                                                decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,border: Border.all(color: Colors.white)),
+                                                               child: Center(
+                                                                   child: SvgPicture.asset(
+                                                                 "assets/images/store.svg",
+                                                              height: h(35),
+                                                              width: w(30),
+                                                                 fit: BoxFit.contain,
+                                                               )),
+                                                                    ),
+                                                                                 text(text: 'سختيان',fontWeight: FontWeight.bold)
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  );
-                })
+                    );
+                  }),
+            )
           ],
         ),
       ),
@@ -171,134 +227,7 @@ class _OffersState extends State<Offers> {
             ));
   }
 
-  Widget customWidget(String image) => Scaffold(
-        body: //       child: SafeArea(
-            SafeArea(
-          child: Card(
-            elevation: 4,
-            child: Container(
-              // height: h(100),
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Hero(
-                      tag: "customWidget",
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(
-                          image,
-                          fit: BoxFit.contain,
-                          height: h(400),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: h(50),
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          height: h(150),
-                          width: w(150),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.asset(
-                              "assets/images/company.png", fit: BoxFit.contain,
-                              // height: h(300),
-                            ),
-                          ),
-                        ),
-                        container(
-                          hight: h(50),
-                          width: w(100),
-                          child: text(
-                              text: "شركة سختيان",
-                              color: Colors.black,
-                              fontsize: 16.sp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        container(
-                          width: w(200),
-                          hight: h(60),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    launch("tel://214324234");
-                                  },
-                                  child: SvgPicture.asset(
-                                    "assets/images/call.svg",
-                                    height: h(30),
-                                    width: w(30),
-                                  ),
-                                ),
-                                PopupMenuButton(
-                                    onSelected: (val) {
-                                      print(val);
-                                      if (val == 1)
-                                        nav(
-                                            context,
-                                            SupportOrSalesChat(
-                                              supportOrSales:
-                                                  "شركة سختيان/support",
-                                            ));
-                                      else {
-                                        nav(
-                                            context,
-                                            SupportOrSalesChat(
-                                              supportOrSales:
-                                                  "شركة سختيان/sales",
-                                            ));
-                                      }
-                                    },
-                                    iconSize: h(30),
-                                    icon: SvgPicture.asset(
-                                      "assets/images/message.svg",
-                                      fit: BoxFit.cover,
-                                      height: h(30),
-                                      width: w(30),
-                                    ),
-                                    itemBuilder: (context) => [
-                                          PopupMenuItem(
-                                            child: Text(
-                                              "خدمة الزبائن",
-                                              style: TextStyle(fontSize: 14.sp),
-                                            ),
-                                            value: 1,
-                                          ),
-                                          PopupMenuItem(
-                                            child: Text(
-                                              "مندوب المبيعات",
-                                              style: TextStyle(fontSize: 14.sp),
-                                            ),
-                                            value: 2,
-                                          )
-                                        ]),
-                                InkWell(
-                                    onTap: () {
-                                      nav(context, LocationMap());
-                                    },
-                                    child: SvgPicture.asset(
-                                      "assets/images/location.svg",
-                                      height: h(30),
-                                      width: w(30),
-                                    )),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
+ 
 
   //
 

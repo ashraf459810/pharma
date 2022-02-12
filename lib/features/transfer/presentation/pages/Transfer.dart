@@ -41,161 +41,179 @@ class _TransferState extends State<Transfer> {
   final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: PreferredSize(
-          child: Padding(
-            padding: EdgeInsets.only(top: 30.0),
-            child: HomePageAppBar(
-              
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+   
+          appBar: PreferredSize(
+            
+            child: Padding(
+              padding: EdgeInsets.only(top: 30.0),
+              child: AppBar(
+                     bottom:  TabBar(
+
+                       labelColor: Colors.black,
+                       indicatorColor: AppColor.blue,
+            tabs: [
+     
+              Tab( child:  text( text: 'سجل طلباتي',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
+              Tab(child: text( text: 'اصنافي',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
+                       Tab( child : text( text: 'الاصناف',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
+            ],),
+              backgroundColor: Colors.grey[50],
+              iconTheme: IconThemeData(color: Colors.black),
+              elevation: 0,
+                title: text(text: 'تحويل',fontsize: 20.sp,fontWeight: FontWeight.bold,color: Colors.black),centerTitle: true,)
             ),
+            preferredSize: Size.fromHeight(120),
           ),
-          preferredSize: Size.fromHeight(70),
-        ),
-        body: ListView(
-          children: [
-            Column(
-              children: [
-                // SizedBox(
-                //   height: h(20),
-                // ),
-                GestureDetector(
+          body: ListView(
+            children: [
+              SizedBox(height: h(20),),
+              Column(
+                children: [
+                  // SizedBox(
+                  //   height: h(20),
+                  // ),
+                  GestureDetector(
+                      onTap: () {
+                        addtype();
+                      },
+                      child: container(
+                        color: AppColor.blue,
+                        hight: h(60),
+                        width: w(350),
+                        borderRadius: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            text(
+                                text: "اضافة صنف",
+                                color: Colors.white,
+                                fontsize: 20.sp),
+                            SizedBox(
+                              width: w(10),
+                            ),
+                            Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: w(20),
+                            )
+                          ],
+                        ),
+                      )),
+                  SizedBox(
+                    height: h(20),
+                  ),
+                  InkWell(
                     onTap: () {
-                      addtype();
+                      nav(context, Search());
                     },
                     child: container(
-                      color: AppColor.blue,
-                      hight: h(60),
-                      width: w(350),
-                      borderRadius: 30,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          text(
-                              text: "اضافة صنف",
-                              color: Colors.white,
-                              fontsize: 20.sp),
-                          SizedBox(
-                            width: w(10),
-                          ),
-                          Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: w(20),
-                          )
-                        ],
+                        color: Colors.white,
+                        hight: h(60),
+                        width: w(350),
+                        borderRadius: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/images/PharmaServ(1).svg",
+                              width: w(25),
+                              height: h(25),
+                            ),
+                            text(
+                                text: "بحث عن صيدلية او صنف",
+                                color: AppColor.grey,
+                                fontsize: 20.sp),
+                            SizedBox(
+                              width: w(10),
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    height: h(20),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                          width: w(90),
+                          child: text(
+                              text: "صيدليات",
+                              fontsize: 20.sp,
+                              textAlign: TextAlign.center)),
+                      SizedBox(
+                        height: h(20),
                       ),
-                    )),
-                SizedBox(
-                  height: h(20),
-                ),
-                InkWell(
-                  onTap: () {
-                    nav(context, Search());
-                  },
-                  child: container(
-                      color: Colors.white,
-                      hight: h(60),
-                      width: w(350),
-                      borderRadius: 30,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          SvgPicture.asset(
-                            "assets/images/PharmaServ(1).svg",
-                            width: w(25),
-                            height: h(25),
-                          ),
-                          text(
-                              text: "بحث عن صيدلية او صنف",
-                              color: AppColor.grey,
-                              fontsize: 20.sp),
-                          SizedBox(
-                            width: w(10),
-                          ),
-                        ],
-                      )),
-                ),
-                SizedBox(
-                  height: h(20),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                        width: w(90),
-                        child: text(
-                            text: "صيدليات",
-                            fontsize: 20.sp,
-                            textAlign: TextAlign.center)),
-                    SizedBox(
-                      height: h(20),
-                    ),
-                  ],
-                ),
-                customlistview(
-                    controller: ScrollController(),
-                    direction: "horizon",
-                    scroll: true,
-                    hight: h(120),
-                    itemcount: 10,
-                    padding: 10,
-                    width: MediaQuery.of(context).size.width,
-                    function: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          nav(context, PharmaDetails());
-                        },
-                        child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: w(10)),
-                            child: Container(
-                              decoration: BoxDecoration(shape: BoxShape.circle),
-                              child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  child: Center(
-                                    child: Image.asset(
-                                      "assets/images/pharma.png",
-                                      fit: BoxFit.contain,
-                                      height: h(100),
-                                      width: w(100),
-                                    ),
-                                  )),
-                            )),
-                      );
-                    }),
-                SizedBox(
-                  height: h(10),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                        width: w(60),
-                        child: text(text: "الاصناف", fontsize: 20.sp)),
-                    SizedBox(
-                      height: h(20),
-                    ),
-                  ],
-                ),
-                customlistview(
-                    controller: ScrollController(),
-                    direction: "vertical",
-                    hight: h(300),
-                    itemcount: 10,
-                    scroll: true,
-                    padding: 10,
-                    width: MediaQuery.of(context).size.width,
-                    function: (context, index) {
-                      return InkWell(
+                    ],
+                  ),
+                  customlistview(
+                      controller: ScrollController(),
+                      direction: "horizon",
+                      scroll: true,
+                      hight: h(120),
+                      itemcount: 10,
+                      padding: 10,
+                      width: MediaQuery.of(context).size.width,
+                      function: (context, index) {
+                        return InkWell(
                           onTap: () {
-                            nav(context, TypeDetails());
+                            nav(context, PharmaDetails());
                           },
-                          child: typeWidget());
-                    })
-              ],
-            )
-          ],
-        ));
+                          child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: w(10)),
+                              child: Container(
+                                decoration: BoxDecoration(shape: BoxShape.circle),
+                                child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(20)),
+                                    child: Center(
+                                      child: Image.asset(
+                                        "assets/images/pharma.png",
+                                        fit: BoxFit.contain,
+                                        height: h(100),
+                                        width: w(100),
+                                      ),
+                                    )),
+                              )),
+                        );
+                      }),
+                  SizedBox(
+                    height: h(10),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                          width: w(60),
+                          child: text(text: "الاصناف", fontsize: 20.sp)),
+                      SizedBox(
+                        height: h(20),
+                      ),
+                    ],
+                  ),
+                  customlistview(
+                      controller: ScrollController(),
+                      direction: "vertical",
+                      hight: h(300),
+                      itemcount: 10,
+                      scroll: true,
+                      padding: 10,
+                      width: MediaQuery.of(context).size.width,
+                      function: (context, index) {
+                        return InkWell(
+                            onTap: () {
+                              nav(context, TypeDetails());
+                            },
+                            child: typeWidget());
+                      })
+                ],
+              )
+            ],
+          )),
+    );
   }
 
   Widget typeWidget() {

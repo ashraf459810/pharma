@@ -5,9 +5,10 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtomNavBar extends StatefulWidget {
+  final int index ;
   final List<NavBarItem> navitems;
   final List<Widget> routes;
-  ButtomNavBar({Key key, this.navitems, this.routes}) : super(key: key);
+  ButtomNavBar({Key key, this.navitems, this.routes, this.index}) : super(key: key);
 
   @override
   _ButtomNavBarState createState() => _ButtomNavBarState();
@@ -16,6 +17,13 @@ class ButtomNavBar extends StatefulWidget {
 class _ButtomNavBarState extends State<ButtomNavBar> {
   int selectedIndex = 0;
   @override
+
+  @override
+  void initState() {
+    selectedIndex = widget.index?? 0;
+    super.initState();
+    
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
