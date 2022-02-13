@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/UI/VerficatioCode/Verfication.dart';
@@ -11,9 +12,13 @@ import 'package:pharma/Widgets/TextForm.dart';
 import 'package:pharma/appWidget/RegisterAppBar.dart';
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
+import 'package:pharma/features/register/data/models/register_pharma_request_model.dart';
 
 class PersonalInfo extends StatefulWidget {
-  PersonalInfo({Key key}) : super(key: key);
+
+  final List<XFile> images ;
+  final RegisterPharmaRequestodel registerPharmaRequestodel;
+  PersonalInfo({Key key, this.images, this.registerPharmaRequestodel}) : super(key: key);
 
   @override
   _PersonalInfoState createState() => _PersonalInfoState();

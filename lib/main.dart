@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'App/app.dart';
+import 'injection.dart' as di;
 
-void main() {
+Future<void> main() async {
   // before the runApp() call
+
+   await di.init();
   WidgetsFlutterBinding.ensureInitialized();
 
   // Than we setup preferred orientations,

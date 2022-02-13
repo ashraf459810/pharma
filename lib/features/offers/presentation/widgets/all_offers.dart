@@ -5,7 +5,7 @@ import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 
 import 'package:pharma/Widgets/BottomNavBar.dart';
-import 'package:pharma/Widgets/Container.dart';
+
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/navigation_bar.dart';

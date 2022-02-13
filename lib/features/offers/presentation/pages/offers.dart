@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/Map/Map.dart';
+
 import 'package:pharma/UI/StoreProfile/StoreProfile.dart';
-import 'package:pharma/UI/SupportOrSalesChat/SupportAndSalesChat.dart';
+
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Nav.dart';
@@ -16,7 +16,6 @@ import 'package:pharma/appWidget/HomePageAppbar.dart';
 import 'package:pharma/appWidget/drawer.dart';
 import 'package:pharma/features/offers/presentation/widgets/all_offers.dart';
 import 'package:pharma/features/offers/presentation/widgets/company_profile.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Offers extends StatefulWidget {
   Offers({Key key}) : super(key: key);

@@ -14,9 +14,10 @@ import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/Widgets/TextForm.dart';
 import 'package:pharma/appWidget/EmptyInputContainer.dart';
-import 'package:pharma/appWidget/HomePageAppbar.dart';
+
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
+
 
 class Transfer extends StatefulWidget {
   Transfer({Key key}) : super(key: key);
@@ -26,6 +27,8 @@ class Transfer extends StatefulWidget {
 }
 
 class _TransferState extends State<Transfer> {
+    
+    
   String type;
   TextEditingController typec = TextEditingController();
   String quantity;
@@ -41,6 +44,7 @@ class _TransferState extends State<Transfer> {
   final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
+  
     return DefaultTabController(
       length: 3,
       child: Scaffold(

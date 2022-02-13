@@ -7,15 +7,18 @@ import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Text.dart';
 
 class UploadPhoto extends StatefulWidget {
+  final int index;
    XFile file;
   final String text;
-  UploadPhoto({Key key, this.file, this.text}) : super(key: key);
+  final Function getImages;
+  UploadPhoto({Key key, this.file, this.text, this.getImages, this.index}) : super(key: key);
 
   @override
   State<UploadPhoto> createState() => _UploadPhotoState();
 }
 
 class _UploadPhotoState extends State<UploadPhoto> {
+  List<XFile> images =[XFile(''),XFile(''),XFile(''),XFile(''),XFile(''),];
     dynamic pickImageError;
     final ImagePicker _picker = ImagePicker();
   @override
@@ -25,7 +28,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                       onTap: () {
                         _onImageButtonPressed(widget.file,
                           ImageSource.gallery,
-                            context: context);
+                            );
                       },
                       child: container(
                           hight: h(70),
@@ -44,14 +47,18 @@ class _UploadPhotoState extends State<UploadPhoto> {
                                   )),
                               Container(
                                 // color: Colors.red,
-                                width: w(180),
+                                width: w(160),
                         child:    Padding(
-                                        padding: EdgeInsets.only(left: w(25)),
-                                        child: text(
-                                            text: widget.text,
-                                            color: AppColor.grey,
-                                            fontsize: 14.sp,
-                                            textAlign: TextAlign.center),
+                                        padding: EdgeInsets.only(right: w(20)),
+                                        child: Container(
+                                          width: w(150),
+                                          child: text(
+                                            
+                                              text: widget.text,
+                                              color: AppColor.grey,
+                                              fontsize: 14.sp,
+                                              textAlign: TextAlign.end),
+                                        ),
                                       )
                                    
                               )
@@ -62,23 +69,13 @@ class _UploadPhotoState extends State<UploadPhoto> {
   }
 
 
-  void _onImageButtonPressed(XFile file,  ImageSource source, {BuildContext context}) async {
-    // await _displayPickImageDialog(context,
-    //     (double maxWidth, double maxHeight, int quality) async {
-    try {
-      final file = await _picker.pickImage(
-        source: source,
-        // maxWidth: maxWidth,
-        // maxHeight: maxHeight,
-        // imageQuality: ,
-      );
-      setState(() {
-        widget.file = file;
-      });
-    } catch (e) {
-      setState(() {
-        pickImageError = e;
-      });
-    }
-  }
-}
+  void _onImageButtonPressed(XFile file,  ImageSource source,) async {
+           
+                                final pickedImage = await ImagePicker()
+                                .pickImage(source: source);
+                    
+                              images[widget.index]  =pickedImage;
+                              print(images[widget.index].path);
+                              widget.getImages(images);
+                                
+}}

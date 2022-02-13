@@ -13,6 +13,7 @@ class Con {
   static const String isfirstvisit = "false";
   static const String savedcontactsforemergency = "false";
   static const String token = 'token';
+   static const String fcmToken = 'token';
 }
 
 const MaterialColor black = const MaterialColor(
