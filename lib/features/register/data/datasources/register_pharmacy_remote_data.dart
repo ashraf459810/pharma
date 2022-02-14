@@ -29,10 +29,13 @@ final  NetworkFunctions networkFunctions;
   @override
   Future registerPharmacy(RegisterPharmaRequestodel registerPharmaRequestodel, List<XFile> image) async {
 
+    log('here from remote data');
 
-     dynamic result ;
+
+     var result ;
 
     var link = '/Register?CHECK_BODY_FORM_DATA=CHECK_BODY_FORM_DATA';
+    log(networkInf.baseUrl + link);
 
     List<String> files = ['SejelTejaryFile[]', 'RokhsatMehanFile[]','HaweyaFile[]','MwafaqaFile[]', 'MozawalaFile[]'];
 
@@ -45,9 +48,7 @@ final  NetworkFunctions networkFunctions;
       request.files.add(pic);
     }
     request.fields["existing"]=registerPharmaRequestodel.existing;
-
      request.fields["belongable_type"] = registerPharmaRequestodel.belongType;
-
     request.fields[ "name"] =  registerPharmaRequestodel.name;
     request.fields[ "phone"] = registerPharmaRequestodel.phone;
     request.fields[ "email"] = registerPharmaRequestodel.email;
@@ -58,23 +59,29 @@ final  NetworkFunctions networkFunctions;
     request.fields ["account_roles_id" ]= registerPharmaRequestodel.accountRolesId;
    
 
-    final response = await request.send();
+   print(request.fields);
+   print(request.files);
 
-    response.stream.transform(utf8.decoder).listen((value) {
-     result = value;
-    });
+ await http.Response.fromStream(await request.send()).then((value) {
+ print(value.statusCode);
 
-    log(response.statusCode.toString());
+    
 
-    if (response.statusCode == 200) {
-      return result['AZSVR'];
+    log(value.statusCode.toString());
+
+    if (value.statusCode == 200) {
+      var response = json.decode(value.body);
+      return response["AZSVR"];
     }
-    if (response.statusCode == 500) {
-      throw ServerException("Error while downloading");
+    if (value.statusCode == 500) {
+      throw ServerException("Server Error");
     } else {
       throw ServerException();
     }
 
+  
+    });
+
     
-  }
-}
+   
+  }}

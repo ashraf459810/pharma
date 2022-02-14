@@ -19,7 +19,7 @@ class RegisterUseCaseImp implements RegisterUseCase {
 
   @override
   Future<Either<Failure, String>> registerUseCase(RegisterPharmaRequestodel registerPharmaRequestodel, List<XFile> images) async {
-    return await registerUseCase(registerPharmaRequestodel, images);
+    return await registerRepository.register(registerPharmaRequestodel, images);
   }
   
 }

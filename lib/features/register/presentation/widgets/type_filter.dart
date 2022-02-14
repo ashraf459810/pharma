@@ -5,6 +5,7 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/Widgets/Text.dart';
 
+// ignore: must_be_immutable
 class TypeFilter extends StatefulWidget {
   bool store;
   bool pharmacey;

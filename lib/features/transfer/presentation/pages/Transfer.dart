@@ -39,8 +39,8 @@ class _TransferState extends State<Transfer> {
   TextEditingController focusc = TextEditingController();
   String expire;
   TextEditingController expirec = TextEditingController();
-  XFile _imageFile;
-  dynamic _pickImageError;
+  XFile imageFile;
+  dynamic pickImageError;
   final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
@@ -307,7 +307,7 @@ class _TransferState extends State<Transfer> {
         color: Colors.grey[100]));
   }
 
-  Widget addtype() {
+   addtype() {
     showModalBottomSheet<void>(
         isScrollControlled: true,
         context: context,
@@ -503,7 +503,7 @@ class _TransferState extends State<Transfer> {
         });
   }
 
-  void _onImageButtonPressed(ImageSource source, {BuildContext context}) async {
+  void _onImageButtonPressed(ImageSource source, ) async {
     // await _displayPickImageDialog(context,
     //     (double maxWidth, double maxHeight, int quality) async {
     try {
@@ -514,11 +514,11 @@ class _TransferState extends State<Transfer> {
         // imageQuality: ,
       );
       setState(() {
-        _imageFile = pickedFile;
+        imageFile = pickedFile;
       });
     } catch (e) {
       setState(() {
-        _pickImageError = e;
+        pickImageError = e;
       });
     }
   }

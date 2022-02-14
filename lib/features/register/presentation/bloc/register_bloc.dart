@@ -10,7 +10,14 @@ part 'register_state.dart';
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterUseCase registerUseCase ;
   RegisterBloc(this.registerUseCase) : super(RegisterInitial()) {
-    on<RegisterEvent>((event, emit) {
+    on<RegisterEvent>((event, emit) async {
+      if (event is RegisterPharmaEvent){
+        emit (Loading());
+        var response = await registerUseCase.registerUseCase(event.registerPharmaRequestodel, event.images);
+
+        response.fold((l) => emit(Error(l.error)), (r) => emit(GetRegisterState(r)));
+        
+      }
       
 
     });

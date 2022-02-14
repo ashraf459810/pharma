@@ -10,7 +10,7 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/features/register/data/models/register_pharma_request_model.dart';
 
-import 'package:pharma/Widgets/Container.dart';
+
 import 'package:pharma/Widgets/Dropdown.dart';
 
 import 'package:pharma/Widgets/Text.dart';
@@ -40,11 +40,12 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  RegisterPharmaRequestodel registerPharmaRequestodel;
+  RegisterPharmaRequestodel registerPharmaRequestodel  =RegisterPharmaRequestodel();
   bool pharmacey;
   bool store;
   bool company;
   bool newOne;
+  int accountRoleId;
   bool registered = false;
   String searched;
   List<String> list = ["مالك الصيدلية", "مسؤول الصيدلية ", "صيدلاني"];
@@ -60,7 +61,7 @@ class _RegisterState extends State<Register> {
   String mainbranchnumber;
   int pharmacyCount = 1;
   String iscolored = "1";
-
+  String location;
   var type;
   String registerOrNew;
   String oneBranchOrMany;
@@ -68,6 +69,7 @@ class _RegisterState extends State<Register> {
   bool series = false;
   XFile tradRecord;
   XFile workLicense;
+  XFile mozawala;
   XFile id;
   XFile ministryLicense;
   List<XFile> images = [];
@@ -109,7 +111,7 @@ class _RegisterState extends State<Register> {
                     pharmacey: pharmacey,
                     store: store,
                     getType: (val) {
-                      setState(() {
+                 
                         print(val);
                         type = val;
                         if (type == 'صيدلية') {
@@ -125,7 +127,9 @@ class _RegisterState extends State<Register> {
                           pharmacey = false;
                           company = false;
                         }
-                      });
+                 setState(() {
+                   
+                 });
                     })),
             SizedBox(
               height: h(20),
@@ -141,7 +145,7 @@ class _RegisterState extends State<Register> {
                       getOption: (val) {
                         log(val);
 
-                        setState(() {
+                     
                           registerOrNew = val;
                           if (val == 'جديد') {
                             newOne = true;
@@ -150,70 +154,89 @@ class _RegisterState extends State<Register> {
                             newOne = false;
                             registered = true;
                           }
-                        });
+         setState(() {
+           
+         });
                       },
                     ))
                 : SizedBox(),
             SizedBox(
               height: h(20),
             ),
-            !registered
+            !registered 
                 ? Column(
                     children: [
-                      registerOrNew != null
+                      registerOrNew != null && (!store) & (!company)
                           ? SizedBox(
                               height: h(70),
                               child: TwoOptionFilter(
-                                registeredFarmacy: branch,
-                                newFarmacy: series,
+                                registeredFarmacy: series,
+                                newFarmacy: branch,
                                 option1: 'سلسلة',
                                 option2: 'فرع وحيد',
                                 getOption: (val) {
                                   oneBranchOrMany = val;
+                               if (   val == 'سلسلة') { branch = false;
+                              series  = true;
+                               }
+                               else {
+                                 branch = true;
+                                 series = false;
+                               }
+                               setState(() {
+                                 
+                               });
                                 },
                               ))
                           : SizedBox(),
                       SizedBox(
                         height: h(24),
                       ),
-                      emptyContainer(
-                          desc: "الوصف الوظيفي",
-                          widget: Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: DropDown(
-                              chosenvalue: jobdesc,
-                              list: list,
-                              hint: "مالك صيدلية",
-                              onchanged: (val) {
-                                jobdesc = val;
-                              },
-                              getindex: (val) {},
-                            ),
-                          )),
-                      SizedBox(
-                        height: h(17),
-                      ),
-                      inputContainer(
-                          desc: "الاسم",
-                          controller: pharmacynamec,
-                          hint: "صيدلية الشفاء",
-                          value: (val) {
-                            name = val;
-                          }),
-                      SizedBox(
-                        height: h(17),
-                      ),
-                      inputContainer(
-                          desc: "رقم الهاتف ",
-                          controller: pharmacymobilec,
-                          validation: "number",
-                          hint: "07901231231",
-                          value: (val) {
-                            mobile = val;
-                          }),
-                      SizedBox(
-                        height: h(14),
-                      ),
+                ( pharmacey && (branch || series)|| store ||company) && (newOne)   ?   Column(
+                        children: [
+                          emptyContainer(
+                              desc: "الوصف الوظيفي",
+                              widget: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: DropDown(
+                                  chosenvalue: jobdesc,
+                                  list: list,
+                                  hint: "مالك صيدلية",
+                                  onchanged: (val) {
+                                    jobdesc = val;
+                                  },
+                                  getindex: (val) {
+
+                                    accountRoleId = val;
+
+                                  },
+                                ),
+                              )),
+                          SizedBox(
+                            height: h(17),
+                          ),
+                          inputContainer(
+                              desc: "الاسم",
+                              controller: pharmacynamec,
+                              hint: "صيدلية الشفاء",
+                              value: (val) {
+                                name = val;
+                              }),
+                          SizedBox(
+                            height: h(17),
+                          ),
+                          inputContainer(
+                              desc: "رقم الهاتف ",
+                              controller: pharmacymobilec,
+                              validation: "number",
+                              hint: "07901231231",
+                              value: (val) {
+                                mobile = val;
+                              }),
+                          SizedBox(
+                            height: h(14),
+                          ),
+                      
                       type != 'شركة'
                           ? Column(
                               children: [
@@ -226,7 +249,11 @@ class _RegisterState extends State<Register> {
                                       color: AppColor.grey,
                                       size: w(25),
                                     ),
-                                    value: (val) {}),
+                                    value: (val) {
+
+                                      location = val;
+                                      
+                                    }),
                                 SizedBox(
                                   height: h(17),
                                 ),
@@ -253,9 +280,10 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 0,
                                       getImages: (val) {
-                                        images = val;
+                                        tradRecord = val;
+                                        images.add(val);
                                       },
-                                      file: tradRecord,
+                                      
                                       text: 'السجل التجاري',
                                     )),
                                 SizedBox(
@@ -266,9 +294,10 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 1,
                                       getImages: (val) {
-                                        images = val;
+                                        workLicense = val;
+                                          images.add(val);
                                       },
-                                      file: workLicense,
+                                     
                                       text: 'رخصة المهنة',
                                     )),
                                 SizedBox(
@@ -279,9 +308,10 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 2,
                                       getImages: (val) {
-                                        images = val;
+                                        id = val;  
+                                        images.add(val);
                                       },
-                                      file: id,
+                                    
                                       text: 'صورة هوية',
                                     )),
                                 SizedBox(
@@ -292,9 +322,11 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 3,
                                       getImages: (val) {
-                                        images = val;
+                                        ministryLicense = val;
+                                          images.add(val);
+                                        log(ministryLicense.path);
                                       },
-                                      file: ministryLicense,
+                                
                                       text: 'موافقة وزارة الصحة',
                                     )),
                                 SizedBox(
@@ -305,16 +337,20 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 4,
                                       getImages: (val) {
-                                        print('here');
-                                        images = val;
-                                        print(images.length);
+                               
+                                        mozawala = val;
+                                          images.add(val);
+                                    
+                                  
                                       },
-                                      file: tradRecord,
+                       
                                       text: 'مزاولة المهنة',
                                     )),
                                 SizedBox(
                                   height: h(15),
                                 ),
+                                  ],
+                      ):SizedBox(),
                                 SizedBox(
                                   height: h(10),
                                 ),
@@ -417,50 +453,41 @@ class _RegisterState extends State<Register> {
             ),
             InkWell(
                 onTap: () {
-            if (pharmacey || store || company){
-              if (newOne ||registered){
-                if (series || branch){
-                 if (   jobdesc !=null && name!=null && mobile !=null && pharmacylocationc!=null  && images.length==5 ){
-                   registerPharmaRequestodel.name= name;
+            if (pharmacey && newOne){
+                if (series || branch || (store  && newOne)){
+                 if (   jobdesc !=null && name!=null && mobile !=null && location!=null  && ministryLicense!=null && id!=null && tradRecord!=null &&workLicense !=null &&  mozawala!=null){
+                   registerPharmaRequestodel.belongableName= name;
                    type == 'صيدلية'?
                    registerPharmaRequestodel.belongType = 'Pharmacy' : type =='شركة' ? 
                    registerPharmaRequestodel.belongType = 'Company' : registerPharmaRequestodel.belongType= "Warehouse";
                    registerPharmaRequestodel.existing = registered.toString();
-                   registerPharmaRequestodel.name = name;
+                   registerPharmaRequestodel.belongableLocation = location;
                    registerPharmaRequestodel.belongablePhone = mobile;
-                   nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,));
+                   registerPharmaRequestodel.setAccountRolesId = accountRoleId ==0 ? "5" : accountRoleId ==1 ? "6" : "7";
+
+                 
+                   nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,images: images,));
                  }  
+                                 else {    Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);} 
                 }
-                else {    Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 2);}  
-              }
-              else {
-                Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 2);
-              }
+                else {    Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}  
             }
-            else {Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 2);}
+         else if (pharmacey && registered || (store &&registered || company &&registered) ) {
+             if (searched!=null ){
+               nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,));
+           }
+         }
+         else if (company && newOne ){
+
+              if (   jobdesc !=null && name!=null && mobile !=null){
+                 nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,images: images,));
+              }
+                     else {Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}
+         }
+            else {Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}
                 },
-                // child: BlocConsumer<RegisterBloc, RegisterState>(
-                //   listener: (context, state) {
-                //   if (state is Error ){
-                //     Toast.show(state.error, context);
-                //   }
-
-                //   if (state is GetRegisterState ){
-
-                //     nav(context, PersonalInfo(images: images,registerPharmaRequestodel: registerPharmaRequestodel,));
-
-                //   }
-
-                //   },
-                //   builder: (context, state) {
-                //     if (state is Loading){
-                //       return Center(child: CircularProgressIndicator());
-                //     }
-                  
-                //     return 
                 child:    appbutton(
                         AppColor.blue, " التالي", FontWeight.bold)
-                  
                 ),
             SizedBox(
               height: h(10),

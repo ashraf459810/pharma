@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,10 +10,10 @@ import 'package:pharma/Widgets/Text.dart';
 
 class UploadPhoto extends StatefulWidget {
   final int index;
-   XFile file;
+
   final String text;
   final Function getImages;
-  UploadPhoto({Key key, this.file, this.text, this.getImages, this.index}) : super(key: key);
+  UploadPhoto({Key key,  this.text, this.getImages, this.index}) : super(key: key);
 
   @override
   State<UploadPhoto> createState() => _UploadPhotoState();
@@ -21,12 +23,18 @@ class _UploadPhotoState extends State<UploadPhoto> {
   List<XFile> images =[XFile(''),XFile(''),XFile(''),XFile(''),XFile(''),];
     dynamic pickImageError;
     final ImagePicker _picker = ImagePicker();
+    @override
+  void initState() {
+    log('hereeeeeee');
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(body:   Center(
       child: GestureDetector(
                       onTap: () {
-                        _onImageButtonPressed(widget.file,
+                        _onImageButtonPressed(
                           ImageSource.gallery,
                             );
                       },
@@ -69,13 +77,18 @@ class _UploadPhotoState extends State<UploadPhoto> {
   }
 
 
-  void _onImageButtonPressed(XFile file,  ImageSource source,) async {
+  void _onImageButtonPressed(  ImageSource source,) async {
+    // log('here');
+    
+      //  log(widget.index.toString());
            
-                                final pickedImage = await ImagePicker()
+                                final pickedImage = await _picker
                                 .pickImage(source: source);
-                    
-                              images[widget.index]  =pickedImage;
-                              print(images[widget.index].path);
-                              widget.getImages(images);
+                    // log(pickedImage.path);
+                
+                        
+                              widget.getImages(pickedImage);
+                         
                                 
+
 }}

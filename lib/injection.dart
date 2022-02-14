@@ -5,7 +5,7 @@ import 'package:pharma/features/register/data/repositories/register_repostiry_im
 import 'package:pharma/features/register/domain/repositories/register_repository.dart';
 import 'package:pharma/features/register/domain/usecases/register_use_case.dart';
 import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 
 import 'Core/network/network_info.dart';
