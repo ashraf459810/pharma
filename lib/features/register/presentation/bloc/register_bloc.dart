@@ -15,7 +15,11 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         emit (Loading());
         var response = await registerUseCase.registerUseCase(event.registerPharmaRequestodel, event.images);
 
-        response.fold((l) => emit(Error(l.error)), (r) => emit(GetRegisterState(r)));
+        response.fold((l) => emit(Error(l.error)), (r) { 
+          r == "SUCCESS" ?
+          emit(GetRegisterState(r)):
+          emit (Error(r));
+          });
         
       }
       

@@ -32,7 +32,7 @@ final  NetworkFunctions networkFunctions;
     log('here from remote data');
 
 
-     var result ;
+     
 
     var link = '/Register?CHECK_BODY_FORM_DATA=CHECK_BODY_FORM_DATA';
     log(networkInf.baseUrl + link);
