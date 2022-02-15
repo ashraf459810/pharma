@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
   XFile mozawala;
   XFile id;
   XFile ministryLicense;
-  List<XFile> images = [];
+  List<XFile> images = [XFile('path'), XFile('path'),XFile('path'),XFile('path'),XFile('path')];
 
   @override
   void initState() {
@@ -281,7 +281,8 @@ class _RegisterState extends State<Register> {
                                       index: 0,
                                       getImages: (val) {
                                         tradRecord = val;
-                                        images.add(val);
+                                        
+                                        images[0] = val;
                                       },
                                       
                                       text: 'السجل التجاري',
@@ -295,7 +296,7 @@ class _RegisterState extends State<Register> {
                                       index: 1,
                                       getImages: (val) {
                                         workLicense = val;
-                                          images.add(val);
+                                             images[1] = val;
                                       },
                                      
                                       text: 'رخصة المهنة',
@@ -309,7 +310,7 @@ class _RegisterState extends State<Register> {
                                       index: 2,
                                       getImages: (val) {
                                         id = val;  
-                                        images.add(val);
+                                           images[2] = val;
                                       },
                                     
                                       text: 'صورة هوية',
@@ -323,8 +324,8 @@ class _RegisterState extends State<Register> {
                                       index: 3,
                                       getImages: (val) {
                                         ministryLicense = val;
-                                          images.add(val);
-                                        log(ministryLicense.path);
+                                          images[3] = val;
+                                        
                                       },
                                 
                                       text: 'موافقة وزارة الصحة',
@@ -339,7 +340,7 @@ class _RegisterState extends State<Register> {
                                       getImages: (val) {
                                
                                         mozawala = val;
-                                          images.add(val);
+                                           images[4] = val;
                                     
                                   
                                       },

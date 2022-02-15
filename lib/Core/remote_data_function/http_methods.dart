@@ -20,11 +20,9 @@ class NetworkFunctionsImp implements NetworkFunctions {
   @override
   Future<dynamic> getMethod(
       { String url,  String baseurl}) async {
-           final shared = await SharedPreferences.getInstance();
-         var token=   shared.getString(Con.token);
-          var fcmToken=  shared.getString(Con.fcmToken);
-          log(token);
-          log(fcmToken);
+        
+    
+         
 
     log('here from htttp');
     final response = await client.get(
@@ -35,7 +33,7 @@ class NetworkFunctionsImp implements NetworkFunctions {
 
       },
     );
-    log(response.toString());
+    log(response.body.toString());
     log(baseurl + url);
     log(response.statusCode.toString());
     if (response.statusCode == 200) {

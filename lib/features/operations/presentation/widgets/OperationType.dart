@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/Operations/Operations.dart';
+import 'package:pharma/features/operations/presentation/pages/Operations.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Dropdown.dart';

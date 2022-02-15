@@ -28,8 +28,9 @@ final  NetworkFunctions networkFunctions;
 
   @override
   Future registerPharmacy(RegisterPharmaRequestodel registerPharmaRequestodel, List<XFile> image) async {
+    var response ;
 
-    log('here from remote data');
+    
 
 
      
@@ -59,28 +60,35 @@ final  NetworkFunctions networkFunctions;
     request.fields ["account_roles_id" ]= registerPharmaRequestodel.accountRolesId;
    
 
-   print(request.fields);
-   print(request.files);
+  //  print(request.fields);
+  //  print(request.files);
 
  await http.Response.fromStream(await request.send()).then((value) {
  print(value.statusCode);
 
     
 
-    log(value.statusCode.toString());
+   response = json.decode(value.body);
 
-    if (value.statusCode == 200) {
-      var response = json.decode(value.body);
-      return response["AZSVR"];
+   print(response);
+
+  //   if (value.statusCode == 200) {
+
+       if (response['AZSVR']=='FAILED'){
+              print(response['Reason']);
+      return response['Reason'];
     }
-    if (value.statusCode == 500) {
-      throw ServerException("Server Error");
-    } else {
-      throw ServerException();
+    else {
+      print(response['Response']);
+      // log('hereeeee');
+      // log(response['Reason']);
+      return response['Response'];
     }
+ }
+    
 
   
-    });
+    );
 
     
    

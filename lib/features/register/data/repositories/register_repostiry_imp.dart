@@ -21,7 +21,10 @@ class RegisterRepositoryImp implements RegisterRepository {
        if (await networkInf.isConnected) {
       try {
         final result =
+
             await registerPharmacyRemoteData.registerPharmacy(registerPharmaRequestodel, imagess);
+
+          
 
         return Right((result));
       } on ServerException {

@@ -171,9 +171,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
 
                     },
                     builder: (context, state) {
-                      if (state is Loading){
-                        return Center(child: CircularProgressIndicator());
-                      }
+                      // if (state is Loading){
+                      //   return Center(child: CircularProgressIndicator());
+                      // }
                           return appbutton(
                               AppColor.blue, "التالي", FontWeight.bold);
                         

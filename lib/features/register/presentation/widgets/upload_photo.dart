@@ -20,7 +20,8 @@ class UploadPhoto extends StatefulWidget {
 }
 
 class _UploadPhotoState extends State<UploadPhoto> {
-  List<XFile> images =[XFile(''),XFile(''),XFile(''),XFile(''),XFile(''),];
+
+  List<XFile> images =[XFile('empty'),XFile('empty'),XFile('empty'),XFile('empty'),XFile('empty'),];
     dynamic pickImageError;
     final ImagePicker _picker = ImagePicker();
     @override
@@ -48,10 +49,11 @@ class _UploadPhotoState extends State<UploadPhoto> {
                             children: [
                               Container(
                                   width: w(75),
-                                  child: Icon(
-                                    Icons.camera_alt_outlined,
+                                  child: 
+                          Icon(
+                     images[widget.index] !=null ?          images[widget.index].path =='empty'?        Icons.camera_alt_outlined:Icons.check :  Icons.camera_alt_outlined,
                                     size: w(25),
-                                    color: AppColor.grey,
+                                    color: images[widget.index] !=null ?          images[widget.index].path =='empty'?      AppColor.grey : Colors.green:Colors.grey,
                                   )),
                               Container(
                                 // color: Colors.red,
@@ -86,8 +88,15 @@ class _UploadPhotoState extends State<UploadPhoto> {
                                 .pickImage(source: source);
                     // log(pickedImage.path);
                 
-                        
+                        images[widget.index] = pickedImage;
                               widget.getImages(pickedImage);
+
+                              setState(() {
+                                
+                              });
+
+                            
+                        
                          
                                 
 

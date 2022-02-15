@@ -14,6 +14,8 @@ class Con {
   static const String savedcontactsforemergency = "false";
   static const String token = 'token';
    static const String fcmToken = 'token';
+      static const String isVerify = 'token';
+
 }
 
 const MaterialColor black = const MaterialColor(

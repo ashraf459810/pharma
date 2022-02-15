@@ -1,10 +1,21 @@
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:pharma/Core/user/data/local_data/user_local_data.dart';
+import 'package:pharma/Core/user/data/repository/user_repository_impl.dart';
+import 'package:pharma/Core/user/domain/repository/user_repository.dart';
+import 'package:pharma/Core/user/domain/use_case/usecase.dart';
+import 'package:pharma/Core/user/domain/use_case/user_info_use_case.dart';
+import 'package:pharma/features/login/data/datasources/login_remote_data.dart';
+import 'package:pharma/features/login/data/repositories/login_repository_imp.dart';
+import 'package:pharma/features/login/domain/repositories/login_repository.dart';
+import 'package:pharma/features/login/domain/usecases/login_use_case.dart';
+import 'package:pharma/features/login/presentation/bloc/login_bloc.dart';
 import 'package:pharma/features/register/data/datasources/register_pharmacy_remote_data.dart';
 import 'package:pharma/features/register/data/repositories/register_repostiry_imp.dart';
 import 'package:pharma/features/register/domain/repositories/register_repository.dart';
 import 'package:pharma/features/register/domain/usecases/register_use_case.dart';
 import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -22,12 +33,35 @@ Future init() async {
     ),
   );
 
+    sl.registerFactory(
+    () => LoginBloc(
+      sl(),
+      sl()
+    ),
+  );
+
    // Use cases
   sl.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCaseImp(
       sl(),
     ),
   );
+
+ sl.registerLazySingleton<SaveToken>(
+    () => SaveToken(
+      sl(),
+    ),
+  );
+   
+
+
+    sl.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCaseImp(
+      sl(),
+    ),
+  );
+  
+  
 
 // Repository
 
@@ -38,14 +72,38 @@ Future init() async {
     ),
 
   );  
+    sl.registerLazySingleton<UserRepository>(
+    () => UserRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+    sl.registerLazySingleton<LoginRepository>(
+    () => LoginRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+
+
+
+
 
    // Data sources
   sl.registerLazySingleton<RegisterPharmacyRemoteData>(
     () => RegisterPharmacyRemoteDataImp(sl(), sl()),
   );
-  //! External
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  // sl.registerLazySingleton(() => sharedPreferences);
+
+    sl.registerLazySingleton<LoginRemoteData>(
+    () => LoginRemoteDataImp(sl(), sl()),
+  );
+
+    sl.registerLazySingleton<UserLocatData>(
+    () => UserLocatDataImp(sl(), ),
+  );
+
   sl.registerLazySingleton<NetworkFunctions>(
     () => NetworkFunctionsImp(),
   );
@@ -54,6 +112,9 @@ Future init() async {
   );
   sl.registerLazySingleton(() => InternetConnectionChecker());
 
+  //! External
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  sl.registerLazySingleton(() => sharedPreferences);
 
 
 

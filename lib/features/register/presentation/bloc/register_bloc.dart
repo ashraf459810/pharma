@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,13 +17,16 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         emit (Loading());
         var response = await registerUseCase.registerUseCase(event.registerPharmaRequestodel, event.images);
 
-        response.fold((l) => emit(Error(l.error)), (r) { 
-          r == "SUCCESS" ?
-          emit(GetRegisterState(r)):
-          emit (Error(r));
-          });
+      response.fold((l) => emit(Error('error')), (r) {
+        print(r);
         
+         if (
+          r == "AWAITING_ACTIVATION") {
+          emit(GetRegisterState(r));}     else {
+          emit (Error(r));}
+          });
       }
+      
       
 
     });

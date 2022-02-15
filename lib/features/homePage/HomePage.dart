@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pharma/UI/Operations/Operations.dart';
+import 'package:pharma/features/operations/presentation/pages/Operations.dart';
 import 'package:pharma/features/transfer/presentation/pages/Transfer.dart';
 import 'package:pharma/Widgets/BottomNavBar.dart';
 import 'package:pharma/features/offers/presentation/pages/offers.dart';

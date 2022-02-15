@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
-import 'package:pharma/UI/Operations/OperationType.dart';
+import 'package:pharma/features/operations/presentation/widgets/OperationType.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';

@@ -31,7 +31,7 @@ dependencies:
   # easy_localization: ^2.0.1
   flutter_widgets: ^0.1.7+1
   auto_size_text: ^2.1.0
-  shared_preferences:
+  shared_preferences: any
   equatable: ^1.2.6
   rxdart: ^0.24.1
   toast: ^0.1.5

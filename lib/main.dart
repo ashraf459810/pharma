@@ -9,9 +9,9 @@ import 'injection.dart' as di;
 Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
   // before the runApp() call
-
-   await di.init();
   WidgetsFlutterBinding.ensureInitialized();
+   await di.init();
+
 
   // Than we setup preferred orientations,
   // and only after it finished we run our app
