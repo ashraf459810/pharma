@@ -5,7 +5,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:pharma/Core/error/exceptions.dart';
+
 import 'package:pharma/Core/network/network_info.dart';
 import 'package:pharma/Core/remote_data_function/http_methods.dart';
 import 'package:pharma/features/register/data/models/register_pharma_request_model.dart';
@@ -28,7 +28,7 @@ final  NetworkFunctions networkFunctions;
 
   @override
   Future registerPharmacy(RegisterPharmaRequestodel registerPharmaRequestodel, List<XFile> image) async {
-    var response ;
+    dynamic response ;
 
     
 
@@ -65,17 +65,18 @@ final  NetworkFunctions networkFunctions;
 
  await http.Response.fromStream(await request.send()).then((value) {
  print(value.statusCode);
+  print(value.body);
 
     
 
    response = json.decode(value.body);
-
-   print(response);
+ }
+  
 
   //   if (value.statusCode == 200) {
 
-       if (response['AZSVR']=='FAILED'){
-              print(response['Reason']);
+   );  if (response['AZSVR']=='FAILED'){
+            
       return response['Reason'];
     }
     else {
@@ -83,13 +84,13 @@ final  NetworkFunctions networkFunctions;
       // log('hereeeee');
       // log(response['Reason']);
       return response['Response'];
-    }
- }
+    
+
     
 
   
-    );
-
+    
     
    
+    }
   }}

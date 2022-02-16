@@ -7,3 +7,28 @@ abstract class OperationsState extends Equatable {
   List<Object> get props => [];
 }
 class OperationsInitial extends OperationsState {}
+
+
+class Loading extends OperationsState {
+ 
+}
+
+class Error extends OperationsState {
+  final String error ;
+
+  Error(this.error);
+}
+
+class FetchStoresState extends OperationsState {
+  final StoresModel storesModel;
+
+  FetchStoresState(this.storesModel);
+
+}
+
+class AccountStatmentState extends OperationsState {
+  final String result;
+
+  AccountStatmentState(this.result);
+
+}

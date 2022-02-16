@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,6 +29,19 @@ class Transfer extends StatefulWidget {
 }
 
 class _TransferState extends State<Transfer> {
+    List<Type> images = [
+    Type("1", "none"),
+    Type("2", "none"),
+    Type("3", "none"),
+    Type("4", "none"),
+    Type("5", "none"),
+    Type("6", "none"),
+    Type("7", "none"),
+    Type("8", "none"),
+    Type("none", "اخرى"),
+    Type("none", "الكل")
+  ];
+  int clicked;
     
     
   String type;
@@ -41,6 +56,8 @@ class _TransferState extends State<Transfer> {
   TextEditingController expirec = TextEditingController();
   XFile imageFile;
   dynamic pickImageError;
+  int index= 0;
+
   final ImagePicker _picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
@@ -48,23 +65,36 @@ class _TransferState extends State<Transfer> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: AppColor.background,
    
           appBar: PreferredSize(
             
             child: Padding(
               padding: EdgeInsets.only(top: 30.0),
               child: AppBar(
+                
                      bottom:  TabBar(
+                       onTap: (value) {
+                        log(value.toString());
+                         index = value;
+setState(() {
+  
+});
+                          
 
-                       labelColor: Colors.black,
+                       } ,
+unselectedLabelColor: Colors.black,
+                       labelColor: Colors.blue,
                        indicatorColor: AppColor.blue,
+                       
             tabs: [
-     
-              Tab( child:  text( text: 'سجل طلباتي',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
+
               Tab(child: text( text: 'اصنافي',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
+                   
+              Tab( child:  text( text: 'سجل طلباتي',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp,),),
                        Tab( child : text( text: 'الاصناف',color: Colors.black,fontWeight: FontWeight.bold,fontsize: 18.sp)),
             ],),
-              backgroundColor: Colors.grey[50],
+              backgroundColor:  AppColor.background,
               iconTheme: IconThemeData(color: Colors.black),
               elevation: 0,
                 title: text(text: 'تحويل',fontsize: 20.sp,fontWeight: FontWeight.bold,color: Colors.black),centerTitle: true,)
@@ -79,33 +109,34 @@ class _TransferState extends State<Transfer> {
                   // SizedBox(
                   //   height: h(20),
                   // ),
-                  GestureDetector(
-                      onTap: () {
-                        addtype();
-                      },
-                      child: container(
-                        color: AppColor.blue,
-                        hight: h(60),
-                        width: w(350),
-                        borderRadius: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            text(
-                                text: "اضافة صنف",
-                                color: Colors.white,
-                                fontsize: 20.sp),
-                            SizedBox(
-                              width: w(10),
-                            ),
-                            Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: w(20),
-                            )
-                          ],
-                        ),
-                      )),
+                  // GestureDetector(
+                      // onTap: () {
+                      //   addtype();
+                      // },
+                      // child: container(
+                      //   color: AppColor.blue,
+                      //   hight: h(60),
+                      //   width: w(350),
+                      //   borderRadius: 30,
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.center,
+                      //     children: [
+                      //       text(
+                      //           text: "اضافة صنف",
+                      //           color: Colors.white,
+                      //           fontsize: 20.sp),
+                      //       SizedBox(
+                      //         width: w(10),
+                      //       ),
+                      //       Icon(
+                      //         Icons.add,
+                      //         color: Colors.white,
+                      //         size: w(20),
+                      //       )
+                      //     ],
+                      //   ),
+                      // )),
+                  
                   SizedBox(
                     height: h(20),
                   ),
@@ -136,54 +167,73 @@ class _TransferState extends State<Transfer> {
                           ],
                         )),
                   ),
-                  SizedBox(
-                    height: h(20),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+             index ==2?     Column(
                     children: [
-                      Container(
-                          width: w(90),
-                          child: text(
-                              text: "صيدليات",
-                              fontsize: 20.sp,
-                              textAlign: TextAlign.center)),
                       SizedBox(
                         height: h(20),
                       ),
-                    ],
-                  ),
-                  customlistview(
-                      controller: ScrollController(),
-                      direction: "horizon",
-                      scroll: true,
-                      hight: h(120),
-                      itemcount: 10,
-                      padding: 10,
-                      width: MediaQuery.of(context).size.width,
-                      function: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            nav(context, PharmaDetails());
-                          },
-                          child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: w(10)),
-                              child: Container(
-                                decoration: BoxDecoration(shape: BoxShape.circle),
-                                child: ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20)),
-                                    child: Center(
-                                      child: Image.asset(
-                                        "assets/images/pharma.png",
-                                        fit: BoxFit.contain,
-                                        height: h(100),
-                                        width: w(100),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                              width: w(90),
+                              child: text(
+                                  text: "صيدليات",
+                                  fontsize: 20.sp,
+                                  textAlign: TextAlign.center)),
+                          SizedBox(
+                            height: h(20),
+                          ),
+                        ],
+                      ),
+                      customlistview(
+                          controller: ScrollController(),
+                          direction: "horizon",
+                          scroll: true,
+                          hight: h(120),
+                          itemcount: 10,
+                          padding: 10,
+                          width: MediaQuery.of(context).size.width,
+                          function: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                nav(context, PharmaDetails());
+                              },
+                              child: Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: h(20)),
+                                child: Container(
+                                  color:  AppColor.background,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                    
+                                            height: h(70),
+                                            width: w(50),
+                                            decoration: BoxDecoration(
+                                                color: Colors.blue[100],
+                                                shape: BoxShape.circle),
+                                            child: Center(
+                                                child: 
+                                                    SvgPicture.asset(
+                                                        'assets/images/phamacy.svg',
+                                                        fit: BoxFit.contain,
+                                                        height: h(30),
+                                                        width: w(25),
+                                                      )
+                                                 ),
+                                          ),
+                                          text(
+                                              text: 'شركة سختيان',
+                                              color: Colors.black)
+                                        ],
                                       ),
-                                    )),
-                              )),
-                        );
-                      }),
+                                    ),
+                              )
+                            );
+                          }),
+                    ],
+                  ):SizedBox(),
+
                   SizedBox(
                     height: h(10),
                   ),
@@ -198,12 +248,45 @@ class _TransferState extends State<Transfer> {
                       ),
                     ],
                   ),
+                     container(
+              color: Colors.white,
+              borderRadius: 30,
+              hight: h(70),
+              width: MediaQuery.of(context).size.width - w(20),
+              child: customlistview(
+                  controller: ScrollController(),
+                  direction: "horizon",
+                  hight: h(60),
+                  width: MediaQuery.of(context).size.width - w(20),
+                  itemcount: images.length,
+                  padding: 5,
+                  scroll: true,
+                  function: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: w(10)),
+                      child: GestureDetector(
+                          onTap: () {
+                            clicked = index;
+                            setState(() {});
+                          },
+                          child: clicked != index
+                              ? types(images, index)
+                              : Container(
+                                  height: h(60),
+                                  width: w(60),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColor.blue,
+                                  ),
+                                  child: types(images, index))),
+                    );
+                  })),
                   customlistview(
                       controller: ScrollController(),
                       direction: "vertical",
-                      hight: h(300),
+                      // hight: h(370),
                       itemcount: 10,
-                      scroll: true,
+                      scroll: false,
                       padding: 10,
                       width: MediaQuery.of(context).size.width,
                       function: (context, index) {
@@ -211,7 +294,10 @@ class _TransferState extends State<Transfer> {
                             onTap: () {
                               nav(context, TypeDetails());
                             },
-                            child: typeWidget());
+                            child: Padding(
+                              padding:  EdgeInsets.symmetric(vertical: h(10)),
+                              child: typeWidget(),
+                            ));
                       })
                 ],
               )

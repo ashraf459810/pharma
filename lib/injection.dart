@@ -3,13 +3,22 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:pharma/Core/user/data/local_data/user_local_data.dart';
 import 'package:pharma/Core/user/data/repository/user_repository_impl.dart';
 import 'package:pharma/Core/user/domain/repository/user_repository.dart';
-import 'package:pharma/Core/user/domain/use_case/usecase.dart';
+
 import 'package:pharma/Core/user/domain/use_case/user_info_use_case.dart';
 import 'package:pharma/features/login/data/datasources/login_remote_data.dart';
 import 'package:pharma/features/login/data/repositories/login_repository_imp.dart';
 import 'package:pharma/features/login/domain/repositories/login_repository.dart';
 import 'package:pharma/features/login/domain/usecases/login_use_case.dart';
 import 'package:pharma/features/login/presentation/bloc/login_bloc.dart';
+import 'package:pharma/features/operations/data/datasources/account_statment_remote.dart';
+import 'package:pharma/features/operations/data/datasources/fetch_stores_remote_data.dart';
+import 'package:pharma/features/operations/data/repositories/account_statment_repository_imp.dart';
+import 'package:pharma/features/operations/data/repositories/stores_repository_imp.dart';
+import 'package:pharma/features/operations/domain/repositories/account_statment_repository.dart';
+import 'package:pharma/features/operations/domain/repositories/stores_repository.dart';
+import 'package:pharma/features/operations/domain/usecases/account_statment_use_case.dart';
+import 'package:pharma/features/operations/domain/usecases/fetch_stores_use_case.dart';
+import 'package:pharma/features/operations/presentation/bloc/operations_bloc.dart';
 import 'package:pharma/features/register/data/datasources/register_pharmacy_remote_data.dart';
 import 'package:pharma/features/register/data/repositories/register_repostiry_imp.dart';
 import 'package:pharma/features/register/domain/repositories/register_repository.dart';
@@ -34,6 +43,13 @@ Future init() async {
   );
 
     sl.registerFactory(
+    () => OperationsBloc(
+      sl(),
+      sl()
+    ),
+  );
+
+    sl.registerFactory(
     () => LoginBloc(
       sl(),
       sl()
@@ -46,6 +62,19 @@ Future init() async {
       sl(),
     ),
   );
+    sl.registerLazySingleton<AccountStatmentUseCase>(
+    () => AccountStatmentUseCaseImp(
+      sl(),
+    ),
+  );
+
+
+    sl.registerLazySingleton<FetchStoresUseCase>(
+    () => FetchStoresUseCaseImp(
+      sl(),
+    ),
+  );
+
 
  sl.registerLazySingleton<SaveToken>(
     () => SaveToken(
@@ -67,6 +96,23 @@ Future init() async {
 
   sl.registerLazySingleton<RegisterRepository>(
     () => RegisterRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+
+    sl.registerLazySingleton<AccountStatmentRepository>(
+    () => AccountStatmentRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+
+
+  sl.registerLazySingleton<StoresRepository>(
+    () => StoresRepositoryImp(
       sl(),
       sl(),
     ),
@@ -94,6 +140,14 @@ Future init() async {
    // Data sources
   sl.registerLazySingleton<RegisterPharmacyRemoteData>(
     () => RegisterPharmacyRemoteDataImp(sl(), sl()),
+  );
+
+   sl.registerLazySingleton<AccountStatmentRemoteData>(
+    () => AccountStatmentRemoteDataImp(sl(), sl()),
+  );
+
+    sl.registerLazySingleton<FetchStoresRemoteData>(
+    () => FetchStoresRemoteDataImp(sl(), sl()),
   );
 
     sl.registerLazySingleton<LoginRemoteData>(

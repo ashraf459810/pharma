@@ -17,15 +17,12 @@ class RegisterRepositoryImp implements RegisterRepository {
 
   @override
   Future<Either<Failure, String>> register(RegisterPharmaRequestodel registerPharmaRequestodel, List<XFile> imagess) async {
-
        if (await networkInf.isConnected) {
       try {
+   
         final result =
-
             await registerPharmacyRemoteData.registerPharmacy(registerPharmaRequestodel, imagess);
-
-          
-
+             
         return Right((result));
       } on ServerException {
         return const Left(ServerFailure("Server Error"));
@@ -33,7 +30,5 @@ class RegisterRepositoryImp implements RegisterRepository {
     } else {
       return const Left(NetWorkFailure('check internet connection'));
     }
-   
   }
-  
 }

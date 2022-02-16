@@ -5,7 +5,9 @@ import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/Widgets/TextForm.dart';
 
-Widget pharmacymainbranchphone(String desc,
+Widget pharmacymainbranchphone(
+  
+  String desc,
     TextEditingController textEditingController, String hint, Function value) {
   return Column(
     children: [

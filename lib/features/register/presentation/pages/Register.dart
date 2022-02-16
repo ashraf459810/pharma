@@ -338,11 +338,12 @@ class _RegisterState extends State<Register> {
                                     child: UploadPhoto(
                                       index: 4,
                                       getImages: (val) {
-                               
+                         
                                         mozawala = val;
+
                                            images[4] = val;
                                     
-                                  
+                        
                                       },
                        
                                       text: 'مزاولة المهنة',

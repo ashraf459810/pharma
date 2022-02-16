@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
-
 import 'package:pharma/Widgets/Container.dart';
+import 'package:pharma/Widgets/Text.dart';
 
-
-
-
-class HomePageAppBar extends StatefulWidget {
-
-  HomePageAppBar({Key key, }) : super(key: key);
+class BasicAppBar extends StatefulWidget {
+  final String title;
+  BasicAppBar({Key key, this.title}) : super(key: key);
 
   @override
-  _HomePageAppBarState createState() => _HomePageAppBarState();
+  State<BasicAppBar> createState() => _BasicAppBarState();
 }
 
-class _HomePageAppBarState extends State<HomePageAppBar> {
+class _BasicAppBarState extends State<BasicAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+        return Scaffold(
      
       backgroundColor: Colors.grey[50],
       appBar: PreferredSize(
@@ -35,11 +32,12 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                          SizedBox(width: w(12),),
                     container(color: Colors.grey[50],
-                      width: w(150),hight: h(60),child: Image.asset('assets/images/logo.png')),
-                    SizedBox(width: w(150),),
+                      width: w(150),hight: h(60),child: text(text: widget.title ,color: Colors.black,fontWeight: FontWeight.bold,fontsize: 22.sp)),
+ 
                       InkWell(
                         onTap: () {
                                   Scaffold.of(context).openEndDrawer();
@@ -48,6 +46,7 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
                     'assets/images/menu.svg'
                         ),
                       ),
+                  
                     ],
                   ),
                 ),
@@ -56,7 +55,6 @@ class _HomePageAppBarState extends State<HomePageAppBar> {
           ),
           preferredSize: Size.fromHeight(120)),
     );
- 
  
   }
 }

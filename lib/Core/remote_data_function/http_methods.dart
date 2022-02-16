@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:pharma/Core/error/exceptions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 import 'package:http/http.dart' as http;
 
-import '../Consts.dart';
+
 
 abstract class NetworkFunctions {
   Future<dynamic> getMethod({ String url,  String baseurl});
@@ -55,11 +55,6 @@ class NetworkFunctionsImp implements NetworkFunctions {
   @override
   Future postMethod(
       { String url,  String baseurl, body}) async {
-            final shared = await SharedPreferences.getInstance();
-         String token=   shared.getString(Con.token);
-          String fcmToken=  shared.getString(Con.fcmToken);
-          log(token);
-          log(fcmToken);
     final response = await client.post(Uri.parse(baseurl + url),
         headers: {
 

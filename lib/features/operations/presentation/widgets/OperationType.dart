@@ -1,8 +1,17 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
+import 'package:pharma/appWidget/basic_app_bar.dart';
+import 'package:pharma/appWidget/drawer.dart';
+import 'package:pharma/appWidget/from_to_date.dart';
+import 'package:pharma/features/operations/data/models/stores_model.dart';
+import 'package:pharma/features/operations/presentation/bloc/operations_bloc.dart';
 import 'package:pharma/features/operations/presentation/pages/Operations.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
@@ -10,11 +19,13 @@ import 'package:pharma/Widgets/Dropdown.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/EmptyInputContainer.dart';
-import 'package:pharma/appWidget/HomePageAppbar.dart';
+
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
 import 'package:pharma/appWidget/pharmacyMainBranchmobile.dart';
 import 'package:toast/toast.dart';
+
+import '../../../../injection.dart';
 
 // ignore: must_be_immutable
 class OperationType extends StatefulWidget {
@@ -26,6 +37,8 @@ class OperationType extends StatefulWidget {
 }
 
 class _OperationTypeState extends State<OperationType> {
+  int storeId;
+  String storeName;
   String fromdate;
   String todate;
   String companyname;
@@ -48,6 +61,15 @@ class _OperationTypeState extends State<OperationType> {
   List<String> list = ["نسخة فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
   List<String> storeorcompanylist = ["company1", "company2"];
   List<String> restoreReasons = ["reason1", "reason2"];
+  OperationsBloc operationsBloc= sl<OperationsBloc>();
+  List<Warehouse> stores   =  [];
+  @override
+  void initState() {
+     fromdate = DateTime.now().year.toString()+ '-'+DateTime.now().month.toString()+ "-"+DateTime.now().day.toString();
+     todate =  DateTime.now().year.toString()+ '-'+DateTime.now().month.toString()+ "-"+DateTime.now().day.toString();
+  operationsBloc.add(FetchStoresEvent());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
@@ -65,12 +87,11 @@ class _OperationTypeState extends State<OperationType> {
       accountStatment(),
     ];
     return Scaffold(
+      endDrawer: HomeDrawer(),
       appBar: PreferredSize(
         child: Padding(
           padding: EdgeInsets.only(top: 13.0),
-          child: HomePageAppBar(
-       
-          ),
+          child: BasicAppBar(title : list[widget.operationnumber]),
         ),
         preferredSize: Size.fromHeight(80),
       ),
@@ -127,32 +148,71 @@ class _OperationTypeState extends State<OperationType> {
 
   Widget accountStatment() {
     return Column(children: [
-      inputContainer(
-        desc: "اسم الشركة",
-        controller: companyc,
-        hint: "مجموعة منير سختيان",
-        ontap: (val) {
-          companyname = val;
-        },
-      ),
+      emptyContainer(
+                              desc: "اسم المستودع",
+                              widget: Directionality(
+                                textDirection: TextDirection.rtl,
+                                child: DropDown(
+                                  chosenvalue: storeName,
+                                  list: stores,
+                                  hint: "",
+                                  onchanged: (val) {
+                                    storeName = val.name;
+                                         storeId = val.id;
+                                  },
+                                  getindex: (val) {
+
+                               
+
+                                  },
+                                ),
+                              )),
       SizedBox(
         height: h(50),
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          pharmacymainbranchphone("الى تاريخ", todatec, "MM/DD/YYYY", (val) {
-            fromdate = val;
-          }),
-          pharmacymainbranchphone("من تاريخ", fromdatec, "MM/DD/YYYY", (val) {
-            todate = val;
-          }),
+
+   FromToDate(desc: "الى تاريخ",getDate: (val){
+     todate = val;
+   },),
+      FromToDate(desc: 'من تاريخ',getDate: ( val){
+        fromdate = val;
+      },),
         ],
       ),
       SizedBox(
         height: h(150),
       ),
-      appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold)
+      BlocConsumer(
+           bloc: operationsBloc,
+        listener: (context, state) {
+        if (state is AccountStatmentState){
+          Toast.show('تم ارسال الطلب بنجاح', context);
+        }
+
+
+        if (state is Error){
+          Toast.show(state.error, context,gravity: 2);
+        }
+        },
+        builder: (context, state) {
+          if (state is FetchStoresState){
+            stores =state.storesModel.warehouses;
+          }
+
+          if (state is Loading){
+            return Center(child: CircularProgressIndicator());
+          }
+          return GestureDetector(
+            onTap: (){
+              print('here');
+              operationsBloc.add(AccountStatmentEvent(todate, fromdate, '1', '1'));
+            },
+            child: appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold));
+        },
+      )
     ]);
   }
 
@@ -214,31 +274,7 @@ class _OperationTypeState extends State<OperationType> {
       SizedBox(
         height: h(50),
       ),
-      container(
-          hight: h(70),
-          width: w(343),
-          borderRadius: 40,
-          bordercolor: AppColor.grey,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Container(
-                width: w(50),
-                child: Icon(
-                  Icons.camera_alt_outlined,
-                  size: w(25),
-                  color: AppColor.grey,
-                )),
-            Container(
-                width: w(180),
-                child: Padding(
-                  padding: EdgeInsets.only(right: w(25)),
-                  child: text(
-                      text: "الرجاء ارفاق السجل التجاري",
-                      color: AppColor.grey,
-                      fontsize: 14,
-                      textAlign: TextAlign.end),
-                )),
-          ])),
+      
       SizedBox(height: h(150)),
       appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold)
     ]);

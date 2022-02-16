@@ -85,7 +85,7 @@ class _SignInState extends State<SignIn> {
    BlocConsumer<LoginBloc, LoginState>(
                         listener: (context, state) {
                          if (state is Error){
-                           Toast.show(state.error, context);
+                           Toast.show(state.error, context,gravity: 2);
                            
                          }
                          if (state is GetLoginState ){
