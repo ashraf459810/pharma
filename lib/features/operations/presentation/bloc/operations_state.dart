@@ -32,3 +32,11 @@ class AccountStatmentState extends OperationsState {
   AccountStatmentState(this.result);
 
 }
+
+class PharmacyTicketsState extends OperationsState {
+  final PharmacyTicketsModel pharmacyTicketsModel ;
+
+  PharmacyTicketsState(this.pharmacyTicketsModel);
+}
+
+class LoadingTickets extends OperationsState{}

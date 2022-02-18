@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
+import 'package:pharma/features/operations/data/models/pharmacy_tickets_model.dart';
 
 import 'package:pharma/features/operations/data/models/stores_model.dart';
 import 'package:pharma/features/operations/domain/usecases/account_statment_use_case.dart';
 import 'package:pharma/features/operations/domain/usecases/fetch_stores_use_case.dart';
+import 'package:pharma/features/operations/domain/usecases/pharmacy_tickets_use_case.dart';
 
 part 'operations_event.dart';
 part 'operations_state.dart';
@@ -12,7 +14,8 @@ part 'operations_state.dart';
 class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
   final AccountStatmentUseCase accountStatmentUseCase;
   final FetchStoresUseCase fetchStoresUseCase ;
-  OperationsBloc(this.fetchStoresUseCase, this.accountStatmentUseCase) : super(OperationsInitial()) {
+  final PharmacyTicketsUseCase pharmacyTicketsUseCase ;
+  OperationsBloc(this.fetchStoresUseCase, this.accountStatmentUseCase, this.pharmacyTicketsUseCase) : super(OperationsInitial()) {
     
     on<OperationsEvent>((event, emit) async {
 
@@ -40,6 +43,21 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
 
         });
       }
+
+       if (event is PharmacyTicketsEvent){         
+        emit (LoadingTickets());
+        var response = await pharmacyTicketsUseCase.pharmacyTicketsUseCase();
+        response.fold((l) => emit(Error(l.error)), (r) {
+          if (r.azsvr=="SUCCESS"){
+          emit(PharmacyTicketsState(r));}
+          else {
+
+          emit(Error('خطا في ارسال الطلب'));
+          }
+
+        });
+      }
+    
      
     });
   }

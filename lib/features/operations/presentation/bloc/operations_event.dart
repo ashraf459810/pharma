@@ -21,3 +21,7 @@ class AccountStatmentEvent extends OperationsEvent {
 
   AccountStatmentEvent(this.toDate, this.fromDate, this.storeId, this.ticketId);
 }
+
+class PharmacyTicketsEvent extends OperationsEvent {
+  
+}

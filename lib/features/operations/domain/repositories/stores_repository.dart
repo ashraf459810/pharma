@@ -5,3 +5,4 @@ import 'package:pharma/features/operations/data/models/stores_model.dart';
 abstract class StoresRepository { 
   Future<Either<Failure,StoresModel>> fetchStores ();
 }
+

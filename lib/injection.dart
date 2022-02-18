@@ -12,12 +12,16 @@ import 'package:pharma/features/login/domain/usecases/login_use_case.dart';
 import 'package:pharma/features/login/presentation/bloc/login_bloc.dart';
 import 'package:pharma/features/operations/data/datasources/account_statment_remote.dart';
 import 'package:pharma/features/operations/data/datasources/fetch_stores_remote_data.dart';
+import 'package:pharma/features/operations/data/datasources/pharmacy_tickets_remote_data.dart';
 import 'package:pharma/features/operations/data/repositories/account_statment_repository_imp.dart';
+import 'package:pharma/features/operations/data/repositories/pharmacy_tickets_repository_imp.dart';
 import 'package:pharma/features/operations/data/repositories/stores_repository_imp.dart';
 import 'package:pharma/features/operations/domain/repositories/account_statment_repository.dart';
+import 'package:pharma/features/operations/domain/repositories/pharmact_tickets_repository.dart';
 import 'package:pharma/features/operations/domain/repositories/stores_repository.dart';
 import 'package:pharma/features/operations/domain/usecases/account_statment_use_case.dart';
 import 'package:pharma/features/operations/domain/usecases/fetch_stores_use_case.dart';
+import 'package:pharma/features/operations/domain/usecases/pharmacy_tickets_use_case.dart';
 import 'package:pharma/features/operations/presentation/bloc/operations_bloc.dart';
 import 'package:pharma/features/register/data/datasources/register_pharmacy_remote_data.dart';
 import 'package:pharma/features/register/data/repositories/register_repostiry_imp.dart';
@@ -45,6 +49,7 @@ Future init() async {
     sl.registerFactory(
     () => OperationsBloc(
       sl(),
+      sl(),
       sl()
     ),
   );
@@ -59,6 +64,11 @@ Future init() async {
    // Use cases
   sl.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCaseImp(
+      sl(),
+    ),
+  );
+    sl.registerLazySingleton<PharmacyTicketsUseCase>(
+    () => PharmacyTicketsUseCaseImp(
       sl(),
     ),
   );
@@ -96,6 +106,14 @@ Future init() async {
 
   sl.registerLazySingleton<RegisterRepository>(
     () => RegisterRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+
+    sl.registerLazySingleton<PharmacyTicketsRepository>(
+    () => PharmacyTicketsRepositoryImp(
       sl(),
       sl(),
     ),
@@ -140,6 +158,10 @@ Future init() async {
    // Data sources
   sl.registerLazySingleton<RegisterPharmacyRemoteData>(
     () => RegisterPharmacyRemoteDataImp(sl(), sl()),
+  );
+
+    sl.registerLazySingleton<PharmacyTicketsRemoteData>(
+    () => PharmacyTicketsRemoteDataImp(sl(), sl()),
   );
 
    sl.registerLazySingleton<AccountStatmentRemoteData>(

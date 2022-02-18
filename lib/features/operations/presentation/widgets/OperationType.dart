@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +10,14 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/appWidget/basic_app_bar.dart';
 import 'package:pharma/appWidget/drawer.dart';
 import 'package:pharma/appWidget/from_to_date.dart';
+import 'package:pharma/features/operations/data/models/pharmacy_tickets_model.dart';
 import 'package:pharma/features/operations/data/models/stores_model.dart';
 import 'package:pharma/features/operations/presentation/bloc/operations_bloc.dart';
-import 'package:pharma/features/operations/presentation/pages/Operations.dart';
+
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/CustomListView.dart';
 import 'package:pharma/Widgets/Dropdown.dart';
-import 'package:pharma/Widgets/Nav.dart';
+
 import 'package:pharma/Widgets/Text.dart';
 import 'package:pharma/appWidget/EmptyInputContainer.dart';
 
@@ -29,8 +30,8 @@ import '../../../../injection.dart';
 
 // ignore: must_be_immutable
 class OperationType extends StatefulWidget {
-  int operationnumber;
-  OperationType({Key key, this.operationnumber}) : super(key: key);
+
+  OperationType({Key key, }) : super(key: key);
 
   @override
   _OperationTypeState createState() => _OperationTypeState();
@@ -56,25 +57,38 @@ class _OperationTypeState extends State<OperationType> {
   TextEditingController todatec = TextEditingController();
   TextEditingController billnumc = TextEditingController();
   TextEditingController billdatec = TextEditingController();
-
+ int operationId ;
   String restoreReason;
-  List<String> list = ["نسخة فاتورة", "فتح حساب", "إسترجاع", "كشف حساب"];
+  List<PharmacyTickets> ticketslist = [];
   List<String> storeorcompanylist = ["company1", "company2"];
   List<String> restoreReasons = ["reason1", "reason2"];
-  OperationsBloc operationsBloc= sl<OperationsBloc>();
-  List<Warehouse> stores   =  [];
+  OperationsBloc operationsBloc = sl<OperationsBloc>();
+  List<Warehouse> stores = [];
+  int typeIndex ;
   @override
   void initState() {
-     fromdate = DateTime.now().year.toString()+ '-'+DateTime.now().month.toString()+ "-"+DateTime.now().day.toString();
-     todate =  DateTime.now().year.toString()+ '-'+DateTime.now().month.toString()+ "-"+DateTime.now().day.toString();
-  operationsBloc.add(FetchStoresEvent());
+    operationsBloc.add(PharmacyTicketsEvent());
+    typeIndex = 0;
+    fromdate = DateTime.now().year.toString() +
+        '-' +
+        DateTime.now().month.toString() +
+        "-" +
+        DateTime.now().day.toString();
+    todate = DateTime.now().year.toString() +
+        '-' +
+        DateTime.now().month.toString() +
+        "-" +
+        DateTime.now().day.toString();
+    operationsBloc.add(FetchStoresEvent());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
       copyForBill(),
       createAccount(),
+
       GestureDetector(
           onTap: () {
             if (info.contains("1")) {
@@ -86,30 +100,57 @@ class _OperationTypeState extends State<OperationType> {
           child: restore()),
       accountStatment(),
     ];
-    return Scaffold(
-      endDrawer: HomeDrawer(),
-      appBar: PreferredSize(
-        child: Padding(
-          padding: EdgeInsets.only(top: 13.0),
-          child: BasicAppBar(title : list[widget.operationnumber]),
-        ),
-        preferredSize: Size.fromHeight(80),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            operationslist(list, widget.operationnumber),
-            SizedBox(
-              height: h(50),
+    return BlocBuilder(
+      bloc: operationsBloc,
+      builder: (context, state) {
+        if (state is OperationsInitial){
+          return Center(child: CircularProgressIndicator());
+        }
+        return Scaffold(
+          endDrawer: HomeDrawer(),
+          appBar: PreferredSize(
+            child: Padding(
+              padding: EdgeInsets.only(top: 20.0),
+              child: ticketslist.isNotEmpty ? BasicAppBar(title: ticketslist[typeIndex].name.split('/').last) : Center(child: CircularProgressIndicator()),
             ),
-            widgets[widget.operationnumber]
-          ],
-        ),
-      ),
+            preferredSize: Size.fromHeight(80),
+          ),
+          body: SingleChildScrollView(
+            child: 
+                  BlocBuilder(
+bloc: operationsBloc,
+      builder: (context, state) {
+        if (state is OperationsInitial){
+                  return  Center(child: LinearProgressIndicator());
+        }
+        if (state is LoadingTickets ){
+
+          return  Center(child: LinearProgressIndicator());
+
+        }
+        if  (state is PharmacyTicketsState
+        ){
+          log('here from state');
+          ticketslist = state.pharmacyTicketsModel.response;
+
+        }return
+            Column(
+              children: [
+                
+            ticketslist.isNotEmpty?    operationslist(ticketslist, typeIndex): SizedBox(),
+                SizedBox(
+                  height: h(50),
+                ),
+                widgets[typeIndex]
+              ],
+            );
+         }   ),
+        ));
+      },
     );
   }
 
-  Widget operationslist(List<String> list, int id) {
+  Widget operationslist(List<PharmacyTickets> list, int id) {
     return container(
         color: Colors.white,
         borderRadius: 40,
@@ -126,7 +167,8 @@ class _OperationTypeState extends State<OperationType> {
             function: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  widget.operationnumber = index;
+                  operationId = list[index].id;
+                typeIndex   = index;
                   setState(() {});
                 },
                 child: container(
@@ -135,7 +177,7 @@ class _OperationTypeState extends State<OperationType> {
                   color: id == index ? AppColor.blue : Colors.transparent,
                   child: Center(
                     child: text(
-                        text: list[index],
+                        text: list[index].name.split("/").last,
                         color: id == index ? Colors.white : AppColor.grey,
                         fontsize: 14.sp,
                         fontWeight: FontWeight.bold,
@@ -149,68 +191,70 @@ class _OperationTypeState extends State<OperationType> {
   Widget accountStatment() {
     return Column(children: [
       emptyContainer(
-                              desc: "اسم المستودع",
-                              widget: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: DropDown(
-                                  chosenvalue: storeName,
-                                  list: stores,
-                                  hint: "",
-                                  onchanged: (val) {
-                                    storeName = val.name;
-                                         storeId = val.id;
-                                  },
-                                  getindex: (val) {
-
-                               
-
-                                  },
-                                ),
-                              )),
+          desc: "اسم المستودع",
+          widget: Directionality(
+            textDirection: TextDirection.rtl,
+            child: DropDown(
+              chosenvalue: storeName,
+              list: stores,
+              hint: "",
+              onchanged: (val) {
+                storeName = val.name;
+                storeId = val.id;
+              },
+              getindex: (val) {},
+            ),
+          )),
       SizedBox(
         height: h(50),
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-
-   FromToDate(desc: "الى تاريخ",getDate: (val){
-     todate = val;
-   },),
-      FromToDate(desc: 'من تاريخ',getDate: ( val){
-        fromdate = val;
-      },),
+          FromToDate(
+            desc: "الى تاريخ",
+            getDate: (val) {
+              todate = val;
+            },
+          ),
+          FromToDate(
+            desc: 'من تاريخ',
+            getDate: (val) {
+              fromdate = val;
+            },
+          ),
         ],
       ),
       SizedBox(
         height: h(150),
       ),
       BlocConsumer(
-           bloc: operationsBloc,
+        bloc: operationsBloc,
         listener: (context, state) {
-        if (state is AccountStatmentState){
-          Toast.show('تم ارسال الطلب بنجاح', context);
-        }
-
-
-        if (state is Error){
-          Toast.show(state.error, context,gravity: 2);
-        }
-        },
-        builder: (context, state) {
-          if (state is FetchStoresState){
-            stores =state.storesModel.warehouses;
+          if (state is AccountStatmentState) {
+            Toast.show('تم ارسال الطلب بنجاح', context);
           }
 
-          if (state is Loading){
+          if (state is Error) {
+            Toast.show(state.error, context, gravity: 2);
+          }
+        },
+        builder: (context, state) {
+          if (state is FetchStoresState) {
+            stores = state.storesModel.warehouses;
+          }
+
+          if (state is Loading) {
             return Center(child: CircularProgressIndicator());
           }
           return GestureDetector(
-            onTap: (){
-              print('here');
-              operationsBloc.add(AccountStatmentEvent(todate, fromdate, '1', '1'));
-            },
-            child: appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold));
+              onTap: () {
+                print('here');
+                operationsBloc
+                    .add(AccountStatmentEvent(todate, fromdate, '1', '1'));
+              },
+              child:
+                  appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold));
         },
       )
     ]);
@@ -274,7 +318,6 @@ class _OperationTypeState extends State<OperationType> {
       SizedBox(
         height: h(50),
       ),
-      
       SizedBox(height: h(150)),
       appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold)
     ]);
@@ -437,11 +480,11 @@ class _OperationTypeState extends State<OperationType> {
                 ),
                 InkWell(
                     onTap: () {
-                      navWithReplacement(
-                          context,
-                          Operations(
-                            isrestore: true,
-                          ));
+                      // navWithReplacement(
+                      //     context,
+                      //     Operations(
+                      //       isrestore: true,
+                      //     ));
                     },
                     child: appbutton(
                         AppColor.blue, "تاكيد الطلب", FontWeight.bold))

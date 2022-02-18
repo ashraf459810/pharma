@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pharma/features/operations/presentation/widgets/OperationType.dart';
 
-import 'package:pharma/features/operations/presentation/pages/Operations.dart';
+
 import 'package:pharma/features/transfer/presentation/pages/Transfer.dart';
 import 'package:pharma/Widgets/BottomNavBar.dart';
 import 'package:pharma/features/offers/presentation/pages/offers.dart';
@@ -35,8 +36,8 @@ class _HomePageState extends State<HomePage> {
         routes: [
           Offers(),
           Transfer(),
-          Operations(
-            isrestore: false,
+          OperationType(
+          
           )
         ],
       ),
