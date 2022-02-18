@@ -139,7 +139,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   if (email !=null && name !=null && number!=null  ){
 
                     if (password != null && repasswrod !=null && password == repasswrod){
-                      log('here'); 
+               
 
                       widget.registerPharmaRequestodel.password = password;
                       widget.registerPharmaRequestodel.email = email;
@@ -228,7 +228,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
                   GestureDetector(
                       onTap: () {
                         setState(() {
-                          print("here");
+                      
                           issecure ? issecure = false : issecure = true;
                         });
                       },

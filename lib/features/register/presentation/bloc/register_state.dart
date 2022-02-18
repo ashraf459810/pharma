@@ -26,3 +26,11 @@ class GetRegisterState extends RegisterState {
   GetRegisterState(this.result);
 
 }
+
+class FetchRolesState extends RegisterState {
+  final RolesModel rolesModel ;
+
+  FetchRolesState(this.rolesModel);
+}
+
+class LoadingRolesState extends RegisterState {}

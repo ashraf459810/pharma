@@ -14,3 +14,5 @@ class RegisterPharmaEvent extends RegisterEvent {
 
   RegisterPharmaEvent(this.registerPharmaRequestodel, this.images); 
 }
+
+class FetchRolesEvent extends RegisterEvent {}

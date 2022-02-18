@@ -67,7 +67,7 @@ class _OperationTypeState extends State<OperationType> {
   int typeIndex ;
   @override
   void initState() {
-    operationsBloc.add(PharmacyTicketsEvent());
+
     typeIndex = 0;
     fromdate = DateTime.now().year.toString() +
         '-' +
@@ -79,7 +79,9 @@ class _OperationTypeState extends State<OperationType> {
         DateTime.now().month.toString() +
         "-" +
         DateTime.now().day.toString();
-    operationsBloc.add(FetchStoresEvent());
+        
+            operationsBloc.add(PharmacyTicketsEvent());
+   
     super.initState();
   }
 
@@ -132,6 +134,8 @@ bloc: operationsBloc,
         ){
           log('here from state');
           ticketslist = state.pharmacyTicketsModel.response;
+
+           operationsBloc.add(FetchStoresEvent());
 
         }return
             Column(

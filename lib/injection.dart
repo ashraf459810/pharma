@@ -23,9 +23,13 @@ import 'package:pharma/features/operations/domain/usecases/account_statment_use_
 import 'package:pharma/features/operations/domain/usecases/fetch_stores_use_case.dart';
 import 'package:pharma/features/operations/domain/usecases/pharmacy_tickets_use_case.dart';
 import 'package:pharma/features/operations/presentation/bloc/operations_bloc.dart';
+import 'package:pharma/features/register/data/datasources/fetch_roles_remote_data.dart';
 import 'package:pharma/features/register/data/datasources/register_pharmacy_remote_data.dart';
 import 'package:pharma/features/register/data/repositories/register_repostiry_imp.dart';
+import 'package:pharma/features/register/data/repositories/roles_repository_imp.dart';
+import 'package:pharma/features/register/domain/repositories/fetch_roles_repository.dart';
 import 'package:pharma/features/register/domain/repositories/register_repository.dart';
+import 'package:pharma/features/register/domain/usecases/fetch_roles_use_case.dart';
 import 'package:pharma/features/register/domain/usecases/register_use_case.dart';
 import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +47,7 @@ Future init() async {
   sl.registerFactory(
     () => RegisterBloc(
       sl(),
+      sl()
     ),
   );
 
@@ -64,6 +69,12 @@ Future init() async {
    // Use cases
   sl.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCaseImp(
+      sl(),
+    ),
+  );
+
+   sl.registerLazySingleton<FetchRolesUseCase>(
+    () => FetchRolesUseCaseImp(
       sl(),
     ),
   );
@@ -106,6 +117,14 @@ Future init() async {
 
   sl.registerLazySingleton<RegisterRepository>(
     () => RegisterRepositoryImp(
+      sl(),
+      sl(),
+    ),
+
+  );  
+
+  sl.registerLazySingleton<RolesRepository>(
+    () => RolesRepositoryImp(
       sl(),
       sl(),
     ),
@@ -159,7 +178,9 @@ Future init() async {
   sl.registerLazySingleton<RegisterPharmacyRemoteData>(
     () => RegisterPharmacyRemoteDataImp(sl(), sl()),
   );
-
+  sl.registerLazySingleton<FetchRolesRemoteData>(
+    () => FetchRolesRemoteDateImp(sl(), sl()),
+  );
     sl.registerLazySingleton<PharmacyTicketsRemoteData>(
     () => PharmacyTicketsRemoteDataImp(sl(), sl()),
   );

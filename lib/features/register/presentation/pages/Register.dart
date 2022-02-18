@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +10,6 @@ import 'package:pharma/App/app.dart';
 import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/features/register/data/models/register_pharma_request_model.dart';
-
 
 import 'package:pharma/Widgets/Dropdown.dart';
 
@@ -20,14 +20,16 @@ import 'package:pharma/appWidget/RegisterAppBar.dart';
 import 'package:pharma/appWidget/appButton.dart';
 
 import 'package:pharma/appWidget/inputContainer.dart';
+import 'package:pharma/features/register/data/models/roles_model.dart';
+import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
 import 'package:pharma/features/register/presentation/pages/PersonalInfo.dart';
-
 
 import 'package:pharma/features/register/presentation/widgets/tow_option_filter.dart';
 import 'package:pharma/features/register/presentation/widgets/type_filter.dart';
 import 'package:pharma/features/register/presentation/widgets/upload_photo.dart';
 import 'package:toast/toast.dart';
 
+import '../../../../injection.dart';
 
 typedef void OnPickImageCallback(
     double maxWidth, double maxHeight, int quality);
@@ -40,7 +42,9 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  RegisterPharmaRequestodel registerPharmaRequestodel  =RegisterPharmaRequestodel();
+  RegisterPharmaRequestodel registerPharmaRequestodel =
+      RegisterPharmaRequestodel();
+      String hint = '';
   bool pharmacey;
   bool store;
   bool company;
@@ -72,10 +76,23 @@ class _RegisterState extends State<Register> {
   XFile mozawala;
   XFile id;
   XFile ministryLicense;
-  List<XFile> images = [XFile('path'), XFile('path'),XFile('path'),XFile('path'),XFile('path')];
+  List<XFile> images = [
+    XFile('path'),
+    XFile('path'),
+    XFile('path'),
+    XFile('path'),
+    XFile('path')
+  ];
+  RegisterBloc registerBloc = sl<RegisterBloc>();
+  List<Roles> pharmaroles = [];
+    List<Roles> storeRoles = [];
+      List<Roles> companyRoles = [];
+
 
   @override
   void initState() {
+  
+    registerBloc.add(FetchRolesEvent());
     pharmacey = false;
     store = false;
     company = false;
@@ -86,6 +103,11 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    jobdesc  =null;
+    
+     pharmaroles = [];
+ storeRoles = [];
+ companyRoles = [];
     return Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: PreferredSize(
@@ -111,25 +133,24 @@ class _RegisterState extends State<Register> {
                     pharmacey: pharmacey,
                     store: store,
                     getType: (val) {
-                 
-                        print(val);
-                        type = val;
-                        if (type == 'صيدلية') {
-                          pharmacey = true;
-                          company = false;
-                          store = false;
-                        } else if (type == 'شركة') {
-                          company = true;
-                          store = false;
-                          pharmacey = false;
-                        } else {
-                          store = true;
-                          pharmacey = false;
-                          company = false;
-                        }
-                 setState(() {
-                   
-                 });
+                      print(val);
+                      type = val;
+                      if (type == 'صيدلية') {
+                        pharmacey = true;
+                        company = false;
+                        store = false;
+                      } else if (type == 'شركة') {
+                        company = true;
+                        store = false;
+                        pharmacey = false;
+                      } else {
+                        store = true;
+                        pharmacey = false;
+                        company = false;
+                      }
+                      setState(() {
+
+                      });
                     })),
             SizedBox(
               height: h(20),
@@ -145,25 +166,22 @@ class _RegisterState extends State<Register> {
                       getOption: (val) {
                         log(val);
 
-                     
-                          registerOrNew = val;
-                          if (val == 'جديد') {
-                            newOne = true;
-                            registered = false;
-                          } else {
-                            newOne = false;
-                            registered = true;
-                          }
-         setState(() {
-           
-         });
+                        registerOrNew = val;
+                        if (val == 'جديد') {
+                          newOne = true;
+                          registered = false;
+                        } else {
+                          newOne = false;
+                          registered = true;
+                        }
+                        setState(() {});
                       },
                     ))
                 : SizedBox(),
             SizedBox(
               height: h(20),
             ),
-            !registered 
+            !registered
                 ? Column(
                     children: [
                       registerOrNew != null && (!store) & (!company)
@@ -176,183 +194,200 @@ class _RegisterState extends State<Register> {
                                 option2: 'فرع وحيد',
                                 getOption: (val) {
                                   oneBranchOrMany = val;
-                               if (   val == 'سلسلة') { branch = false;
-                              series  = true;
-                               }
-                               else {
-                                 branch = true;
-                                 series = false;
-                               }
-                               setState(() {
-                                 
-                               });
+                                  if (val == 'سلسلة') {
+                                    branch = false;
+                                    series = true;
+                                  } else {
+                                    branch = true;
+                                    series = false;
+                                  }
+                                  setState(() {});
                                 },
                               ))
                           : SizedBox(),
                       SizedBox(
                         height: h(24),
                       ),
-                ( pharmacey && (branch || series)|| store ||company) && (newOne)   ?   Column(
-                        children: [
-                          emptyContainer(
-                              desc: "الوصف الوظيفي",
-                              widget: Directionality(
-                                textDirection: TextDirection.rtl,
-                                child: DropDown(
-                                  chosenvalue: jobdesc,
-                                  list: list,
-                                  hint: "مالك صيدلية",
-                                  onchanged: (val) {
-                                    jobdesc = val;
-                                  },
-                                  getindex: (val) {
-
-                                    accountRoleId = val;
-
-                                  },
-                                ),
-                              )),
-                          SizedBox(
-                            height: h(17),
-                          ),
-                          inputContainer(
-                              desc: "الاسم",
-                              controller: pharmacynamec,
-                              hint: "صيدلية الشفاء",
-                              value: (val) {
-                                name = val;
-                              }),
-                          SizedBox(
-                            height: h(17),
-                          ),
-                          inputContainer(
-                              desc: "رقم الهاتف ",
-                              controller: pharmacymobilec,
-                              validation: "number",
-                              hint: "07901231231",
-                              value: (val) {
-                                mobile = val;
-                              }),
-                          SizedBox(
-                            height: h(14),
-                          ),
-                      
-                      type != 'شركة'
+                      (pharmacey && (branch || series) || store || company) &&
+                              (newOne)
                           ? Column(
                               children: [
-                                inputContainer(
-                                    desc: "الموقع",
-                                    hint: "شارع الفيحاء",
-                                    controller: pharmacylocationc,
-                                    widget: Icon(
-                                      Icons.pin_drop,
-                                      color: AppColor.grey,
-                                      size: w(25),
-                                    ),
-                                    value: (val) {
+                                BlocBuilder(
+                                  bloc: registerBloc,
+                                  builder: (context, state) {
+                                    if (state is Loading){
+                                      return Center(child: CircularProgressIndicator());
+                                    }
+                                    if (state is FetchRolesState){
+                                          for (var i = 0 ; i < state.rolesModel.response.length ; i ++){
+                                            if (state.rolesModel.response[i].roleType.contains('Pharmacy')){
+                                                  pharmaroles.add(state.rolesModel.response[i]);
+                                            }
+                                            else if (state.rolesModel.response[i].roleType.contains('Warehouse')){
 
-                                      location = val;
-                                      
+                                                       storeRoles.add(state.rolesModel.response[i]);
+                                            }
+                                            else  if (state.rolesModel.response[i].roleType.contains('Company')){
+                                                  companyRoles.add(state.rolesModel.response[i]);
+
+                                            }
+                                           
+                                            
+                                          }
+                        
+                                    }
+                                    return emptyContainer(
+                                        desc: "الوصف الوظيفي",
+                                        widget: Directionality(
+                                          textDirection: TextDirection.rtl,
+                                          child: DropDown(
+                                            chosenvalue: jobdesc,
+                                            list: pharmacey ? pharmaroles : store?storeRoles : companyRoles,
+                                            hint: hint,
+                                            onchanged: (val) {
+                                              jobdesc = val.name;
+                                                        accountRoleId = val.id;
+                                            },
+                                            getindex: (val) {
+                                    
+                                            },
+                                          ),
+                                        ));
+                                  },
+                                ),
+                                SizedBox(
+                                  height: h(17),
+                                ),
+                                inputContainer(
+                                    desc: "الاسم",
+                                    controller: pharmacynamec,
+                                    hint: "صيدلية الشفاء",
+                                    value: (val) {
+                                      name = val;
                                     }),
                                 SizedBox(
                                   height: h(17),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: w(30)),
-                                      child: Container(
-                                          width: w(150),
-                                          child: text(
-                                              text:
-                                                  "الرجاءارفاق الوثائق التالية",
-                                              color: Colors.black,
-                                              textAlign: TextAlign.end)),
-                                    ),
-                                  ],
+                                inputContainer(
+                                    desc: "رقم الهاتف ",
+                                    controller: pharmacymobilec,
+                                    validation: "number",
+                                    hint: "07901231231",
+                                    value: (val) {
+                                      mobile = val;
+                                    }),
+                                SizedBox(
+                                  height: h(14),
                                 ),
-                                SizedBox(
-                                  height: h(6),
-                                ),
-                                SizedBox(
-                                    height: h(60),
-                                    child: UploadPhoto(
-                                      index: 0,
-                                      getImages: (val) {
-                                        tradRecord = val;
-                                        
-                                        images[0] = val;
-                                      },
-                                      
-                                      text: 'السجل التجاري',
-                                    )),
-                                SizedBox(
-                                  height: h(15),
-                                ),
-                                SizedBox(
-                                    height: h(60),
-                                    child: UploadPhoto(
-                                      index: 1,
-                                      getImages: (val) {
-                                        workLicense = val;
-                                             images[1] = val;
-                                      },
-                                     
-                                      text: 'رخصة المهنة',
-                                    )),
-                                SizedBox(
-                                  height: h(15),
-                                ),
-                                SizedBox(
-                                    height: h(60),
-                                    child: UploadPhoto(
-                                      index: 2,
-                                      getImages: (val) {
-                                        id = val;  
-                                           images[2] = val;
-                                      },
-                                    
-                                      text: 'صورة هوية',
-                                    )),
-                                SizedBox(
-                                  height: h(15),
-                                ),
-                                SizedBox(
-                                    height: h(60),
-                                    child: UploadPhoto(
-                                      index: 3,
-                                      getImages: (val) {
-                                        ministryLicense = val;
-                                          images[3] = val;
-                                        
-                                      },
-                                
-                                      text: 'موافقة وزارة الصحة',
-                                    )),
-                                SizedBox(
-                                  height: h(15),
-                                ),
-                                SizedBox(
-                                    height: h(60),
-                                    child: UploadPhoto(
-                                      index: 4,
-                                      getImages: (val) {
-                         
-                                        mozawala = val;
+                                type != 'شركة'
+                                    ? Column(
+                                        children: [
+                                          inputContainer(
+                                              desc: "الموقع",
+                                              hint: "شارع الفيحاء",
+                                              controller: pharmacylocationc,
+                                              widget: Icon(
+                                                Icons.pin_drop,
+                                                color: AppColor.grey,
+                                                size: w(25),
+                                              ),
+                                              value: (val) {
+                                                location = val;
+                                              }),
+                                          SizedBox(
+                                            height: h(17),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: w(30)),
+                                                child: Container(
+                                                    width: w(150),
+                                                    child: text(
+                                                        text:
+                                                            "الرجاءارفاق الوثائق التالية",
+                                                        color: Colors.black,
+                                                        textAlign:
+                                                            TextAlign.end)),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: h(6),
+                                          ),
+                                          SizedBox(
+                                              height: h(60),
+                                              child: UploadPhoto(
+                                                index: 0,
+                                                getImages: (val) {
+                                                  tradRecord = val;
 
-                                           images[4] = val;
-                                    
-                        
-                                      },
-                       
-                                      text: 'مزاولة المهنة',
-                                    )),
-                                SizedBox(
-                                  height: h(15),
-                                ),
-                                  ],
-                      ):SizedBox(),
+                                                  images[0] = val;
+                                                },
+                                                text: 'السجل التجاري',
+                                              )),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
+                                          SizedBox(
+                                              height: h(60),
+                                              child: UploadPhoto(
+                                                index: 1,
+                                                getImages: (val) {
+                                                  workLicense = val;
+                                                  images[1] = val;
+                                                },
+                                                text: 'رخصة المهنة',
+                                              )),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
+                                          SizedBox(
+                                              height: h(60),
+                                              child: UploadPhoto(
+                                                index: 2,
+                                                getImages: (val) {
+                                                  id = val;
+                                                  images[2] = val;
+                                                },
+                                                text: 'صورة هوية',
+                                              )),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
+                                          SizedBox(
+                                              height: h(60),
+                                              child: UploadPhoto(
+                                                index: 3,
+                                                getImages: (val) {
+                                                  ministryLicense = val;
+                                                  images[3] = val;
+                                                },
+                                                text: 'موافقة وزارة الصحة',
+                                              )),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
+                                          SizedBox(
+                                              height: h(60),
+                                              child: UploadPhoto(
+                                                index: 4,
+                                                getImages: (val) {
+                                                  mozawala = val;
+
+                                                  images[4] = val;
+                                                },
+                                                text: 'مزاولة المهنة',
+                                              )),
+                                          SizedBox(
+                                            height: h(15),
+                                          ),
+                                        ],
+                                      )
+                                    : SizedBox(),
                                 SizedBox(
                                   height: h(10),
                                 ),
@@ -455,48 +490,87 @@ class _RegisterState extends State<Register> {
             ),
             InkWell(
                 onTap: () {
-            if (pharmacey && newOne){
-                if (series || branch || (store  && newOne)){
-                 if (   jobdesc !=null && name!=null && mobile !=null && location!=null  && ministryLicense!=null && id!=null && tradRecord!=null &&workLicense !=null &&  mozawala!=null){
-                   registerPharmaRequestodel.belongableName= name;
-                   type == 'صيدلية'?
-                   registerPharmaRequestodel.belongType = 'Pharmacy' : type =='شركة' ? 
-                   registerPharmaRequestodel.belongType = 'Company' : registerPharmaRequestodel.belongType= "Warehouse";
-                   registerPharmaRequestodel.existing = registered.toString();
-                   registerPharmaRequestodel.belongableLocation = location;
-                   registerPharmaRequestodel.belongablePhone = mobile;
-                   registerPharmaRequestodel.setAccountRolesId = accountRoleId ==0 ? "5" : accountRoleId ==1 ? "6" : "7";
+                  if (pharmacey && newOne) {
+                    if (series || branch || (store && newOne)) {
+                      if (jobdesc != null &&
+                          name != null &&
+                          mobile != null &&
+                          location != null &&
+                          ministryLicense != null &&
+                          id != null &&
+                          tradRecord != null &&
+                          workLicense != null &&
+                          mozawala != null) {
+                        registerPharmaRequestodel.belongableName = name;
+                        type == 'صيدلية'
+                            ? registerPharmaRequestodel.belongType = 'Pharmacy'
+                            : type == 'شركة'
+                                ? registerPharmaRequestodel.belongType =
+                                    'Company'
+                                : registerPharmaRequestodel.belongType =
+                                    "Warehouse";
+                        registerPharmaRequestodel.existing =
+                            registered.toString();
+                        registerPharmaRequestodel.belongableLocation = location;
+                        registerPharmaRequestodel.belongablePhone = mobile;
+                        registerPharmaRequestodel.setAccountRolesId =
+                            accountRoleId == 0
+                                ? "5"
+                                : accountRoleId == 1
+                                    ? "6"
+                                    : "7";
 
-                 
-                   nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,images: images,));
-                 }  
-                                 else {    Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);} 
-                }
-                else {    Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}  
-            }
-         else if (pharmacey && registered || (store &&registered || company &&registered) ) {
-             if (searched!=null ){
-               nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,));
-           }
-         }
-         else if (company && newOne ){
-
-              if (   jobdesc !=null && name!=null && mobile !=null){
-                 nav(context, PersonalInfo(registerPharmaRequestodel: registerPharmaRequestodel,images: images,));
-              }
-                     else {Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}
-         }
-            else {Toast.show('الرجاء اكمال المعلومات اولا', context,gravity: 1);}
+                        nav(
+                            context,
+                            PersonalInfo(
+                              registerPharmaRequestodel:
+                                  registerPharmaRequestodel,
+                              images: images,
+                            ));
+                      } else {
+                        Toast.show('الرجاء اكمال المعلومات اولا', context,
+                            gravity: 1);
+                      }
+                    } else {
+                      Toast.show('الرجاء اكمال المعلومات اولا', context,
+                          gravity: 1);
+                    }
+                  } else if (pharmacey && registered ||
+                      (store && registered || company && registered)) {
+                    if (searched != null) {
+                      nav(
+                          context,
+                          PersonalInfo(
+                            registerPharmaRequestodel:
+                                registerPharmaRequestodel,
+                          ));
+                    }
+                  } else if (company && newOne) {
+                    if (jobdesc != null && name != null && mobile != null) {
+                      nav(
+                          context,
+                          PersonalInfo(
+                            registerPharmaRequestodel:
+                                registerPharmaRequestodel,
+                            images: images,
+                          ));
+                    } else {
+                      Toast.show('الرجاء اكمال المعلومات اولا', context,
+                          gravity: 1);
+                    }
+                  } else {
+                    Toast.show('الرجاء اكمال المعلومات اولا', context,
+                        gravity: 1);
+                  }
                 },
-                child:    appbutton(
-                        AppColor.blue, " التالي", FontWeight.bold)
-                ),
+                child: appbutton(AppColor.blue, " التالي", FontWeight.bold)),
             SizedBox(
               height: h(10),
             )
           ],
         )));
-  }}
+  }
+}
 
 //   Widget pharmacycount(int count, String desc) {
 //     return Column(
