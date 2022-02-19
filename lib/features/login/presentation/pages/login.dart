@@ -1,3 +1,5 @@
+
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -10,12 +12,13 @@ import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/Widgets/Container.dart';
 import 'package:pharma/Widgets/Nav.dart';
 import 'package:pharma/Widgets/Text.dart';
-import 'package:pharma/Widgets/TextForm.dart';
+
 import 'package:pharma/appWidget/appButton.dart';
 import 'package:pharma/appWidget/inputContainer.dart';
 import 'package:pharma/features/homePage/HomePage.dart';
 import 'package:pharma/features/login/presentation/bloc/login_bloc.dart';
 import 'package:pharma/features/register/presentation/pages/Register.dart';
+import 'package:pharma/features/register/presentation/widgets/password_input.dart';
 import 'package:toast/toast.dart';
 
 import '../../../../injection.dart';
@@ -28,6 +31,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+   final formKey = GlobalKey<FormState>();
   TextEditingController emailc = TextEditingController();
   String email;
   String passwrod;
@@ -42,8 +46,9 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.grey[50],
         body: SingleChildScrollView(
           child: container(
+            hight: MediaQuery.of(context).size.height,
               child: Column(
-            children: [
+                        children: [
               SizedBox(
                 height: h(50),
               ),
@@ -58,6 +63,8 @@ class _SignInState extends State<SignIn> {
                 height: h(70),
               ),
               inputContainer(
+
+                validation: 'email',
                   desc: "البريد الالكتروني",
                   controller: emailc,
                   hint: "mohammad@hotmail.com",
@@ -67,14 +74,15 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: h(12),
               ),
-              passwordinput(
+              PaswordInput(
+               
                   desc: "كلمة المرور",
                   controller: passwordc,
                   hint: "ادخل كلمة المرور",
-                  value: (val) {
+                  function: (val) {
                     passwrod = val;
                   },
-                  widget: SvgPicture.asset(
+                  widgett: SvgPicture.asset(
                     "assets/images/passwordeye.svg",
                     height: h(30),
                     width: w(30),
@@ -82,7 +90,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: h(30),
               ),
-   BlocConsumer<LoginBloc, LoginState>(
+               BlocConsumer<LoginBloc, LoginState>(
                         listener: (context, state) {
                          if (state is Error){
                            Toast.show(state.error, context,gravity: 2);
@@ -93,26 +101,35 @@ class _SignInState extends State<SignIn> {
                          }
                         },
                         builder: (context, state) {
-
+              
                           if (state is Loading){
                             return Center(child: CircularProgressIndicator());
                           }
                           return 
                                   
-            InkWell(
+                        GestureDetector(
                       onTap: () {
-                        log('here');
+       
+                        if (email !=null &&passwrod !=null){
+                     log('here');
                             context.read<LoginBloc>().add(GetUseLoginEvent(email, passwrod));
+              
+                            }
+                          else {
+                            Toast.show('يرجى استكمال المعلومات', context , gravity: 2);
+                          }
+                      
+
                       },
                       child: appbutton(
                               AppColor.blue, "تسجيل الدخول", FontWeight.bold));
                         
-     
-
-
+                 
+              
+              
                 
-    }  
-   ),
+                }  
+               ),
               SizedBox(
                 height: h(43),
               ),
@@ -168,74 +185,12 @@ class _SignInState extends State<SignIn> {
                           fontsize: 16.sp),
                     )),
               )
-            ],
-          )),
+                        ],
+                      )),
         ),
       ),
     );
   }
 
-  Widget passwordinput(
-      {String desc,
-      String hint,
-      TextEditingController controller,
-      Function value,
-      Widget widget,
-      Function ontap}) {
-    return Center(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: w(20)),
-                child: Container(
-                    width: w(110),
-                    child: text(
-                        text: desc,
-                        color: Colors.black,
-                        textAlign: TextAlign.end)),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: h(6),
-          ),
-          container(
-              hight: h(70),
-              width: w(343),
-              borderRadius: 40,
-              bordercolor: AppColor.grey,
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          print("here");
-                          issecure ? issecure = false : issecure = true;
-                        });
-                      },
-                      child: Container(
-                          width: w(70), child: widget ?? Container())),
-                  Container(
-                    width: w(250),
-                    child: Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: textform(
-                          controller: controller,
-                          function: value,
-                          hint: hint,
-                          hintColor: AppColor.grey,
-                          hintsize: 14.sp,
-                          issecure: issecure),
-                    ),
-                  ),
-                ],
-              )),
-        ],
-      ),
-    );
-  }
+ 
 }

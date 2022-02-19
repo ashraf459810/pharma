@@ -13,6 +13,7 @@ Widget textform(
     EdgeInsetsGeometry padding,
     bool issecure}) {
   return TextFormField(
+ 
     style: TextStyle(color: Colors.black, fontSize: 14.sp),
     obscureText: issecure ?? false,
     keyboardType: validation == "number"
@@ -23,6 +24,7 @@ Widget textform(
                 ? TextInputType.emailAddress
                 : TextInputType.text,
     decoration: InputDecoration(
+      errorStyle: TextStyle(fontSize: 10.sp),
         contentPadding: padding ?? EdgeInsets.all(w(5)),
         border: InputBorder.none,
         hintText: hint,
@@ -52,13 +54,10 @@ String passwordvalidator(String value) {
   if (value.isEmpty) {
     return "enter your password";
   }
-  String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
-  RegExp regExp = new RegExp(pattern);
-  bool validpassword = regExp.hasMatch(value);
-  if (validpassword == true) {
+if (value.length< 8){  return "passwrod lenght should be 8 characters";}
+  else {
     return null;
-  } else {
-    return "passwrod lenght 8 contains numbers capital and small letters";
+  
   }
 }
 
@@ -77,9 +76,9 @@ String emailvalidator(String value) {
 }
 
 String numbervalidator(String value) {
-  return value;
+  return null;
 }
 
-String defaultvalidation(String value) {
-  return value;
+ String defaultvalidation(String value) {
+  return null;
 }

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../Consts.dart';
 
 abstract class UserLocatData {
-  Future<void> setUserverfiy(bool isbool);
+  Future<void> setUserverfiy(String isbool);
   Future<bool> getIfUserverfiy();
   Future<void> saveToken(String token);
   Future<String> getToken();
@@ -21,8 +21,8 @@ class UserLocatDataImp implements UserLocatData {
   }
 
   @override
-  Future<void> setUserverfiy(bool isbool) async {
-    await sharedPreferences.setBool(Con.isVerify, isbool);
+  Future<void> setUserverfiy(String isbool) async {
+    await sharedPreferences.setString(Con.isVerify, isbool);
   }
 
   @override

@@ -26,7 +26,7 @@ class UserRepositoryImp implements UserRepository {
   }
 
   @override
-  Future<void> setIsVerify(bool value) async {
+  Future<void> setIsVerify(String value) async {
     return await userLocatData.setUserverfiy(value);
   }
 

@@ -47,12 +47,14 @@ Future init() async {
   sl.registerFactory(
     () => RegisterBloc(
       sl(),
+      sl(),
       sl()
     ),
   );
 
     sl.registerFactory(
     () => OperationsBloc(
+      sl(),
       sl(),
       sl(),
       sl()
@@ -99,6 +101,11 @@ Future init() async {
 
  sl.registerLazySingleton<SaveToken>(
     () => SaveToken(
+      sl(),
+    ),
+  );
+   sl.registerLazySingleton<SetIsVerify>(
+    () => SetIsVerify(
       sl(),
     ),
   );

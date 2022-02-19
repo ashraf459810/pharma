@@ -13,6 +13,7 @@ Widget customlistview(
     height: hight,
     width: width,
     child: ListView.builder(
+      reverse: true,
         physics: ScrollPhysics(
             parent: scroll
                 ? AlwaysScrollableScrollPhysics()

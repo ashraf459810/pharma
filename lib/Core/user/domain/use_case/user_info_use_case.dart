@@ -38,13 +38,13 @@ class GetIsVerify implements UseCase<bool, void> {
   }
 }
 
-class SetIsVerify implements UseCase<bool, bool> {
+class SetIsVerify implements UseCase<void, String> {
    final UserRepository userRepository;
 
   SetIsVerify(this.userRepository);
   @override
-  Future<Either<Failure, bool>> call(parm) async {
-    await userRepository.setIsVerify(parm);
+  Future<Either<Failure, void>> call(String parms) async {
+    await userRepository.setIsVerify(parms);
     return null;
   }
 }

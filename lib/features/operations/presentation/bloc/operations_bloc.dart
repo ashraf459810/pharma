@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
+import 'package:pharma/Core/user/domain/use_case/user_info_use_case.dart';
 import 'package:pharma/features/operations/data/models/pharmacy_tickets_model.dart';
 
 import 'package:pharma/features/operations/data/models/stores_model.dart';
@@ -15,7 +16,8 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
   final AccountStatmentUseCase accountStatmentUseCase;
   final FetchStoresUseCase fetchStoresUseCase ;
   final PharmacyTicketsUseCase pharmacyTicketsUseCase ;
-  OperationsBloc(this.fetchStoresUseCase, this.accountStatmentUseCase, this.pharmacyTicketsUseCase) : super(OperationsInitial()) {
+  final SaveToken saveToken;
+  OperationsBloc(this.fetchStoresUseCase, this.accountStatmentUseCase, this.pharmacyTicketsUseCase, this.saveToken) : super(OperationsInitial()) {
     
     on<OperationsEvent>((event, emit) async {
 
@@ -32,7 +34,8 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
       }
       if (event is AccountStatmentEvent){         
         emit (Loading());
-        var response = await accountStatmentUseCase.accountStatmentUseCase(event.fromDate, event.toDate,event. storeId, event.ticketId);
+        var token = await saveToken.userRepository.getToken();
+        var response = await accountStatmentUseCase.accountStatmentUseCase(event.fromDate, event.toDate,event. storeId, event.ticketId,token);
         response.fold((l) => emit(Error(l.error)), (r) {
           if (r=="SUCCESS"){
           emit(AccountStatmentState(r));}

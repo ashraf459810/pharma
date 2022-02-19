@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pharma/App/app.dart';
@@ -44,7 +43,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   RegisterPharmaRequestodel registerPharmaRequestodel =
       RegisterPharmaRequestodel();
-      String hint = '';
+  String hint = '';
   bool pharmacey;
   bool store;
   bool company;
@@ -85,13 +84,11 @@ class _RegisterState extends State<Register> {
   ];
   RegisterBloc registerBloc = sl<RegisterBloc>();
   List<Roles> pharmaroles = [];
-    List<Roles> storeRoles = [];
-      List<Roles> companyRoles = [];
-
+  List<Roles> storeRoles = [];
+  List<Roles> companyRoles = [];
 
   @override
   void initState() {
-  
     registerBloc.add(FetchRolesEvent());
     pharmacey = false;
     store = false;
@@ -103,11 +100,9 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    jobdesc  =null;
-    
-     pharmaroles = [];
- storeRoles = [];
- companyRoles = [];
+    pharmaroles = [];
+    storeRoles = [];
+    companyRoles = [];
     return Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: PreferredSize(
@@ -123,8 +118,24 @@ class _RegisterState extends State<Register> {
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: h(20),
+            BlocListener(
+              bloc: registerBloc,
+              listener: (context, state) {
+                
+
+             
+                                      
+                                                    if (state is Error){
+                                      Toast.show(state.error, context,gravity: 2);
+                                    
+                                                    }
+                                    
+                                   
+
+              },
+              child: SizedBox(
+                height: h(20),
+              ),
             ),
             SizedBox(
                 height: h(75),
@@ -148,9 +159,7 @@ class _RegisterState extends State<Register> {
                         pharmacey = false;
                         company = false;
                       }
-                      setState(() {
-
-                      });
+                      setState(() {});
                     })),
             SizedBox(
               height: h(20),
@@ -215,45 +224,54 @@ class _RegisterState extends State<Register> {
                                 BlocBuilder(
                                   bloc: registerBloc,
                                   builder: (context, state) {
-                                    if (state is Loading){
-                                      return Center(child: CircularProgressIndicator());
+                                    if (state is Loading) {
+                                      return Center(
+                                          child: CircularProgressIndicator());
                                     }
-                                    if (state is FetchRolesState){
-                                          for (var i = 0 ; i < state.rolesModel.response.length ; i ++){
-                                            if (state.rolesModel.response[i].roleType.contains('Pharmacy')){
-                                                  pharmaroles.add(state.rolesModel.response[i]);
-                                            }
-                                            else if (state.rolesModel.response[i].roleType.contains('Warehouse')){
-
-                                                       storeRoles.add(state.rolesModel.response[i]);
-                                            }
-                                            else  if (state.rolesModel.response[i].roleType.contains('Company')){
-                                                  companyRoles.add(state.rolesModel.response[i]);
-
-                                            }
-                                           
-                                            
-                                          }
-                        
+                                    if (state is FetchRolesState) {
+                                      for (var i = 0;
+                                          i < state.rolesModel.response.length;
+                                          i++) {
+                                        if (state
+                                            .rolesModel.response[i].roleType
+                                            .contains('Pharmacy')) {
+                                          pharmaroles.add(
+                                              state.rolesModel.response[i]);
+                                        } else if (state
+                                            .rolesModel.response[i].roleType
+                                            .contains('Warehouse')) {
+                                          storeRoles.add(
+                                              state.rolesModel.response[i]);
+                                        } else if (state
+                                            .rolesModel.response[i].roleType
+                                            .contains('Company')) {
+                                          companyRoles.add(
+                                              state.rolesModel.response[i]);
+                                        }
+                                      }
                                     }
+
                                     return emptyContainer(
                                         desc: "الوصف الوظيفي",
                                         widget: Directionality(
                                           textDirection: TextDirection.rtl,
                                           child: DropDown(
                                             chosenvalue: jobdesc,
-                                            list: pharmacey ? pharmaroles : store?storeRoles : companyRoles,
+                                            list: pharmacey
+                                                ? pharmaroles
+                                                : store
+                                                    ? storeRoles
+                                                    : companyRoles,
                                             hint: hint,
                                             onchanged: (val) {
                                               jobdesc = val.name;
-                                                        accountRoleId = val.id;
+                                              accountRoleId = val.id;
                                             },
-                                            getindex: (val) {
-                                    
-                                            },
+                                            getindex: (val) {},
                                           ),
                                         ));
                                   },
+                                 
                                 ),
                                 SizedBox(
                                   height: h(17),
@@ -391,14 +409,6 @@ class _RegisterState extends State<Register> {
                                 SizedBox(
                                   height: h(10),
                                 ),
-                                Container(
-                                  width: w(300),
-                                  child: text(
-                                      text: "يمكن تحميل السجل التجاري لاحقا",
-                                      color: Colors.yellow[800],
-                                      fontsize: 14.sp,
-                                      textAlign: TextAlign.end),
-                                ),
                                 SizedBox(
                                   height: h(20),
                                 ),
@@ -490,8 +500,8 @@ class _RegisterState extends State<Register> {
             ),
             InkWell(
                 onTap: () {
-                  if (pharmacey && newOne) {
-                    if (series || branch || (store && newOne)) {
+                  if (pharmacey && newOne || store && !registered) {
+                    if (series || branch || store) {
                       if (jobdesc != null &&
                           name != null &&
                           mobile != null &&
@@ -514,11 +524,7 @@ class _RegisterState extends State<Register> {
                         registerPharmaRequestodel.belongableLocation = location;
                         registerPharmaRequestodel.belongablePhone = mobile;
                         registerPharmaRequestodel.setAccountRolesId =
-                            accountRoleId == 0
-                                ? "5"
-                                : accountRoleId == 1
-                                    ? "6"
-                                    : "7";
+                            accountRoleId.toString();
 
                         nav(
                             context,
@@ -558,7 +564,10 @@ class _RegisterState extends State<Register> {
                       Toast.show('الرجاء اكمال المعلومات اولا', context,
                           gravity: 1);
                     }
-                  } else {
+                  }
+               
+                  
+                   else {
                     Toast.show('الرجاء اكمال المعلومات اولا', context,
                         gravity: 1);
                   }

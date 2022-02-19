@@ -4,7 +4,7 @@ import 'package:pharma/Core/network/network_info.dart';
 import 'package:pharma/Core/remote_data_function/http_methods.dart';
 
 abstract class AccountStatmentRemoteData  {
-  Future sendStatment (String fromDate , String toDate  , String storeId , String ticketType);
+  Future sendStatment (String fromDate , String toDate  , String storeId , String ticketType,String userId);
 }
 
 class AccountStatmentRemoteDataImp implements AccountStatmentRemoteData {
@@ -14,9 +14,9 @@ class AccountStatmentRemoteDataImp implements AccountStatmentRemoteData {
   AccountStatmentRemoteDataImp(this.networkFunctions, this.networkInf);
 
   @override
-  Future sendStatment(String fromDate, String toDate, String storeId, String ticketType) async {
+  Future sendStatment(String fromDate, String toDate, String storeId, String ticketType,String userid) async {
  
-    var response = await networkFunctions.postMethod(baseurl: networkInf.baseUrl , url:  '/NewTicket?from_date=$fromDate&to_date=$toDate&warehouses_id=$storeId&ticket_types_id=$ticketType');
+    var response = await networkFunctions.postMethod(baseurl: networkInf.baseUrl , url:  '/NewTicket?from_date=$fromDate&to_date=$toDate&warehouses_id=$storeId&ticket_types_id=$ticketType&api_token=$userid');
   var result =json.decode(response);
   return result['AZSVR'];
   } 

@@ -12,13 +12,13 @@ class AccountStatmentRepositoryImp implements AccountStatmentRepository{
   AccountStatmentRepositoryImp(this.accountStatmentRemoteData, this.networkInf);
 
   @override
-  Future<Either<Failure, String>> accountStatment(String fromDate, String toDate, String storeId, String ticketType) async {
+  Future<Either<Failure, String>> accountStatment(String fromDate, String toDate, String storeId, String ticketType,String userId) async {
 
 
              if (await networkInf.isConnected) {
       try {
         final result =
-            await accountStatmentRemoteData.sendStatment(fromDate, toDate, storeId, ticketType);
+            await accountStatmentRemoteData.sendStatment(fromDate, toDate, storeId, ticketType, userId);
          
 
         return Right((result));

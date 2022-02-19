@@ -30,8 +30,9 @@ import '../../../../injection.dart';
 
 // ignore: must_be_immutable
 class OperationType extends StatefulWidget {
-
-  OperationType({Key key, }) : super(key: key);
+  OperationType({
+    Key key,
+  }) : super(key: key);
 
   @override
   _OperationTypeState createState() => _OperationTypeState();
@@ -57,17 +58,16 @@ class _OperationTypeState extends State<OperationType> {
   TextEditingController todatec = TextEditingController();
   TextEditingController billnumc = TextEditingController();
   TextEditingController billdatec = TextEditingController();
- int operationId ;
+  int operationId;
   String restoreReason;
   List<PharmacyTickets> ticketslist = [];
   List<String> storeorcompanylist = ["company1", "company2"];
   List<String> restoreReasons = ["reason1", "reason2"];
   OperationsBloc operationsBloc = sl<OperationsBloc>();
   List<Warehouse> stores = [];
-  int typeIndex ;
+  int typeIndex;
   @override
   void initState() {
-
     typeIndex = 0;
     fromdate = DateTime.now().year.toString() +
         '-' +
@@ -79,18 +79,20 @@ class _OperationTypeState extends State<OperationType> {
         DateTime.now().month.toString() +
         "-" +
         DateTime.now().day.toString();
-        
-            operationsBloc.add(PharmacyTicketsEvent());
-   
+
+                
+
+    operationsBloc.add(PharmacyTicketsEvent());
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = [
-      copyForBill(),
+      accountStatment(),
       createAccount(),
-
+      copyForBill(),
       GestureDetector(
           onTap: () {
             if (info.contains("1")) {
@@ -100,56 +102,54 @@ class _OperationTypeState extends State<OperationType> {
                   quantuty, reasonforrestore, restorebillnumber);
           },
           child: restore()),
-      accountStatment(),
     ];
     return BlocBuilder(
       bloc: operationsBloc,
       builder: (context, state) {
-        if (state is OperationsInitial){
+        if (state is OperationsInitial) {
           return Center(child: CircularProgressIndicator());
         }
         return Scaffold(
-          endDrawer: HomeDrawer(),
-          appBar: PreferredSize(
-            child: Padding(
-              padding: EdgeInsets.only(top: 20.0),
-              child: ticketslist.isNotEmpty ? BasicAppBar(title: ticketslist[typeIndex].name.split('/').last) : Center(child: CircularProgressIndicator()),
+            endDrawer: HomeDrawer(),
+            appBar: PreferredSize(
+              child: Padding(
+                padding: EdgeInsets.only(top: 20.0),
+                child: ticketslist.isNotEmpty
+                    ? BasicAppBar(
+                        title: ticketslist[typeIndex].name.split('/').last)
+                    : Center(child: CircularProgressIndicator()),
+              ),
+              preferredSize: Size.fromHeight(80),
             ),
-            preferredSize: Size.fromHeight(80),
-          ),
-          body: SingleChildScrollView(
-            child: 
-                  BlocBuilder(
-bloc: operationsBloc,
-      builder: (context, state) {
-        if (state is OperationsInitial){
-                  return  Center(child: LinearProgressIndicator());
-        }
-        if (state is LoadingTickets ){
-
-          return  Center(child: LinearProgressIndicator());
-
-        }
-        if  (state is PharmacyTicketsState
-        ){
-          log('here from state');
-          ticketslist = state.pharmacyTicketsModel.response;
-
-           operationsBloc.add(FetchStoresEvent());
-
-        }return
-            Column(
-              children: [
-                
-            ticketslist.isNotEmpty?    operationslist(ticketslist, typeIndex): SizedBox(),
-                SizedBox(
-                  height: h(50),
-                ),
-                widgets[typeIndex]
-              ],
-            );
-         }   ),
-        ));
+            body: SingleChildScrollView(
+              child: BlocBuilder(
+                  bloc: operationsBloc,
+                  builder: (context, state) {
+                    if (state is OperationsInitial) {
+                      return Center(child: LinearProgressIndicator());
+                    }
+                    if (state is LoadingTickets) {
+                      return Center(child: LinearProgressIndicator());
+                    }
+                    if (state is PharmacyTicketsState) {
+                      log('here from state');
+                      ticketslist = state.pharmacyTicketsModel.response;
+                       operationId = ticketslist[0].id;
+                      operationsBloc.add(FetchStoresEvent());
+                    }
+                    return Column(
+                      children: [
+                        ticketslist.isNotEmpty
+                            ? operationslist(ticketslist, typeIndex)
+                            : SizedBox(),
+                        SizedBox(
+                          height: h(50),
+                        ),
+                        widgets[typeIndex]
+                      ],
+                    );
+                  }),
+            ));
       },
     );
   }
@@ -166,13 +166,13 @@ bloc: operationsBloc,
             direction: "horizn",
             hight: h(70),
             width: MediaQuery.of(context).size.width - w(50),
-            itemcount: 4,
+            itemcount: ticketslist.length,
             padding: 5,
             function: (context, index) {
               return GestureDetector(
                 onTap: () {
                   operationId = list[index].id;
-                typeIndex   = index;
+                  typeIndex = index;
                   setState(() {});
                 },
                 child: container(
@@ -183,7 +183,7 @@ bloc: operationsBloc,
                     child: text(
                         text: list[index].name.split("/").last,
                         color: id == index ? Colors.white : AppColor.grey,
-                        fontsize: 14.sp,
+                        fontsize: 13.sp,
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center),
                   ),
@@ -194,21 +194,46 @@ bloc: operationsBloc,
 
   Widget accountStatment() {
     return Column(children: [
-      emptyContainer(
-          desc: "اسم المستودع",
-          widget: Directionality(
-            textDirection: TextDirection.rtl,
-            child: DropDown(
-              chosenvalue: storeName,
-              list: stores,
-              hint: "",
-              onchanged: (val) {
-                storeName = val.name;
-                storeId = val.id;
-              },
-              getindex: (val) {},
-            ),
-          )),
+      BlocConsumer(
+       bloc: operationsBloc,
+        listener: (context, state) {
+          if (state is AccountStatmentState) {
+            Toast.show('تم ارسال الطلب بنجاح', context);
+          }
+
+          if (state is Error) {
+            Toast.show(state.error, context, gravity: 2);
+          }
+          if (state is FetchStoresState) {
+            stores = state.storesModel.warehouses;
+          }
+        },
+        builder: (context, state) {
+          if (state is FetchStoresState) {
+            stores = state.storesModel.warehouses;
+          }
+
+          if (state is Loading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          
+          return emptyContainer(
+              desc: "اسم المستودع",
+              widget: Directionality(
+                textDirection: TextDirection.rtl,
+                child: DropDown(
+                  chosenvalue: storeName,
+                  list: stores,
+                  hint: "",
+                  onchanged: (val) {
+                    storeName = val.name;
+                    storeId = val.id;
+                  },
+                  getindex: (val) {},
+                ),
+              ));
+        },
+      ),
       SizedBox(
         height: h(50),
       ),
@@ -232,35 +257,16 @@ bloc: operationsBloc,
       SizedBox(
         height: h(150),
       ),
-      BlocConsumer(
-        bloc: operationsBloc,
-        listener: (context, state) {
-          if (state is AccountStatmentState) {
-            Toast.show('تم ارسال الطلب بنجاح', context);
-          }
-
-          if (state is Error) {
-            Toast.show(state.error, context, gravity: 2);
-          }
-        },
-        builder: (context, state) {
-          if (state is FetchStoresState) {
-            stores = state.storesModel.warehouses;
-          }
-
-          if (state is Loading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          return GestureDetector(
+     GestureDetector(
               onTap: () {
-                print('here');
-                operationsBloc
-                    .add(AccountStatmentEvent(todate, fromdate, '1', '1'));
+                if (storeId!=null)
+                operationsBloc.add(AccountStatmentEvent(todate, fromdate,
+                    storeId.toString(), operationId.toString()));
               },
               child:
-                  appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold));
-        },
-      )
+                  appbutton(AppColor.blue, "ارسال الطلب  ", FontWeight.bold))
+        
+      
     ]);
   }
 

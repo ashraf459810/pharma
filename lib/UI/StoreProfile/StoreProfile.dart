@@ -46,7 +46,9 @@ class _StoreProfileState extends State<StoreProfile> {
             ),
             preferredSize: Size.fromHeight(70)),
         backgroundColor: Colors.white,
-        body: Column(children: [
+        body: ListView(
+          shrinkWrap: true,
+          children: [
           Center(
             child: Container(
               height: h(150),
