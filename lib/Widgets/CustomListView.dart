@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget customlistview(
     {final double hight,
+    final bool reverse ,
     final double width,
     final int itemcount,
     final direction,
@@ -13,7 +14,7 @@ Widget customlistview(
     height: hight,
     width: width,
     child: ListView.builder(
-      reverse: true,
+      reverse:  reverse ?? false,
         physics: ScrollPhysics(
             parent: scroll
                 ? AlwaysScrollableScrollPhysics()
