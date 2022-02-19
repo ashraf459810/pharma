@@ -119,7 +119,7 @@ class _OperationTypeState extends State<OperationType> {
                         title: ticketslist[typeIndex].name.split('/').last)
                     : Center(child: CircularProgressIndicator()),
               ),
-              preferredSize: Size.fromHeight(80),
+              preferredSize: Size.fromHeight(100),
             ),
             body: SingleChildScrollView(
               child: BlocBuilder(
@@ -159,7 +159,7 @@ class _OperationTypeState extends State<OperationType> {
         color: Colors.white,
         borderRadius: 40,
         width: w(400) - w(40),
-        hight: h(80),
+        hight: h(60),
         child: customlistview(
             scroll: false,
             controller: ScrollController(),
@@ -183,7 +183,7 @@ class _OperationTypeState extends State<OperationType> {
                     child: text(
                         text: list[index].name.split("/").last,
                         color: id == index ? Colors.white : AppColor.grey,
-                        fontsize: 13.sp,
+                        fontsize: 12.sp,
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center),
                   ),

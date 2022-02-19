@@ -70,16 +70,17 @@ class _TransferState extends State<Transfer> {
           appBar: PreferredSize(
             
             child: Padding(
-              padding: EdgeInsets.only(top: 30.0),
+              padding: EdgeInsets.only(top: h(40)),
               child: AppBar(
                 
                      bottom:  TabBar(
+                       padding: EdgeInsets.only(bottom: h(0)),
                        onTap: (value) {
                         log(value.toString());
                          index = value;
-setState(() {
+                      setState(() {
   
-});
+                        });
                           
 
                        } ,
@@ -99,7 +100,7 @@ unselectedLabelColor: Colors.black,
               elevation: 0,
                 title: text(text: 'تحويل',fontsize: 20.sp,fontWeight: FontWeight.bold,color: Colors.black),centerTitle: true,)
             ),
-            preferredSize: Size.fromHeight(120),
+            preferredSize: Size.fromHeight(150),
           ),
           body: ListView(
             children: [

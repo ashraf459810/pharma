@@ -175,7 +175,7 @@ class _SignInState extends State<SignIn> {
                 child: container(
                     borderRadius: 30,
                     hight: h(65),
-                    width: w(160),
+                    width: w(130),
                     bordercolor: AppColor.grey,
                     child: Center(
                       child: text(

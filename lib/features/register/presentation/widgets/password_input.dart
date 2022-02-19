@@ -57,7 +57,7 @@ class _PaswordInputState extends State<PaswordInput> {
             height: h(6),
           ),
           container(
-              hight: h(70),
+              hight: h(60),
               width: w(343),
               borderRadius: 40,
               bordercolor: AppColor.grey,

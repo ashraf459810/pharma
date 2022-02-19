@@ -43,7 +43,7 @@ class _TypeFilterState extends State<TypeFilter> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(80)) / 2.5,
-                          width: w(60),
+                          width: w(50),
                           decoration: BoxDecoration(
                             color:
                                 widget.company ? Colors.blue[50] : Colors.grey[50],
@@ -87,7 +87,7 @@ class _TypeFilterState extends State<TypeFilter> {
                       child: Container(
                             width:
                                 (MediaQuery.of(context).size.width - w(80)) / 2.5,
-                            height: w(60),
+                            height: w(50),
                             decoration: BoxDecoration(
                               color:
                                   widget.store ? Colors.blue[50] : Colors.grey[50],
@@ -126,7 +126,7 @@ class _TypeFilterState extends State<TypeFilter> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(60)) / 2.5,
-                          width: w(60),
+                          width: w(50),
                           decoration: BoxDecoration(
                             color:
                                 widget.pharmacey ? Colors.blue[50] : Colors.grey[50],

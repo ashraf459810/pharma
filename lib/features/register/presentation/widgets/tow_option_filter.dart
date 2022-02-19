@@ -44,7 +44,7 @@ class _TwoOptionFilterState extends State<TwoOptionFilter> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(80)) /1.7,
-                          width: w(60),
+                          width: w(50),
                           decoration: BoxDecoration(
                             color:
                                 widget.registeredFarmacy ? Colors.blue[50] : Colors.grey[50],
@@ -90,7 +90,7 @@ class _TwoOptionFilterState extends State<TwoOptionFilter> {
                         child: Container(
                           height:
                               (MediaQuery.of(context).size.width - w(60)) / 1.7,
-                          width: w(60),
+                          width: w(50),
                           decoration: BoxDecoration(
                             color:
                                 widget.newFarmacy ? Colors.blue[50] : Colors.grey[50],

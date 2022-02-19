@@ -10,7 +10,7 @@ Widget appbutton([Color color, String value, FontWeight fontWeight]) {
       color: color,
       borderRadius: 30,
       hight: h(65),
-      width: w(160),
+      width: w(130),
       child: Center(
           child: text(
               text: value,

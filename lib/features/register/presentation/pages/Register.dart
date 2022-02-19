@@ -406,12 +406,12 @@ class _RegisterState extends State<Register> {
                                         ],
                                       )
                                     : SizedBox(),
-                                SizedBox(
-                                  height: h(10),
-                                ),
-                                SizedBox(
-                                  height: h(20),
-                                ),
+                                // SizedBox(
+                                //   height: h(10),
+                                // ),
+                                // SizedBox(
+                                //   height: h(20),
+                                // ),
                                 SizedBox(
                                   height: h(15),
                                 )
@@ -495,9 +495,9 @@ class _RegisterState extends State<Register> {
                           ))
                     ],
                   ),
-            SizedBox(
-              height: h(10),
-            ),
+            // SizedBox(
+            //   height: h(10),
+            // ),
             InkWell(
                 onTap: () {
                   if (pharmacey && newOne || store && !registered) {

@@ -68,9 +68,9 @@ class _PersonalInfoState extends State<PersonalInfo> {
  key: formKey,
             child: Column(
               children: [
-                // SizedBox(
-                //   height: h(20),
-                // ),
+                SizedBox(
+                  height: h(20),
+                ),
                 inputContainer(
                   validation: 'email',
                   desc: "      البريد الإلكتروني",

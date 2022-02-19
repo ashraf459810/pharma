@@ -33,7 +33,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: h(10),
+                  height: h(25),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,

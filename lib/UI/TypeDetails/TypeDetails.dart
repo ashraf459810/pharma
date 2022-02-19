@@ -22,18 +22,23 @@ class _TypeDetailsState extends State<TypeDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.black),
-        title: text(
-            text: "ملف الصيدلية",
-            color: Colors.black,
-            fontsize: 20.sp,
-            fontWeight: FontWeight.bold,
-            textAlign: TextAlign.center),
-        foregroundColor: Colors.grey[50],
-        backgroundColor: Colors.grey[50],
-        elevation: 0,
+      appBar: PreferredSize(preferredSize: Size.fromHeight(h(120)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: AppBar(
+            centerTitle: true,
+            iconTheme: IconThemeData(color: Colors.black),
+            title: text(
+                text: "ملف الصيدلية",
+                color: Colors.black,
+                fontsize: 20.sp,
+                fontWeight: FontWeight.bold,
+                textAlign: TextAlign.center),
+            foregroundColor: Colors.grey[50],
+            backgroundColor: Colors.grey[50],
+            elevation: 0,
+          ),
+        ),
       ),
       body: Column(
         children: [

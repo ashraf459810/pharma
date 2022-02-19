@@ -20,40 +20,45 @@ class _BasicAppBarState extends State<BasicAppBar> {
      
       backgroundColor: Colors.grey[50],
       appBar: PreferredSize(
-          child: AppBar(
-            leading: Padding(
-              padding: EdgeInsets.only(bottom: h(22.0)),
-            ),
-            foregroundColor: Colors.grey[50],
-            backgroundColor: Colors.grey[50],
-            elevation: 0,
-            actions: [
-              Container(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                          SizedBox(width: w(12),),
-                    container(color: Colors.grey[50],
-                      width: w(150),hight: h(60),child: text(text: widget.title ,color: Colors.black,fontWeight: FontWeight.bold,fontsize: 22.sp)),
- 
-                      InkWell(
-                        onTap: () {
-                                  Scaffold.of(context).openEndDrawer();
-                        },
-                        child: SvgPicture.asset(
-                    'assets/images/menu.svg'
-                        ),
-                      ),
-                  
-                    ],
-                  ),
+          child: Column(
+            children: [
+              SizedBox(height: h(20),),
+              AppBar(
+                leading: Padding(
+                  padding: EdgeInsets.only(bottom: h(22.0)),
                 ),
+                foregroundColor: Colors.grey[50],
+                backgroundColor: Colors.grey[50],
+                elevation: 0,
+                actions: [
+                  Container(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                              SizedBox(width: w(12),),
+                        container(color: Colors.grey[50],
+                          width: w(150),hight: h(60),child: text(text: widget.title ,color: Colors.black,fontWeight: FontWeight.bold,fontsize: 22.sp)),
+ 
+                          InkWell(
+                            onTap: () {
+                                      Scaffold.of(context).openEndDrawer();
+                            },
+                            child: SvgPicture.asset(
+                        'assets/images/menu.svg'
+                            ),
+                          ),
+                      
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-          preferredSize: Size.fromHeight(120)),
+          preferredSize: Size.fromHeight(100)),
     );
  
   }

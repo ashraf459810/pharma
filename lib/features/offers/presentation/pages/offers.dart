@@ -38,7 +38,7 @@ class _OffersState extends State<Offers> {
         endDrawer:    HomeDrawer(),
       appBar: PreferredSize(
         child: Padding(
-          padding: const EdgeInsets.only(top: 30.0),
+          padding:  EdgeInsets.only(top: h(50)),
           child: HomePageAppBar(
           
           ),
