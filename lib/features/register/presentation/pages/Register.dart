@@ -303,8 +303,14 @@ class _RegisterState extends State<Register> {
                                         children: [
                                           InkWell(
                                             onTap:  () {
-                                              log('here');
-                                        nav(context, MapLocation());},
+                                            
+                                        nav(context, MyLocation(function: (value){
+                                       
+                                   location = value.latitude.toString() + ","+ value.longitude.toString();
+                                   log(location)
+                                  ;
+                                          
+                                        },));},
                                             child: emptyContainer(
                                                 desc: "الموقع",
                                                 // hint: "شارع الفيحاء",

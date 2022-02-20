@@ -47,9 +47,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       }
 
       if (event is GetLocationEvent){
+        emit(Loading());
         await Permission.location.isGranted;
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
+
+          print(position);
           
      emit (GetLocaionState(position));}
         
