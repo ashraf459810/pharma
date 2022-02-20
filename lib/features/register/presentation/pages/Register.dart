@@ -59,6 +59,7 @@ class _RegisterState extends State<Register> {
   String name;
   TextEditingController searchc = TextEditingController();
   TextEditingController pharmacynamec = TextEditingController();
+   TextEditingController branchc = TextEditingController();
   TextEditingController pharmacymobilec = TextEditingController();
   TextEditingController mainbranchmobilec = TextEditingController();
   TextEditingController pharmacylocationc = TextEditingController();
@@ -70,8 +71,7 @@ class _RegisterState extends State<Register> {
   var type;
   String registerOrNew;
   String oneBranchOrMany;
-  bool branch = false;
-  bool series = false;
+  String branch ;
   XFile tradRecord;
   XFile workLicense;
   XFile mozawala;
@@ -193,34 +193,13 @@ class _RegisterState extends State<Register> {
             SizedBox(
               height: h(20),
             ),
-            !registered
-                ? Column(
+        
+                Column(
                     children: [
-                      registerOrNew != null && (!store) & (!company)
-                          ? SizedBox(
-                              height: h(70),
-                              child: TwoOptionFilter(
-                                registeredFarmacy: series,
-                                newFarmacy: branch,
-                                option1: 'سلسلة',
-                                option2: 'فرع وحيد',
-                                getOption: (val) {
-                                  oneBranchOrMany = val;
-                                  if (val == 'سلسلة') {
-                                    branch = false;
-                                    series = true;
-                                  } else {
-                                    branch = true;
-                                    series = false;
-                                  }
-                                  setState(() {});
-                                },
-                              ))
-                          : SizedBox(),
-                      SizedBox(
-                        height: h(24),
-                      ),
-                      (pharmacey && (branch || series) || store || company) &&
+                     
+                   
+                
+                      (pharmacey  || store || company) &&
                               (newOne)
                           ? Column(
                               children: [
@@ -285,6 +264,17 @@ class _RegisterState extends State<Register> {
                                     hint: "صيدلية الشفاء",
                                     value: (val) {
                                       name = val;
+                                    }),
+                             SizedBox(
+                                  height: h(17),
+                                ),
+
+                                        inputContainer(
+                                    desc: "الفرع",
+                                    controller: branchc,
+                                    hint: "فرع الشفاء",
+                                    value: (val) {
+                                      branch = val;
                                     }),
                                 SizedBox(
                                   height: h(17),
@@ -447,9 +437,11 @@ class _RegisterState extends State<Register> {
                                 )
                               ],
                             )
-                          : SizedBox(),
-                    ],
-                  )
+                         
+                    
+                
+              
+              
                 : Column(
                     children: [
                       inputContainer(
@@ -533,7 +525,7 @@ class _RegisterState extends State<Register> {
             InkWell(
                 onTap: () {
                   if (pharmacey && newOne || store && !registered) {
-                    if (series || branch || store) {
+                    if ( store) {
                       if (jobdesc != null &&
                           name != null &&
                           mobile != null &&
@@ -543,7 +535,7 @@ class _RegisterState extends State<Register> {
                           tradRecord != null &&
                           workLicense != null &&
                           mozawala != null) {
-                        registerPharmaRequestodel.belongableName = name;
+                        registerPharmaRequestodel.belongableName = name ;
                         type == 'صيدلية'
                             ? registerPharmaRequestodel.belongType = 'Pharmacy'
                             : type == 'شركة'
@@ -607,9 +599,9 @@ class _RegisterState extends State<Register> {
                 child: appbutton(AppColor.blue, " التالي", FontWeight.bold)),
             SizedBox(
               height: h(10),
-            )
-          ],
-        )));
+            )])])));
+          
+        
   }
 }
 
