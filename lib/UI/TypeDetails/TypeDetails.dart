@@ -40,7 +40,8 @@ class _TypeDetailsState extends State<TypeDetails> {
           ),
         ),
       ),
-      body: Column(
+      body: ListView(
+        shrinkWrap: true,
         children: [
           SizedBox(
             height: h(20),
@@ -156,82 +157,85 @@ class _TypeDetailsState extends State<TypeDetails> {
         width: w(375),
         color: Colors.white,
         borderRadius: 10,
-        child: Column(
-          children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    // mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: w(70),
-                        child: text(
-                            textAlign: TextAlign.end,
-                            text: "صيدلية الشفاء",
-                            fontsize: 12.sp),
-                      ),
-                      Container(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxHeight: h(100),
-                            maxWidth: w(250),
-                          ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            children: [
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      // mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: w(70),
                           child: text(
                               textAlign: TextAlign.end,
-                              text:
-                                  "Panadol Advance with Optizorb Formulation 48 Tablets",
-                              fontsize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
+                              text: "صيدلية الشفاء",
+                              fontsize: 12.sp),
                         ),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      container(
-                        hight: h(80),
-                        width: w(80),
-                        borderRadius: 10,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            "assets/images/med.png", fit: BoxFit.contain,
-                            height: h(80), width: w(80),
-                            // height: h(300),
+                        Container(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: h(100),
+                              maxWidth: w(250),
+                            ),
+                            child: text(
+                                textAlign: TextAlign.end,
+                                text:
+                                    "Panadol Advance with Optizorb Formulation 48 Tablets",
+                                fontsize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        container(
+                          hight: h(80),
+                          width: w(80),
+                          borderRadius: 10,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              "assets/images/med.png", fit: BoxFit.contain,
+                              height: h(80), width: w(80),
+                              // height: h(300),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: h(10),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  typeSpecifications(h(30), w(70), "500 ml"),
+                  typeSpecifications(h(30), w(70), "الكمية ٤٠٠"),
+                  typeSpecifications(h(30), w(90), "اضافي ٢٠+٢٠٠"),
+                  typeSpecifications(h(30), w(100), "تاريخ الانتهاء ١٢/١٢/٢٠٢٢"),
                 ],
               ),
-            ),
-            SizedBox(
-              height: h(10),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                typeSpecifications(h(30), w(70), "500 ml"),
-                typeSpecifications(h(30), w(70), "الكمية ٤٠٠"),
-                typeSpecifications(h(30), w(90), "اضافي ٢٠+٢٠٠"),
-                typeSpecifications(h(30), w(100), "تاريخ الانتهاء ١٢/١٢/٢٠٢٢"),
-              ],
-            ),
-            SizedBox(
-              height: h(30),
-            ),
-            InkWell(
-                onTap: () {
-                  nav(context, OrderMedChat());
-                },
-                child: appbutton(AppColor.blue, "طلب الصنف"))
-          ],
+              SizedBox(
+                height: h(30),
+              ),
+              InkWell(
+                  onTap: () {
+                    nav(context, OrderMedChat());
+                  },
+                  child: appbutton(AppColor.blue, "طلب الصنف"))
+            ],
+          ),
         ));
   }
 

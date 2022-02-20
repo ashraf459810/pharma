@@ -54,7 +54,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     Container(
                         alignment: Alignment.centerRight,
                       width: w(120),
-                      child: text(text: 'عروض جديدة',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'عروض جديدة',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SvgPicture.asset('assets/images/newOffers.svg',height: h(30),width: w(30),)
 
@@ -67,7 +67,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                     Container(
                       alignment: Alignment.centerRight,
                   width: w(120),
-                      child: text(text: 'المحادثات',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'المحادثات',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SvgPicture.asset('assets/images/chats.svg',height: h(30),width: w(30),)
 
@@ -82,7 +82,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
         
                       alignment: Alignment.centerRight,
                   width: w(140),
-                      child: text(text: 'سجل العمليات',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'سجل العمليات',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SizedBox(width: w(50),
                       child: SvgPicture.asset('assets/images/operation.svg',height: h(30),width: w(30),color: Colors.black87,))
@@ -99,7 +99,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
               
                       alignment: Alignment.centerRight,
                   width: w(140),
-                      child: text(text: 'اصنافي المعروضة',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'اصنافي المعروضة',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SizedBox(
                       
@@ -118,7 +118,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
               
                       alignment: Alignment.centerRight,
                   width: w(140),
-                      child: text(text: 'تسجيل حساب فرعي',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'تسجيل حساب فرعي',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SizedBox(
                       
@@ -142,7 +142,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
               
                       alignment: Alignment.centerRight,
                   width: w(140),
-                      child: text(text: 'ملف الصيدلية',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'ملف الصيدلية',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SizedBox(
                       
@@ -158,7 +158,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
               
                       alignment: Alignment.centerRight,
                   width: w(140),
-                      child: text(text: 'المعلومات الشخصية',color:Colors.black,fontsize: 20.sp,fontWeight: FontWeight.bold)),
+                      child: text(text: 'المعلومات الشخصية',color:Colors.black,fontsize: 18.sp,fontWeight: FontWeight.bold)),
 
                     SizedBox(
                       

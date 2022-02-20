@@ -51,7 +51,7 @@ class _FromToDateState extends State<FromToDate> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                           doneStyle:
-                              TextStyle(color: Colors.white, fontSize: 16)),
+                              TextStyle(color: Colors.white, fontSize: 14.sp)),
                       onChanged: (date) {
 
                   
@@ -79,7 +79,7 @@ widget.getDate(finalDate);
                 width: w(130),
                 child: Directionality(
                   textDirection: TextDirection.rtl,
-                  child:text(text: dateTime.year.toString( )+'-'+ dateTime.month.toString( ) + '-' +dateTime.day.toString( ),fontsize: 18.sp),
+                  child:text(text: dateTime.year.toString( )+'-'+ dateTime.month.toString( ) + '-' +dateTime.day.toString( ),fontsize: 14.sp),
               ),
               )],
           )),

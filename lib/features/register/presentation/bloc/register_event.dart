@@ -16,3 +16,7 @@ class RegisterPharmaEvent extends RegisterEvent {
 }
 
 class FetchRolesEvent extends RegisterEvent {}
+
+
+
+class GetLocationEvent  extends RegisterEvent{}

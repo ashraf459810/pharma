@@ -117,7 +117,7 @@ class _OperationTypeState extends State<OperationType> {
                 child: ticketslist.isNotEmpty
                     ? BasicAppBar(
                         title: ticketslist[typeIndex].name.split('/').last)
-                    : Center(child: CircularProgressIndicator()),
+                    : Center(child: SizedBox()),
               ),
               preferredSize: Size.fromHeight(100),
             ),
@@ -159,9 +159,9 @@ class _OperationTypeState extends State<OperationType> {
         color: Colors.white,
         borderRadius: 40,
         width: w(400) - w(40),
-        hight: h(60),
+        hight: h(70),
         child: customlistview(
-            scroll: false,
+            scroll: true,
             controller: ScrollController(),
             direction: "horizn",
             hight: h(70),
@@ -175,17 +175,20 @@ class _OperationTypeState extends State<OperationType> {
                   typeIndex = index;
                   setState(() {});
                 },
-                child: container(
-                  width: w(80),
-                  borderRadius: 30,
-                  color: id == index ? AppColor.blue : Colors.transparent,
-                  child: Center(
-                    child: text(
-                        text: list[index].name.split("/").last,
-                        color: id == index ? Colors.white : AppColor.grey,
-                        fontsize: 12.sp,
-                        fontWeight: FontWeight.bold,
-                        textAlign: TextAlign.center),
+                child: Padding(
+                  padding:  EdgeInsets.symmetric(vertical: h(10)),
+                  child: container(
+                    width: w(80),
+                    borderRadius: 30,
+                    color: id == index ? AppColor.blue : Colors.transparent,
+                    child: Center(
+                      child: text(
+                          text: list[index].name.split("/").last,
+                          color: id == index ? Colors.white : AppColor.grey,
+                          fontsize: 11.sp,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.center),
+                    ),
                   ),
                 ),
               );

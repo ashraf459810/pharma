@@ -7,15 +7,17 @@ import 'package:pharma/Widgets/Text.dart';
 
 Widget appbutton([Color color, String value, FontWeight fontWeight]) {
   return container(
+    
       color: color,
       borderRadius: 30,
-      hight: h(65),
+      hight: h(50),
       width: w(130),
       child: Center(
-          child: text(
-              text: value,
-              color: Colors.white,
-              fontsize: 18.sp,
-              fontWeight: fontWeight ?? FontWeight.normal,
-              textAlign: TextAlign.center)));
+        child: text(
+            text: value,
+            color: Colors.white,
+            fontsize: 16.sp,
+            fontWeight: fontWeight ?? FontWeight.normal,
+          ),
+      ));
 }

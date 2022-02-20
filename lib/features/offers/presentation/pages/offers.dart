@@ -48,9 +48,10 @@ class _OffersState extends State<Offers> {
       body: Container(
         // height: h(700),
         child: ListView(
+          shrinkWrap: true,
           scrollDirection: Axis.vertical,
           controller: ScrollController(),
-          physics: ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+          physics: ScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           children: [
             SizedBox(
               height: h(20),
@@ -85,22 +86,25 @@ class _OffersState extends State<Offers> {
                     onTap: () {
                       nav(context, StoreProfile());
                     },
-                    child: Column(
-                      children: [
-                        Container(
-                              height: h(70),
-                              width: w(70),
-                          decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,),
-                         child: Center(
-                             child: SvgPicture.asset(
-                           "assets/images/store.svg",
-                        height: h(35),
-                        width: w(30),
-                           fit: BoxFit.contain,
-                         )),
-                              ),
-                              text(text: 'سختيان')
-                      ],
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: w(10)),
+                      child: Column(
+                        children: [
+                          Container(
+                                height: h(70),
+                                width: w(70),
+                            decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,),
+                           child: Center(
+                               child: SvgPicture.asset(
+                             "assets/images/store.svg",
+                          height: h(35),
+                          width: w(30),
+                             fit: BoxFit.contain,
+                           )),
+                                ),
+                                text(text: 'سختيان')
+                        ],
+                      ),
                     ),
                     
                   );
@@ -125,8 +129,8 @@ class _OffersState extends State<Offers> {
             Container(
                    color: AppColor.blueTrans,
               child: customlistview(
-                  scroll: true,
-                  hight: h(420),
+                  scroll: false,
+                  // hight: h(420),
                   width: MediaQuery.of(context).size.width,
                   controller: ScrollController(),
                   direction: "vertical",
@@ -134,7 +138,7 @@ class _OffersState extends State<Offers> {
                   padding: 7,
                   function: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(vertical: h(17),horizontal: w(20)),
+                      padding: EdgeInsets.symmetric(vertical: h(1),horizontal: w(20)),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(context,
@@ -147,39 +151,53 @@ class _OffersState extends State<Offers> {
                           // width: MediaQuery.of(context).size.width,
                           child: Stack(
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  "assets/images/item.png", fit: BoxFit.cover,
-                                  // height: h(300),
+                              Container(
+                                height: h(240),
+                                width: w(350),
+                                child: ClipRRect(
+                                  
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  child: Image.asset(
+                                    "assets/images/item.png", fit: BoxFit.cover,
+                                    // height: h(300),
+                                  ),
                                 ),
                               ),
 
                                 Positioned(
-                                  top: h(220),
+                                  top: h(170),
                                   left: w(130),
 
                                   
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                                                    height: h(70),
-                                                                    width: w(70),
-                                                                decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,border: Border.all(color: Colors.white)),
-                                                               child: Center(
-                                                                   child: SvgPicture.asset(
-                                                                 "assets/images/store.svg",
-                                                              height: h(35),
-                                                              width: w(30),
-                                                                 fit: BoxFit.contain,
-                                                               )),
-                                                                    ),
-                                                                                 text(text: 'سختيان',fontWeight: FontWeight.bold)
-                                      ],
-                                    ),
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                                                  height: h(130),
+                                                                  width: w(70),
+                                                              decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,border: Border.all(color: Colors.white)),
+                                                             child: Center(
+                                                                 child: SvgPicture.asset(
+                                                               "assets/images/store.svg",
+                                                            height: h(35),
+                                                            width: w(30),
+                                                               fit: BoxFit.contain,
+                                                             )),
+                                                                  ),
+                                                                           
+                                    ],
                                   ),
                                 ),
+                                    Positioned(
+                                              top: h(280),
+                                  
+                                  
+                                          left: w(145),
+
+                                      child: Container(
+                          
+                                 
+                                        child: text(textAlign: TextAlign.center,
+                                          text: 'سختيان',fontWeight: FontWeight.bold)))
                             ],
                           ),
                         ),

@@ -35,6 +35,7 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
       if (event is AccountStatmentEvent){         
         emit (Loading());
         var token = await saveToken.userRepository.getToken();
+        if (token !=null){
         var response = await accountStatmentUseCase.accountStatmentUseCase(event.fromDate, event.toDate,event. storeId, event.ticketId,token);
         response.fold((l) => emit(Error(l.error)), (r) {
           if (r=="SUCCESS"){
@@ -45,6 +46,10 @@ class OperationsBloc extends Bloc<OperationsEvent, OperationsState> {
           }
 
         });
+      }
+      else {
+        emit(Error('يجب تسجيل الدخول اولا'));
+      }
       }
 
        if (event is PharmacyTicketsEvent){         

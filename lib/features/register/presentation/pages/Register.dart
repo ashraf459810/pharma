@@ -22,6 +22,7 @@ import 'package:pharma/appWidget/inputContainer.dart';
 import 'package:pharma/features/register/data/models/roles_model.dart';
 import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
 import 'package:pharma/features/register/presentation/pages/PersonalInfo.dart';
+import 'package:pharma/features/register/presentation/widgets/map.dart';
 
 import 'package:pharma/features/register/presentation/widgets/tow_option_filter.dart';
 import 'package:pharma/features/register/presentation/widgets/type_filter.dart';
@@ -300,18 +301,26 @@ class _RegisterState extends State<Register> {
                                 type != 'شركة'
                                     ? Column(
                                         children: [
-                                          inputContainer(
-                                              desc: "الموقع",
-                                              hint: "شارع الفيحاء",
-                                              controller: pharmacylocationc,
-                                              widget: Icon(
-                                                Icons.pin_drop,
-                                                color: AppColor.grey,
-                                                size: w(25),
-                                              ),
-                                              value: (val) {
-                                                location = val;
-                                              }),
+                                          InkWell(
+                                            onTap:  () {
+                                              log('here');
+                                        nav(context, MapLocation());},
+                                            child: emptyContainer(
+                                                desc: "الموقع",
+                                                // hint: "شارع الفيحاء",
+                                              
+                                                widget: Row(
+                                                  children: [
+                                                    SizedBox(width: w(20),),
+                                                    Icon(
+                                                      Icons.pin_drop,
+                                                      color: AppColor.grey,
+                                                      size: w(25),
+                                                    ),
+                                                  ],
+                                                ),
+                                                                              ),
+                                          ),
                                           SizedBox(
                                             height: h(17),
                                           ),
@@ -443,12 +452,14 @@ class _RegisterState extends State<Register> {
                         height: h(10),
                       ),
                       Container(
-                          height: h(250),
+                          height: h(270),
                           child: GridView.builder(
+                            
                             scrollDirection: Axis.vertical,
-                            itemCount: 10,
+                            itemCount: 5,
                             itemBuilder: (context, index) {
                               return Container(
+                            
                                 child: Column(
                                   children: [
                                     Container(
@@ -488,7 +499,7 @@ class _RegisterState extends State<Register> {
                             },
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                                    childAspectRatio: 2,
+                                    childAspectRatio: 1.4,
                                     crossAxisSpacing: 1,
                                     mainAxisSpacing: 8,
                                     crossAxisCount: 3),

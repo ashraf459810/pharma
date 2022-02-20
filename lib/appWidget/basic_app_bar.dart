@@ -24,6 +24,7 @@ class _BasicAppBarState extends State<BasicAppBar> {
             children: [
               SizedBox(height: h(20),),
               AppBar(
+                title: text(text: widget.title),
                 leading: Padding(
                   padding: EdgeInsets.only(bottom: h(22.0)),
                 ),

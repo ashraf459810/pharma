@@ -103,6 +103,7 @@ unselectedLabelColor: Colors.black,
             preferredSize: Size.fromHeight(150),
           ),
           body: ListView(
+            shrinkWrap: true,
             children: [
               SizedBox(height: h(20),),
               Column(

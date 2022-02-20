@@ -34,3 +34,11 @@ class FetchRolesState extends RegisterState {
 }
 
 class LoadingRolesState extends RegisterState {}
+
+
+class GetLocaionState extends RegisterState {
+  final Position position ;
+
+  GetLocaionState(this.position);
+
+}

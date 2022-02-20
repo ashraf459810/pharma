@@ -30,7 +30,7 @@ Widget emptyContainer(
       height: h(6),
     ),
     container(
-        hight: hight ?? h(60),
+        hight: hight ?? h(50),
         width: width ?? w(343),
         borderRadius: 40,
         bordercolor: AppColor.grey,

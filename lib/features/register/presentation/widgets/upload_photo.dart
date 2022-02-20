@@ -40,7 +40,7 @@ class _UploadPhotoState extends State<UploadPhoto> {
                             );
                       },
                       child: container(
-                          hight: h(70),
+                          hight: h(50),
                           width: w(343),
                           borderRadius: 40,
                           bordercolor: AppColor.grey,

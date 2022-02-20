@@ -13,6 +13,15 @@
 	<key>CFBundleName</key>
 	<string>pharma</string>
 	<key>CFBundlePackageType</key>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Need location when in use</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Always and when in use!</string>
+    <key>NSLocationUsageDescription</key>
+    <string>Older devices need location.</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Can I haz location always?</string>
 	
 
   <key>NSPhotoLibraryUsageDescription</key>

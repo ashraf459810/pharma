@@ -49,13 +49,13 @@ class _AllOffersState extends State<AllOffers> {
        itemCount: 20,
        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
          
-         crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10,childAspectRatio: 1.2), itemBuilder: (context, index) {
+         crossAxisCount: 2,crossAxisSpacing: 10,mainAxisSpacing: 10,childAspectRatio: 1.1), itemBuilder: (context, index) {
        return  GestureDetector(
          onTap: (){
            nav(context, CompanyProfile(image: 'assets/images/item.png',));
          },
          child: Container(
-                         height: h(200),
+                         height: h(220),
                               // width: MediaQuery.of(context).size.width,
                               child: Stack(
                                 children: [
@@ -68,7 +68,7 @@ class _AllOffersState extends State<AllOffers> {
                                   ),
        
                                     Positioned(
-                                      top: h(100),
+                                      top: h(80),
                                       left: w(70),
        
                                       
@@ -76,18 +76,18 @@ class _AllOffersState extends State<AllOffers> {
                                         child: Column(
                                           children: [
                                             Container(
-                                                                        height: h(50),
-                                                                        width: w(40),
-                                                                    decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,border: Border.all(color: Colors.white)),
-                                                                   child: Center(
-                                                                       child: SvgPicture.asset(
-                                                                     "assets/images/store.svg",
-                                                                  height: h(20),
-                                                                  width: w(20),
-                                                                     fit: BoxFit.contain,
+                                        height: h(50),
+                                    width: w(40),
+                              decoration: BoxDecoration(shape: BoxShape.circle,   color:AppColor.blueTrans,border: Border.all(color: Colors.white)),
+                                    child: Center(
+                                 child: SvgPicture.asset(
+                                         "assets/images/store.svg",
+                                               height: h(20),
+                                         width: w(20),
+                                            fit: BoxFit.contain,
                                                                    )),
                                                                         ),
-                                                                                     text(text: 'سختيان',fontWeight: FontWeight.bold)
+                                             text(text: 'سختيان',fontWeight: FontWeight.bold)
                                           ],
                                         ),
                                       ),

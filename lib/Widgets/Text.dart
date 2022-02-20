@@ -10,7 +10,7 @@ Widget text(
     TextAlign textAlign}) {
   return Text(
     text,
-    textAlign: textAlign ?? TextAlign.start,
+    textAlign: textAlign ?? TextAlign.center,
     style: TextStyle(
         decoration: TextDecoration.none,
         fontFamily: fontfamily ?? "font",
