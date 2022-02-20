@@ -60,6 +60,7 @@ dependencies:
   # country_picker: ^1.0.0
   flutter_local_notifications: ^5.0.0+4
   google_maps_flutter:
+  file_picker:
   cloud_firestore:
   firebase_messaging: ^10.0.1
   image_picker: ^0.8.1+1

@@ -1,4 +1,4 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,10 +10,9 @@ import 'package:pharma/Widgets/Text.dart';
 
 class UploadPhoto extends StatefulWidget {
   final int index;
-
   final String text;
   final Function getImages;
-  UploadPhoto({Key key,  this.text, this.getImages, this.index}) : super(key: key);
+  UploadPhoto({Key key,  this.text, this.getImages, this.index, }) : super(key: key);
 
   @override
   State<UploadPhoto> createState() => _UploadPhotoState();
@@ -26,7 +25,6 @@ class _UploadPhotoState extends State<UploadPhoto> {
     final ImagePicker _picker = ImagePicker();
     @override
   void initState() {
-    log('hereeeeeee');
 
     super.initState();
   }
@@ -35,9 +33,12 @@ class _UploadPhotoState extends State<UploadPhoto> {
     return Scaffold(body:   Center(
       child: GestureDetector(
                       onTap: () {
-                        _onImageButtonPressed(
-                          ImageSource.gallery,
-                            );
+                    
+
+                                    showAlertDialog(context);
+                        // _onImageButtonPressed(
+                        //   ImageSource.gallery,
+                        //     );
                       },
                       child: container(
                           hight: h(50),
@@ -100,4 +101,46 @@ class _UploadPhotoState extends State<UploadPhoto> {
                          
                                 
 
-}}
+}
+
+
+showAlertDialog(BuildContext context) {
+
+  // set up the button
+  
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Align(alignment: Alignment.bottomRight,
+      child: Text("اختر المصدر",style: TextStyle(),)),
+    content: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        GestureDetector(
+          onTap: ()  {
+              Navigator.of(context).pop();
+             _onImageButtonPressed(ImageSource.camera);
+
+          },
+          child: Icon(Icons.camera_alt_outlined,size: 30,)),
+        GestureDetector(
+          onTap: (){
+               Navigator.of(context).pop();
+             _onImageButtonPressed(ImageSource.gallery);
+          },
+          child: Icon(Icons.attachment,size: 30,))
+      ],
+    ),
+  
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+
+}

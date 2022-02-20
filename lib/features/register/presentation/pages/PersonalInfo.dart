@@ -175,6 +175,8 @@ class _PersonalInfoState extends State<PersonalInfo> {
                       }
           
                       if (state is GetRegisterState ){
+
+                        Toast.show('تم التسجيل بنجاح..بانتظار تفعيل الحساب', context,gravity: 2,duration: 4);
           
                             nav(context, SignIn());
           

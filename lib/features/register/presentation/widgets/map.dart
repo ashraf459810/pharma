@@ -108,10 +108,14 @@ class _MyAppState extends State<MyLocation> {
          child: Scaffold(
 
            key: scaffoldkey,
-           
+          
               appBar: AppBar(
+          leading: GestureDetector(
+            onTap:()=> willPopScope(),
+            child: Icon(Icons.check)),
                 //  automaticallyImplyLeading: false,
                 title: Text('حدد الموقع'),
+                
                 centerTitle: true,
                 backgroundColor: Colors.blue[900],
               ),

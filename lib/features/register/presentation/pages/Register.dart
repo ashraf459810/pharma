@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -90,6 +91,7 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
+    log('init');
     registerBloc.add(FetchRolesEvent());
     pharmacey = false;
     store = false;
@@ -305,8 +307,11 @@ class _RegisterState extends State<Register> {
                                             onTap:  () {
                                             
                                         nav(context, MyLocation(function: (value){
-                                       
-                                   location = value.latitude.toString() + ","+ value.longitude.toString();
+                                       setState(() {
+                                          location = value.latitude.toString() + ","+ value.longitude.toString();
+                                       });
+                                  
+                                  
                                    log(location)
                                   ;
                                           
@@ -318,11 +323,20 @@ class _RegisterState extends State<Register> {
                                                 widget: Row(
                                                   children: [
                                                     SizedBox(width: w(20),),
-                                                    Icon(
-                                                      Icons.pin_drop,
-                                                      color: AppColor.grey,
-                                                      size: w(25),
-                                                    ),
+                                                   Row(
+                                                     children: [
+                                  
+                                                       Icon(
+                                                        location == null ?   Icons.pin_drop : Icons.check,
+                                                          color: location == null ?  AppColor.grey : Colors.green,
+                                                          size: w(25),
+                                                        ),
+                                                                             Container(alignment: Alignment.centerRight,
+                                                                            
+                                                                               width: w(290),
+                                                                               child: text(text:       location != null ?  "تم تحديد الموقع":"",fontsize: 16.sp)),
+                                                     ],
+                                                   ),
                                                   ],
                                                 ),
                                                                               ),
@@ -354,6 +368,7 @@ class _RegisterState extends State<Register> {
                                           SizedBox(
                                               height: h(60),
                                               child: UploadPhoto(
+                                              
                                                 index: 0,
                                                 getImages: (val) {
                                                   tradRecord = val;

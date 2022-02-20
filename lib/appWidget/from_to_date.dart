@@ -41,7 +41,7 @@ class _FromToDateState extends State<FromToDate> {
               GestureDetector(onTap: (){
              DatePicker.showDatePicker(context,
                       showTitleActions: true,
-                      minTime: DateTime(2019, 6, 7),
+                      minTime: DateTime(1950, 1, 1),
                       maxTime: DateTime.now(),
                       theme: DatePickerTheme(
                           headerColor: Colors.grey,
