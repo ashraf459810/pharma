@@ -69,6 +69,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:pharma/App/app.dart';
+import 'package:pharma/Core/Consts.dart';
 import 'package:pharma/features/register/presentation/bloc/register_bloc.dart';
 
 import '../../../../injection.dart';
@@ -140,6 +142,7 @@ class _MyAppState extends State<MyLocation> {
                     children: <Widget>[
                       Expanded(
                         child: GoogleMap(
+                          zoomControlsEnabled: false,
                           myLocationButtonEnabled: true,
                           initialCameraPosition: CameraPosition(
                             target: LatLng( mainLocation.latitude,mainLocation.longitude),
@@ -170,6 +173,17 @@ class _MyAppState extends State<MyLocation> {
                       ),
                     ],
                   ),
+
+                Positioned(
+                  right: w(10),
+                  top: h(600),
+                  child: GestureDetector(
+                    onTap: (){
+                      willPopScope();
+                    },
+                    child: Container(height: h(70),width: w(70),decoration: BoxDecoration(shape: BoxShape.circle,color: AppColor.blue),child: Icon(Icons.check,color: Colors.white,size: 40,),)),
+                )
+
              ],
            );
          
