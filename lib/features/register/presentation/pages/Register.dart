@@ -65,12 +65,10 @@ class _RegisterState extends State<Register> {
   TextEditingController pharmacylocationc = TextEditingController();
   String mobile;
   String mainbranchnumber;
-  int pharmacyCount = 1;
   String iscolored = "1";
   String location;
   var type;
   String registerOrNew;
-  String oneBranchOrMany;
   String branch ;
   XFile tradRecord;
   XFile workLicense;
@@ -94,6 +92,7 @@ class _RegisterState extends State<Register> {
     log('init');
     registerBloc.add(FetchRolesEvent());
     pharmacey = false;
+    // type='صيدلية';
     store = false;
     company = false;
     newOne = false;
@@ -108,7 +107,7 @@ class _RegisterState extends State<Register> {
     companyRoles = [];
     return Scaffold(
         backgroundColor: Colors.grey[50],
-        appBar: PreferredSize(
+        appBar: PreferredSize(  
             preferredSize: Size.fromHeight(80),
             child: Padding(
               padding: EdgeInsets.only(top: 25.0),
@@ -124,17 +123,8 @@ class _RegisterState extends State<Register> {
             BlocListener(
               bloc: registerBloc,
               listener: (context, state) {
-                
-
-             
-                                      
-                                                    if (state is Error){
-                                      Toast.show(state.error, context,gravity: 2);
-                                    
-                                                    }
-                                    
-                                   
-
+                          if (state is Error){
+                            Toast.show(state.error, context,gravity: 2);  }
               },
               child: SizedBox(
                 height: h(20),
@@ -196,9 +186,6 @@ class _RegisterState extends State<Register> {
         
                 Column(
                     children: [
-                     
-                   
-                
                       (pharmacey  || store || company) &&
                               (newOne)
                           ? Column(
@@ -252,8 +239,7 @@ class _RegisterState extends State<Register> {
                                             getindex: (val) {},
                                           ),
                                         ));
-                                  },
-                                 
+                                  },                                
                                 ),
                                 SizedBox(
                                   height: h(17),
@@ -268,7 +254,6 @@ class _RegisterState extends State<Register> {
                              SizedBox(
                                   height: h(17),
                                 ),
-
                                         inputContainer(
                                     desc: "الفرع",
                                     controller: branchc,
@@ -300,11 +285,6 @@ class _RegisterState extends State<Register> {
                                        setState(() {
                                           location = value.latitude.toString() + ","+ value.longitude.toString();
                                        });
-                                  
-                                  
-                                   log(location)
-                                  ;
-                                          
                                         },));},
                                             child: emptyContainer(
                                                 desc: "الموقع",
@@ -442,7 +422,8 @@ class _RegisterState extends State<Register> {
                 
               
               
-                : Column(
+                        : SizedBox(),
+             registered ?    Column(
                     children: [
                       inputContainer(
                           desc: 'الاسم',
@@ -518,14 +499,14 @@ class _RegisterState extends State<Register> {
                                     crossAxisCount: 3),
                           ))
                     ],
-                  ),
+                  ):SizedBox(),
             // SizedBox(
             //   height: h(10),
             // ),
             InkWell(
                 onTap: () {
                   if (pharmacey && newOne || store && !registered) {
-                    if ( store) {
+                  
                       if (jobdesc != null &&
                           name != null &&
                           mobile != null &&
@@ -561,10 +542,7 @@ class _RegisterState extends State<Register> {
                         Toast.show('الرجاء اكمال المعلومات اولا', context,
                             gravity: 1);
                       }
-                    } else {
-                      Toast.show('الرجاء اكمال المعلومات اولا', context,
-                          gravity: 1);
-                    }
+                
                   } else if (pharmacey && registered ||
                       (store && registered || company && registered)) {
                     if (searched != null) {
